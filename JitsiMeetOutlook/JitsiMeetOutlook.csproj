@@ -159,6 +159,12 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AppointmentRibbonButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppointmentRibbonButton.Designer.cs">
+      <DependentUpon>AppointmentRibbonButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalendarRibbonButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="AppointmentRibbonButton.resx">
+      <DependentUpon>AppointmentRibbonButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalendarRibbonButton.resx">
       <DependentUpon>CalendarRibbonButton.cs</DependentUpon>
     </EmbeddedResource>

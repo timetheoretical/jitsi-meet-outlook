@@ -25,7 +25,7 @@ namespace JitsiMeetOutlook
                 //newAppointment.Start = DateTime.Now.AddHours(2);
                 //newAppointment.End = DateTime.Now.AddHours(3);
                 newAppointment.Location = "Jitsi Meet";
-                newAppointment.Body = "We will discuss progress on the group project." + JitsiUrl.generateUrl();
+                newAppointment.Body = "Join the meeting: " + JitsiUrl.generateUrl();
                 //newAppointment.AllDayEvent = false;
                 //newAppointment.Subject = "Group Project";
                 //newAppointment.Recipients.Add("Roger Harui");

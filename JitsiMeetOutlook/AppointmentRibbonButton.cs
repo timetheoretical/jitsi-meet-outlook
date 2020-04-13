@@ -12,5 +12,29 @@ namespace JitsiMeetOutlook
         {
 
         }
+
+        private void buttonCustomiseJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
+        {
+            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            customAppointment.randomiseRoomId();
+        }
+
+        private void buttonRequireName_Click(object sender, RibbonControlEventArgs e)
+        {
+            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            customAppointment.toggleRequireName();
+        }
+
+        private void buttonMuteOnStart_Click(object sender, RibbonControlEventArgs e)
+        {
+            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            customAppointment.toggleMuteOnStart();
+        }
+
+        private void RoomID_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            customAppointment.setRoomId(RoomID.Text);
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace JitsiMeetOutlook
             return urlBase + randomListElement(adjective) + randomListElement(pluralNoun) + randomListElement(verb) + randomListElement(adverb);
         }
 
+        public static string generateRoomId()
+        {
+            return randomListElement(adjective) + randomListElement(pluralNoun) + randomListElement(verb) + randomListElement(adverb);
+        }
+
         private static string randomListElement(List<string> list)
         {
             int index = random.Next(list.Count);

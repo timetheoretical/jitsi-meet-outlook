@@ -171,6 +171,7 @@
     <Compile Include="CalendarRibbonButton.Designer.cs">
       <DependentUpon>CalendarRibbonButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomiseJitsiAppointment.cs" />
     <Compile Include="JitsiUrl.cs" />
     <Compile Include="NewJitsiAppointment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

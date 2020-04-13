@@ -5,7 +5,7 @@ This is a small plug-in that aims to integrate Jitsi Meet with Microsoft Outlook
 2. A set of controls in the Outlook appointment window that, for example, allows for specification of a Room ID of choice and whether participants will be muted upon entry to the room.
 
 A screenshot of these features can be seen below:
-<img src="images/modified_calendar.png" width="500">
+<br/><img src="images/modified_calendar.png" width="500">
 <img src="images/modified_appointment.png" width="500">
 
 It was created to fulfil [this](https://community.jitsi.org/t/plug-ins-for-adding-jitsi-meet-links-to-appointment-requests-emails/21564) request, and more generally with a view to facilitate organisational use of Jitsi Meet. This project is not affiliated with that of Jitsi Meet nor its creators.

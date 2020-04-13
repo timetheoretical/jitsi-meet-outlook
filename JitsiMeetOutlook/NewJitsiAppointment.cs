@@ -22,28 +22,8 @@ namespace JitsiMeetOutlook
                 application.CreateItem(Outlook.OlItemType.olAppointmentItem);
 
                 // Appointment details
-                //newAppointment.Start = DateTime.Now.AddHours(2);
-                //newAppointment.End = DateTime.Now.AddHours(3);
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = "Join the meeting: " + JitsiUrl.generateUrl();
-                //newAppointment.AllDayEvent = false;
-                //newAppointment.Subject = "Group Project";
-                //newAppointment.Recipients.Add("Roger Harui");
-
-                // Recipients
-                /*
-                Outlook.Recipients sentTo = newAppointment.Recipients;
-                Outlook.Recipient sentInvite = null;
-
-                sentInvite = sentTo.Add("Holly Holt");
-                sentInvite.Type = (int)Outlook.OlMeetingRecipientType.olRequired;
-                sentInvite = sentTo.Add("David Junca");
-                sentInvite.Type = (int)Outlook.OlMeetingRecipientType.olOptional;
-                sentTo.ResolveAll();
-                */
-
-                // Save and display meeting event
-                //newAppointment.Save();
                 newAppointment.Display(false);
             }
             catch (Exception ex)

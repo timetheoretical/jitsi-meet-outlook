@@ -11,7 +11,7 @@ A screenshot of these features can be seen below:
 It was created to fulfil [this](https://community.jitsi.org/t/plug-ins-for-adding-jitsi-meet-links-to-appointment-requests-emails/21564) request, and more generally with a view to facilitate organisational use of Jitsi Meet. This project is not affiliated with that of Jitsi Meet nor its creators.
 
 ## Installation
-Go to the Installer folder and download the latest version. Unzip the file contents and then follow the instructions in [this](https://www.youtube.com/watch?v=alDwd8ghO7A) video to mark the installer file as "trusted", before executing "setup.exe".
+Go to the [installers](installers) folder and download the latest version. Unzip the file contents and then follow the instructions in [this](https://www.youtube.com/watch?v=alDwd8ghO7A) video to mark the installer file as "trusted", before executing "setup.exe".
 
 ## Roadmap
 The published code and installer is still at an early stage. Preliminarily, the following amendments are in the pipeline:

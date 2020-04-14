@@ -11,12 +11,15 @@ A screenshot of these features can be seen below:
 It was created to fulfil [this](https://community.jitsi.org/t/plug-ins-for-adding-jitsi-meet-links-to-appointment-requests-emails/21564) request, and more generally with a view to facilitate organisational use of Jitsi Meet. This project is not affiliated with that of Jitsi Meet nor its creators.
 
 ## Installation
-Go to the Installer folder and download the latest version. Unzip the file contents and then follow the instructions in [this](https://www.youtube.com/watch?v=alDwd8ghO7A) video to mark the installer file as "trusted", before executing "setup.exe".
+Go to the [installers](installers) folder and download the latest version. Unzip the file contents and then follow the instructions in [this](https://www.youtube.com/watch?v=alDwd8ghO7A) video to mark the installer file as "trusted", before executing "setup.exe".
 
 ## Roadmap
 The published code and installer is still at an early stage. Preliminarily, the following amendments are in the pipeline:
 * Make the installation procedure less painful
 * Add small icons to the buttons in the appointment ribbon
 * Shift the controls in the appointment ribbon to the left
+* Add a button for starting a conference with video muted to appointment tab
+* Add functionality to appointment tab buttons if appointment was not created through "New Jitsi Meeting"
+* Add persistent preferences: change Jitsi domain, add URL to Location field of appointment
 
 Since this plug-in is brand new, any feedback would be most appreciated!

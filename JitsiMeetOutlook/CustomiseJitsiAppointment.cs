@@ -45,7 +45,7 @@ namespace JitsiMeetOutlook
         {
             toggleSetting("startWithAudioMuted");
         }
-        public void togglVideoOnStart()
+        public void toggleVideoOnStart()
         {
             toggleSetting("startWithVideoMuted");
         }

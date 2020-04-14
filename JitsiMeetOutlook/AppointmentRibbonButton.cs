@@ -36,5 +36,11 @@ namespace JitsiMeetOutlook
             CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
             customAppointment.setRoomId(RoomID.Text);
         }
+
+        private void buttonNoVideoOnStart_Click(object sender, RibbonControlEventArgs e)
+        {
+            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            customAppointment.toggleVideoOnStart();
+        }
     }
 }

@@ -18,5 +18,8 @@ The published code and installer is still at an early stage. Preliminarily, the 
 * Make the installation procedure less painful
 * Add small icons to the buttons in the appointment ribbon
 * Shift the controls in the appointment ribbon to the left
+* Add a button for starting a conference with video muted to appointment tab
+* Add functionality to appointment tab buttons if appointment was not created through "New Jitsi Meeting"
+* Add persistent preferences: change Jitsi domain, add URL to Location field of appointment
 
 Since this plug-in is brand new, any feedback would be most appreciated!

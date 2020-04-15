@@ -74,6 +74,7 @@
             this.RoomID.ShowImage = true;
             this.RoomID.SuperTip = "Longer names are more secure.";
             this.RoomID.Text = null;
+            this.RoomID.Visible = false;
             this.RoomID.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RoomID_TextChanged);
             // 
             // buttonRandomiseRoomID
@@ -82,6 +83,7 @@
             this.buttonRandomiseRoomID.Name = "buttonRandomiseRoomID";
             this.buttonRandomiseRoomID.OfficeImageId = "AccessRefreshAllLists";
             this.buttonRandomiseRoomID.ShowImage = true;
+            this.buttonRandomiseRoomID.Visible = false;
             this.buttonRandomiseRoomID.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonCustomiseJitsiMeeting_Click);
             // 
             // separator1
@@ -94,6 +96,7 @@
             this.buttonRequireName.Name = "buttonRequireName";
             this.buttonRequireName.OfficeImageId = "FormControlEditBox";
             this.buttonRequireName.ShowImage = true;
+            this.buttonRequireName.Visible = false;
             this.buttonRequireName.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonRequireName_Click);
             // 
             // buttonMuteOnStart
@@ -102,6 +105,7 @@
             this.buttonMuteOnStart.Name = "buttonMuteOnStart";
             this.buttonMuteOnStart.OfficeImageId = "SpeechMicrophone";
             this.buttonMuteOnStart.ShowImage = true;
+            this.buttonMuteOnStart.Visible = false;
             this.buttonMuteOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMuteOnStart_Click);
             // 
             // buttonNoVideoOnStart
@@ -110,6 +114,7 @@
             this.buttonNoVideoOnStart.Name = "buttonNoVideoOnStart";
             this.buttonNoVideoOnStart.OfficeImageId = "Camera";
             this.buttonNoVideoOnStart.ShowImage = true;
+            this.buttonNoVideoOnStart.Visible = false;
             this.buttonNoVideoOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNoVideoOnStart_Click);
             // 
             // AppointmentRibbonButton

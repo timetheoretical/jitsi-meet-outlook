@@ -19,6 +19,11 @@ namespace JitsiMeetOutlook
             return randomListElement(adjective) + randomListElement(pluralNoun) + randomListElement(verb) + randomListElement(adverb);
         }
 
+        public static string getUrlBase()
+        {
+            return urlBase;
+        }
+
         private static string randomListElement(List<string> list)
         {
             int index = random.Next(list.Count);

@@ -47,13 +47,7 @@ namespace JitsiMeetOutlook
         private void displayRibbonGroup()
         {
             AppointmentRibbonButton individualRibbon = Globals.Ribbons[Globals.ThisAddIn.Application.ActiveInspector()].AppointmentRibbonButton;
-            // This list must contain all elements within the ribbon group
-            individualRibbon.RoomID.Visible = true;
-            individualRibbon.buttonMuteOnStart.Visible = true;
-            individualRibbon.buttonNoVideoOnStart.Visible = true;
-            individualRibbon.buttonRandomiseRoomID.Visible = true;
-            individualRibbon.buttonRequireName.Visible = true;
-            individualRibbon.separator1.Visible = true;
+            individualRibbon.groupJitsiMeet.Visible = true;
         }
     }
 }

@@ -32,7 +32,9 @@ namespace JitsiMeetOutlook
 
         private static Random random = new Random();
 
-        private static string urlBase = "https://meet.jit.si/";
+        private static string domain = Properties.Settings.Default.Domain;
+
+        private static string urlBase = "https://" + domain + "/";
 
         // The list of plural nouns.
         private static List<string> pluralNoun = new List<string> {

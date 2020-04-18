@@ -9,6 +9,12 @@ namespace JitsiMeetOutlook
 
         }
 
+        private void buttonDialogLauncher_Click(object sender, RibbonControlEventArgs e)
+        {
+            FormSettings settingsWindow = new FormSettings();
+            settingsWindow.Show();
+        }
+
         private void buttonCustomiseJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
             CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);

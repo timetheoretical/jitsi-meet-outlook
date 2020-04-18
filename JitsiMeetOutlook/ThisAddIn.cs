@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Outlook = Microsoft.Office.Interop.Outlook;
-using Office = Microsoft.Office.Core;
-
-namespace JitsiMeetOutlook
+﻿namespace JitsiMeetOutlook
 {
     public partial class ThisAddIn
     {
+
+        public bool ShowRibbonAppointment;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            ShowRibbonAppointment = false;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -19,7 +15,6 @@ namespace JitsiMeetOutlook
             // Note: Outlook no longer raises this event. If you have code that 
             //    must run when Outlook shuts down, see https://go.microsoft.com/fwlink/?LinkId=506785
         }
-
         #region VSTO generated code
 
         /// <summary>

@@ -6,6 +6,8 @@ namespace JitsiMeetOutlook
 {
     class NewJitsiAppointment
     {
+
+        //private Outlook.AppointmentItem newAppointment;
         public NewJitsiAppointment()
         {
             // Get the Application object
@@ -17,17 +19,21 @@ namespace JitsiMeetOutlook
                 string jitsiRoomId = JitsiUrl.generateRoomId();
 
                 // Create meeting object
-                Outlook.AppointmentItem newAppointment = (Outlook.AppointmentItem)
-                application.CreateItem(Outlook.OlItemType.olAppointmentItem);
+                Outlook.AppointmentItem newAppointment = (Outlook.AppointmentItem) application.CreateItem(Outlook.OlItemType.olAppointmentItem);
+
 
                 // Appointment details
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = "Join the meeting: " + (JitsiUrl.getUrlBase() + jitsiRoomId);
 
-                // Display ribbon group, then the appointment window
+                // Set Room ID field
                 setRoomIdText(jitsiRoomId);
-                displayRibbonGroup();
+
+                // Display ribbon group, then the appointment window
+                Globals.ThisAddIn.ShowRibbonAppointment = true;
                 newAppointment.Display(false);
+                Globals.ThisAddIn.ShowRibbonAppointment = false;
+
             }
             catch (Exception ex)
             {
@@ -42,12 +48,6 @@ namespace JitsiMeetOutlook
             {
                 individualRibbon.RoomID.Text = roomIdText;
             }
-        }
-
-        private void displayRibbonGroup()
-        {
-            AppointmentRibbonButton individualRibbon = Globals.Ribbons[Globals.ThisAddIn.Application.ActiveInspector()].AppointmentRibbonButton;
-            individualRibbon.groupJitsiMeet.Visible = true;
         }
     }
 }

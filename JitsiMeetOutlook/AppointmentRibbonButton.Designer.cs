@@ -57,6 +57,7 @@
             // 
             // groupJitsiMeet
             // 
+            ribbonDialogLauncherImpl1.SuperTip = "Preferences";
             this.groupJitsiMeet.DialogLauncher = ribbonDialogLauncherImpl1;
             this.groupJitsiMeet.Items.Add(this.RoomID);
             this.groupJitsiMeet.Items.Add(this.buttonRandomiseRoomID);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace JitsiMeetOutlook
 {
@@ -6,11 +7,12 @@ namespace JitsiMeetOutlook
     {
         private void AppointmentRibbonButton_Load(object sender, RibbonUIEventArgs e)
         {
-
+            displayRibbonGroup();
         }
 
         private void buttonDialogLauncher_Click(object sender, RibbonControlEventArgs e)
         {
+
             FormSettings settingsWindow = new FormSettings();
             settingsWindow.Show();
         }
@@ -43,6 +45,20 @@ namespace JitsiMeetOutlook
         {
             CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
             customAppointment.toggleVideoOnStart();
+        }
+
+        private void displayRibbonGroup()
+        {
+            if (this.Context is Outlook.Inspector)
+            {
+                Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
+
+                if (Globals.ThisAddIn.ShowRibbonAppointment)
+                {
+                    AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
+                    individualRibbon.groupJitsiMeet.Visible = true;
+                }
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace JitsiMeetOutlook
 
         private void buttonNewJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
-            new NewJitsiAppointment();
+            NewJitsiAppointment newJitsiAppointment = new NewJitsiAppointment();
         }
     }
 }

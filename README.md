@@ -48,7 +48,7 @@ Since this plug-in is brand new, any feedback would be most appreciated!
 ## Changelog
 
 ### v0.2
-* The installer no longer prompts trust certificate
+* The installer no longer prompts trust certificate issues and delegates trust decision to user
 * Small icons have been added to the buttons in the appointment ribbon
 * A button for starting with the video turned off has been added to the appointment ribbon
 * The appointment ribbon buttons are only displayed for appointments created via the "New Jitsi Meeting" button in the calendar tab

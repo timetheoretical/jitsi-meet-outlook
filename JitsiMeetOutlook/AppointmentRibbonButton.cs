@@ -60,7 +60,10 @@ namespace JitsiMeetOutlook
 
         private void displayRibbonGroup()
         {
-            thisRibbon().groupJitsiMeet.Visible = true;
+            if(Globals.ThisAddIn.ShowRibbonAppointment)
+            {
+                thisRibbon().groupJitsiMeet.Visible = true;
+            }
         }
 
         private void ensureCustomExists()

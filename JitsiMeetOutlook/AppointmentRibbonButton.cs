@@ -5,6 +5,9 @@ namespace JitsiMeetOutlook
 {
     public partial class AppointmentRibbonButton
     {
+
+        private CustomiseJitsiAppointment customAppointment;
+
         private void AppointmentRibbonButton_Load(object sender, RibbonUIEventArgs e)
         {
             displayRibbonGroup();
@@ -19,45 +22,52 @@ namespace JitsiMeetOutlook
 
         private void buttonCustomiseJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
-            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            ensureCustomExists();
             customAppointment.randomiseRoomId();
         }
 
         private void buttonRequireName_Click(object sender, RibbonControlEventArgs e)
         {
-            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            ensureCustomExists();
             customAppointment.toggleRequireName();
         }
 
         private void buttonMuteOnStart_Click(object sender, RibbonControlEventArgs e)
         {
-            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            ensureCustomExists();
             customAppointment.toggleMuteOnStart();
         }
 
         private void RoomID_TextChanged(object sender, RibbonControlEventArgs e)
         {
-            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            ensureCustomExists();
             customAppointment.setRoomId(RoomID.Text);
         }
 
         private void buttonNoVideoOnStart_Click(object sender, RibbonControlEventArgs e)
         {
-            CustomiseJitsiAppointment customAppointment = new CustomiseJitsiAppointment(this);
+            ensureCustomExists();
             customAppointment.toggleVideoOnStart();
+        }
+
+        private AppointmentRibbonButton thisRibbon()
+        {
+            Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
+            AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;           
+
+            return individualRibbon;
         }
 
         private void displayRibbonGroup()
         {
-            if (this.Context is Outlook.Inspector)
-            {
-                Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
+            thisRibbon().groupJitsiMeet.Visible = true;
+        }
 
-                if (Globals.ThisAddIn.ShowRibbonAppointment)
-                {
-                    AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
-                    individualRibbon.groupJitsiMeet.Visible = true;
-                }
+        private void ensureCustomExists()
+        {
+            if (customAppointment == null)
+            {
+                customAppointment = new CustomiseJitsiAppointment(this);
             }
         }
     }

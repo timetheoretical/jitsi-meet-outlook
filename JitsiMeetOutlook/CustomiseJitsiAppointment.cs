@@ -6,9 +6,10 @@ namespace JitsiMeetOutlook
 {
     class CustomiseJitsiAppointment
     {
-        AppointmentRibbonButton appointmentRibbon;
-        Outlook.Application application;
-        Outlook.AppointmentItem appointmentItem;
+        private AppointmentRibbonButton appointmentRibbon;
+        private Outlook.Application application;
+        private Outlook.AppointmentItem appointmentItem;
+        private string oldDomain;
 
         public CustomiseJitsiAppointment(AppointmentRibbonButton appointmentRibbon)
         {
@@ -18,21 +19,39 @@ namespace JitsiMeetOutlook
             // Get the active Inspector object
             Outlook.Inspector inspector = application.ActiveInspector();
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
+            oldDomain = Properties.Settings.Default.Domain;
         }
 
         public void setRoomId(string newRoomId)
         {
+            string newDomain = Properties.Settings.Default.Domain;
             string oldBody = appointmentItem.Body;
 
+
+            // Replace old domain for new domain
             string newBody = oldBody.Replace(findRoomId(), newRoomId);
+            newBody = newBody.Replace(oldDomain, newDomain);
 
             appointmentRibbon.RoomID.Text = newRoomId;
             appointmentItem.Body = newBody;
+
+            oldDomain = newDomain;
          }
+
+
+        private string escapeDomain()
+        {
+            string escapedDomain = Regex.Escape(oldDomain);
+            if (!escapedDomain.EndsWith("/"))
+            {
+                escapedDomain += "/";
+            }
+            return escapedDomain;
+        }
 
         public string findRoomId()
         {
-            string roomId = Regex.Match(appointmentItem.Body, "(?<=meet\\.jit\\.si/)\\S+?(?=(#config|&config|\\s))").Value; // Match all non-blanks after jitsi url and before config or end
+            string roomId = Regex.Match(appointmentItem.Body, "(?<=" + escapeDomain() + ")\\S+?(?=(#config|&config|\\s))").Value; // Match all non-blanks after jitsi url and before config or end
             return roomId;
         }
 
@@ -59,7 +78,7 @@ namespace JitsiMeetOutlook
         {
             // Find Jitsi URL in message
             string oldBody = appointmentItem.Body;
-            string urlMatch = Regex.Match(oldBody, "meet\\.jit\\.si/\\S+").Value;
+            string urlMatch = Regex.Match(oldBody, escapeDomain() + "\\S+").Value;
 
             // Remove setting if present
             string urlNew;

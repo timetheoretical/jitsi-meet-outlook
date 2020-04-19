@@ -46,8 +46,6 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
-### v0.1
-* Initial release of the project
 
 ### v0.2
 * The installer no longer prompts trust certificate
@@ -57,3 +55,6 @@ Since this plug-in is brand new, any feedback would be most appreciated!
 * Persistent settings have been enabled
 * It is now possible to specify a custom domain in the settings dialogue
 * Various small bugs have been fixed to improve reliability
+
+### v0.1
+* Initial release of the project

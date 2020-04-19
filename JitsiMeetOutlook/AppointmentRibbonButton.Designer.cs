@@ -42,7 +42,7 @@
             this.separator1 = this.Factory.CreateRibbonSeparator();
             this.buttonRequireName = this.Factory.CreateRibbonToggleButton();
             this.buttonMuteOnStart = this.Factory.CreateRibbonToggleButton();
-            this.buttonNoVideoOnStart = this.Factory.CreateRibbonButton();
+            this.buttonNoVideoOnStart = this.Factory.CreateRibbonToggleButton();
             this.Appointment.SuspendLayout();
             this.groupJitsiMeet.SuspendLayout();
             this.SuspendLayout();
@@ -139,7 +139,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonRequireName;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox RoomID;
         internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonNoVideoOnStart;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonNoVideoOnStart;
     }
 
     partial class ThisRibbonCollection

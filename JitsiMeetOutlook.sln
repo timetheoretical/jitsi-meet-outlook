@@ -5,16 +5,21 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JitsiMeetOutlook", "JitsiMeetOutlook\JitsiMeetOutlook.csproj", "{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup", "setup\setup.vdproj", "{C9B130DB-0B4D-45A3-891B-224383D4B074}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B130DB-0B4D-45A3-891B-224383D4B074}.Debug|Any CPU.ActiveCfg = Release
+		{C9B130DB-0B4D-45A3-891B-224383D4B074}.Debug|Any CPU.Build.0 = Release
+		{C9B130DB-0B4D-45A3-891B-224383D4B074}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,13 +38,18 @@
             this.Appointment = this.Factory.CreateRibbonTab();
             this.groupJitsiMeet = this.Factory.CreateRibbonGroup();
             this.RoomID = this.Factory.CreateRibbonEditBox();
-            this.buttonRandomiseRoomID = this.Factory.CreateRibbonButton();
-            this.separator1 = this.Factory.CreateRibbonSeparator();
-            this.buttonRequireName = this.Factory.CreateRibbonToggleButton();
-            this.buttonMuteOnStart = this.Factory.CreateRibbonToggleButton();
             this.buttonNoVideoOnStart = this.Factory.CreateRibbonToggleButton();
+            this.buttonMuteOnStart = this.Factory.CreateRibbonToggleButton();
+            this.buttonRandomiseRoomID = this.Factory.CreateRibbonButton();
+            this.buttonRequireName = this.Factory.CreateRibbonToggleButton();
+            this.box1 = this.Factory.CreateRibbonBox();
+            this.box2 = this.Factory.CreateRibbonBox();
+            this.box3 = this.Factory.CreateRibbonBox();
             this.Appointment.SuspendLayout();
             this.groupJitsiMeet.SuspendLayout();
+            this.box1.SuspendLayout();
+            this.box2.SuspendLayout();
+            this.box3.SuspendLayout();
             this.SuspendLayout();
             // 
             // Appointment
@@ -59,12 +64,9 @@
             // 
             ribbonDialogLauncherImpl1.SuperTip = "Preferences";
             this.groupJitsiMeet.DialogLauncher = ribbonDialogLauncherImpl1;
-            this.groupJitsiMeet.Items.Add(this.RoomID);
-            this.groupJitsiMeet.Items.Add(this.buttonRandomiseRoomID);
-            this.groupJitsiMeet.Items.Add(this.separator1);
-            this.groupJitsiMeet.Items.Add(this.buttonRequireName);
-            this.groupJitsiMeet.Items.Add(this.buttonMuteOnStart);
-            this.groupJitsiMeet.Items.Add(this.buttonNoVideoOnStart);
+            this.groupJitsiMeet.Items.Add(this.box1);
+            this.groupJitsiMeet.Items.Add(this.box2);
+            this.groupJitsiMeet.Items.Add(this.box3);
             this.groupJitsiMeet.Label = "Jitsi Meet";
             this.groupJitsiMeet.Name = "groupJitsiMeet";
             this.groupJitsiMeet.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupAttendees");
@@ -77,29 +79,18 @@
             this.RoomID.Name = "RoomID";
             this.RoomID.OfficeImageId = "StylesPaneNewStyle";
             this.RoomID.ShowImage = true;
+            this.RoomID.SizeString = "wwwwwwwwwwwwwwwwwwwwww";
             this.RoomID.SuperTip = "Longer names are more secure.";
             this.RoomID.Text = null;
             this.RoomID.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RoomID_TextChanged);
             // 
-            // buttonRandomiseRoomID
+            // buttonNoVideoOnStart
             // 
-            this.buttonRandomiseRoomID.Label = "Random ID";
-            this.buttonRandomiseRoomID.Name = "buttonRandomiseRoomID";
-            this.buttonRandomiseRoomID.OfficeImageId = "AccessRefreshAllLists";
-            this.buttonRandomiseRoomID.ShowImage = true;
-            this.buttonRandomiseRoomID.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonCustomiseJitsiMeeting_Click);
-            // 
-            // separator1
-            // 
-            this.separator1.Name = "separator1";
-            // 
-            // buttonRequireName
-            // 
-            this.buttonRequireName.Label = "Require Name";
-            this.buttonRequireName.Name = "buttonRequireName";
-            this.buttonRequireName.OfficeImageId = "FormControlEditBox";
-            this.buttonRequireName.ShowImage = true;
-            this.buttonRequireName.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonRequireName_Click);
+            this.buttonNoVideoOnStart.Label = "No Video on Start";
+            this.buttonNoVideoOnStart.Name = "buttonNoVideoOnStart";
+            this.buttonNoVideoOnStart.OfficeImageId = "Camera";
+            this.buttonNoVideoOnStart.ShowImage = true;
+            this.buttonNoVideoOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNoVideoOnStart_Click);
             // 
             // buttonMuteOnStart
             // 
@@ -109,13 +100,38 @@
             this.buttonMuteOnStart.ShowImage = true;
             this.buttonMuteOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMuteOnStart_Click);
             // 
-            // buttonNoVideoOnStart
+            // buttonRandomiseRoomID
             // 
-            this.buttonNoVideoOnStart.Label = "No Video on Start";
-            this.buttonNoVideoOnStart.Name = "buttonNoVideoOnStart";
-            this.buttonNoVideoOnStart.OfficeImageId = "Camera";
-            this.buttonNoVideoOnStart.ShowImage = true;
-            this.buttonNoVideoOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNoVideoOnStart_Click);
+            this.buttonRandomiseRoomID.Label = "Random ID";
+            this.buttonRandomiseRoomID.Name = "buttonRandomiseRoomID";
+            this.buttonRandomiseRoomID.OfficeImageId = "AccessRefreshAllLists";
+            this.buttonRandomiseRoomID.ShowImage = true;
+            this.buttonRandomiseRoomID.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonCustomiseJitsiMeeting_Click);
+            // 
+            // buttonRequireName
+            // 
+            this.buttonRequireName.Label = "Require Name";
+            this.buttonRequireName.Name = "buttonRequireName";
+            this.buttonRequireName.OfficeImageId = "FormControlEditBox";
+            this.buttonRequireName.ShowImage = true;
+            this.buttonRequireName.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonRequireName_Click);
+            // 
+            // box1
+            // 
+            this.box1.Items.Add(this.RoomID);
+            this.box1.Name = "box1";
+            // 
+            // box2
+            // 
+            this.box2.Items.Add(this.buttonRandomiseRoomID);
+            this.box2.Items.Add(this.buttonMuteOnStart);
+            this.box2.Name = "box2";
+            // 
+            // box3
+            // 
+            this.box3.Items.Add(this.buttonRequireName);
+            this.box3.Items.Add(this.buttonNoVideoOnStart);
+            this.box3.Name = "box3";
             // 
             // AppointmentRibbonButton
             // 
@@ -127,6 +143,12 @@
             this.Appointment.PerformLayout();
             this.groupJitsiMeet.ResumeLayout(false);
             this.groupJitsiMeet.PerformLayout();
+            this.box1.ResumeLayout(false);
+            this.box1.PerformLayout();
+            this.box2.ResumeLayout(false);
+            this.box2.PerformLayout();
+            this.box3.ResumeLayout(false);
+            this.box3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -134,12 +156,14 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab Appointment;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupJitsiMeet;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonRandomiseRoomID;
-        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonMuteOnStart;
-        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonRequireName;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox RoomID;
-        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonMuteOnStart;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonNoVideoOnStart;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonRandomiseRoomID;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonRequireName;
+        internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonBox box2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonBox box3;
     }
 
     partial class ThisRibbonCollection

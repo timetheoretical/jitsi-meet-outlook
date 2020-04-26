@@ -37,14 +37,14 @@
             Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
             this.Appointment = this.Factory.CreateRibbonTab();
             this.groupJitsiMeet = this.Factory.CreateRibbonGroup();
-            this.RoomID = this.Factory.CreateRibbonEditBox();
-            this.buttonNoVideoOnStart = this.Factory.CreateRibbonToggleButton();
-            this.buttonMuteOnStart = this.Factory.CreateRibbonToggleButton();
-            this.buttonRandomiseRoomID = this.Factory.CreateRibbonButton();
-            this.buttonRequireName = this.Factory.CreateRibbonToggleButton();
             this.box1 = this.Factory.CreateRibbonBox();
+            this.RoomID = this.Factory.CreateRibbonEditBox();
             this.box2 = this.Factory.CreateRibbonBox();
+            this.buttonRandomiseRoomID = this.Factory.CreateRibbonButton();
+            this.buttonMuteOnStart = this.Factory.CreateRibbonToggleButton();
             this.box3 = this.Factory.CreateRibbonBox();
+            this.buttonRequireName = this.Factory.CreateRibbonToggleButton();
+            this.buttonNoVideoOnStart = this.Factory.CreateRibbonToggleButton();
             this.Appointment.SuspendLayout();
             this.groupJitsiMeet.SuspendLayout();
             this.box1.SuspendLayout();
@@ -73,6 +73,11 @@
             this.groupJitsiMeet.Visible = false;
             this.groupJitsiMeet.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDialogLauncher_Click);
             // 
+            // box1
+            // 
+            this.box1.Items.Add(this.RoomID);
+            this.box1.Name = "box1";
+            // 
             // RoomID
             // 
             this.RoomID.Label = "ID:";
@@ -84,21 +89,11 @@
             this.RoomID.Text = null;
             this.RoomID.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.RoomID_TextChanged);
             // 
-            // buttonNoVideoOnStart
+            // box2
             // 
-            this.buttonNoVideoOnStart.Label = "No Video on Start";
-            this.buttonNoVideoOnStart.Name = "buttonNoVideoOnStart";
-            this.buttonNoVideoOnStart.OfficeImageId = "Camera";
-            this.buttonNoVideoOnStart.ShowImage = true;
-            this.buttonNoVideoOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNoVideoOnStart_Click);
-            // 
-            // buttonMuteOnStart
-            // 
-            this.buttonMuteOnStart.Label = "Mute on Start";
-            this.buttonMuteOnStart.Name = "buttonMuteOnStart";
-            this.buttonMuteOnStart.OfficeImageId = "SpeechMicrophone";
-            this.buttonMuteOnStart.ShowImage = true;
-            this.buttonMuteOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMuteOnStart_Click);
+            this.box2.Items.Add(this.buttonRandomiseRoomID);
+            this.box2.Items.Add(this.buttonMuteOnStart);
+            this.box2.Name = "box2";
             // 
             // buttonRandomiseRoomID
             // 
@@ -108,6 +103,20 @@
             this.buttonRandomiseRoomID.ShowImage = true;
             this.buttonRandomiseRoomID.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonCustomiseJitsiMeeting_Click);
             // 
+            // buttonMuteOnStart
+            // 
+            this.buttonMuteOnStart.Label = "Mute on Start";
+            this.buttonMuteOnStart.Name = "buttonMuteOnStart";
+            this.buttonMuteOnStart.OfficeImageId = "SpeechMicrophone";
+            this.buttonMuteOnStart.ShowImage = true;
+            this.buttonMuteOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonMuteOnStart_Click);
+            // 
+            // box3
+            // 
+            this.box3.Items.Add(this.buttonRequireName);
+            this.box3.Items.Add(this.buttonNoVideoOnStart);
+            this.box3.Name = "box3";
+            // 
             // buttonRequireName
             // 
             this.buttonRequireName.Label = "Require Name";
@@ -116,22 +125,13 @@
             this.buttonRequireName.ShowImage = true;
             this.buttonRequireName.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonRequireName_Click);
             // 
-            // box1
+            // buttonNoVideoOnStart
             // 
-            this.box1.Items.Add(this.RoomID);
-            this.box1.Name = "box1";
-            // 
-            // box2
-            // 
-            this.box2.Items.Add(this.buttonRandomiseRoomID);
-            this.box2.Items.Add(this.buttonMuteOnStart);
-            this.box2.Name = "box2";
-            // 
-            // box3
-            // 
-            this.box3.Items.Add(this.buttonRequireName);
-            this.box3.Items.Add(this.buttonNoVideoOnStart);
-            this.box3.Name = "box3";
+            this.buttonNoVideoOnStart.Label = "No Video on Start";
+            this.buttonNoVideoOnStart.Name = "buttonNoVideoOnStart";
+            this.buttonNoVideoOnStart.OfficeImageId = "Camera";
+            this.buttonNoVideoOnStart.ShowImage = true;
+            this.buttonNoVideoOnStart.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNoVideoOnStart_Click);
             // 
             // AppointmentRibbonButton
             // 

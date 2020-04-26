@@ -1,16 +1,14 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
-using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace JitsiMeetOutlook
 {
     public partial class AppointmentRibbonButton
     {
 
-        private CustomiseJitsiAppointment customAppointment;
-
         private void AppointmentRibbonButton_Load(object sender, RibbonUIEventArgs e)
         {
             displayRibbonGroup();
+            initialise();
         }
 
         private void buttonDialogLauncher_Click(object sender, RibbonControlEventArgs e)
@@ -22,55 +20,34 @@ namespace JitsiMeetOutlook
 
         private void buttonCustomiseJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
-            ensureCustomExists();
-            customAppointment.randomiseRoomId();
+            randomiseRoomId();
         }
 
         private void buttonRequireName_Click(object sender, RibbonControlEventArgs e)
         {
-            ensureCustomExists();
-            customAppointment.toggleRequireName();
+            toggleRequireName();
         }
 
         private void buttonMuteOnStart_Click(object sender, RibbonControlEventArgs e)
         {
-            ensureCustomExists();
-            customAppointment.toggleMuteOnStart();
+            toggleMuteOnStart();
         }
 
         private void RoomID_TextChanged(object sender, RibbonControlEventArgs e)
         {
-            ensureCustomExists();
-            customAppointment.setRoomId(RoomID.Text);
+            setRoomId(RoomID.Text);
         }
 
         private void buttonNoVideoOnStart_Click(object sender, RibbonControlEventArgs e)
         {
-            ensureCustomExists();
-            customAppointment.toggleVideoOnStart();
-        }
-
-        private AppointmentRibbonButton thisRibbon()
-        {
-            Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
-            AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;           
-
-            return individualRibbon;
+            toggleVideoOnStart();
         }
 
         private void displayRibbonGroup()
         {
             if(Globals.ThisAddIn.ShowRibbonAppointment)
             {
-                thisRibbon().groupJitsiMeet.Visible = true;
-            }
-        }
-
-        private void ensureCustomExists()
-        {
-            if (customAppointment == null)
-            {
-                customAppointment = new CustomiseJitsiAppointment(this);
+                groupJitsiMeet.Visible = true;
             }
         }
     }

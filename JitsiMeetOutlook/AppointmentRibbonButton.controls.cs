@@ -4,27 +4,25 @@ using System.Text.RegularExpressions;
 
 namespace JitsiMeetOutlook
 {
-    class CustomiseJitsiAppointment
+    public partial class AppointmentRibbonButton
     {
-        private AppointmentRibbonButton appointmentRibbon;
-        private Outlook.Application application;
         private Outlook.AppointmentItem appointmentItem;
         private string oldDomain;
 
-        public CustomiseJitsiAppointment(AppointmentRibbonButton appointmentRibbon)
+        private void initialise()
         {
-            this.appointmentRibbon = appointmentRibbon;
-            // Get the Application object
-            application = Globals.ThisAddIn.Application;
-            // Get the active Inspector object
-            Outlook.Inspector inspector = application.ActiveInspector();
+            // Assign the relevant appointment item
+            Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
+
+            // Assign the domain prevailing at appointment item launch
+            Properties.Settings.Default.Reload();
             oldDomain = Properties.Settings.Default.Domain;
         }
 
         public void setRoomId(string newRoomId)
         {
-            string newDomain = Properties.Settings.Default.Domain;
+            string newDomain = JitsiUrl.getDomain();
             string oldBody = appointmentItem.Body;
 
 
@@ -32,7 +30,7 @@ namespace JitsiMeetOutlook
             string newBody = oldBody.Replace(findRoomId(), newRoomId);
             newBody = newBody.Replace(oldDomain, newDomain);
 
-            appointmentRibbon.RoomID.Text = newRoomId;
+            RoomID.Text = newRoomId;
             appointmentItem.Body = newBody;
 
             oldDomain = newDomain;

@@ -7,11 +7,13 @@ using System.Collections.Generic;
 
 namespace JitsiMeetOutlook
 {
-    class JitsiUrl
+    public static class JitsiUrl
+
     {
+
         public static string generateUrl()
         {
-            return urlBase + randomListElement(adjective) + randomListElement(pluralNoun) + randomListElement(verb) + randomListElement(adverb);
+            return getUrlBase() + randomListElement(adjective) + randomListElement(pluralNoun) + randomListElement(verb) + randomListElement(adverb);
         }
 
         public static string generateRoomId()
@@ -21,7 +23,15 @@ namespace JitsiMeetOutlook
 
         public static string getUrlBase()
         {
+            string urlBase = "https://" + getDomain() + "/";
             return urlBase;
+        }
+
+        public static string getDomain()
+        {
+            Properties.Settings.Default.Reload();
+            string domain = Properties.Settings.Default.Domain;
+            return domain;
         }
 
         private static string randomListElement(List<string> list)
@@ -31,10 +41,6 @@ namespace JitsiMeetOutlook
         }
 
         private static Random random = new Random();
-
-        private static string domain = Properties.Settings.Default.Domain;
-
-        private static string urlBase = "https://" + domain + "/";
 
         // The list of plural nouns.
         private static List<string> pluralNoun = new List<string> {

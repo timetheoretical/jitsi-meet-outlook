@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace JitsiMeetOutlook
 {
     public partial class FormSettings : Form
     {
+
         string defaultDomain;
 
         public FormSettings()
@@ -42,8 +38,15 @@ namespace JitsiMeetOutlook
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            setSettings();
-            Dispose();
+            try
+            {
+                setSettings();
+                Dispose();
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Do nothing
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -91,16 +94,47 @@ namespace JitsiMeetOutlook
             if (radioDefault.Checked)
             {
                 Properties.Settings.Default.Domain = defaultDomain;
+                Properties.Settings.Default.Save();
+
             }
             else
             {
-                Properties.Settings.Default.Domain = textBoxDomain.Text;
+                string newDomain = cleanDomain(textBoxDomain.Text);
+
+                if (validDomain(newDomain))
+                {
+                    Properties.Settings.Default.Domain = newDomain;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    MessageBox.Show("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
+                    throw new InvalidOperationException("Invalid domain");
+                }
+
+
             }
+        }
+
+        private string cleanDomain(string userInput)
+        {
+            string withoutEndSlash = Regex.Replace(userInput, "/*$", "");
+
+            string withoutHttp = Regex.Replace(withoutEndSlash, "^http(s)?://", "");
+
+            string cleanedDomain = withoutHttp;
+
+            return cleanedDomain;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private bool validDomain(string domain)
+        {
+            return Uri.CheckHostName(domain) != UriHostNameType.Unknown;
         }
     }
 }

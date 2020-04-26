@@ -194,7 +194,9 @@
     <Compile Include="CalendarRibbonButton.Designer.cs">
       <DependentUpon>CalendarRibbonButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomiseJitsiAppointment.cs" />
+    <Compile Include="AppointmentRibbonButton.controls.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>

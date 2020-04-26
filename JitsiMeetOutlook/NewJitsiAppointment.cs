@@ -7,7 +7,7 @@ namespace JitsiMeetOutlook
     class NewJitsiAppointment
     {
 
-        //private Outlook.AppointmentItem newAppointment;
+        private Outlook.AppointmentItem newAppointment;
         public NewJitsiAppointment()
         {
             // Get the Application object
@@ -19,20 +19,20 @@ namespace JitsiMeetOutlook
                 string jitsiRoomId = JitsiUrl.generateRoomId();
 
                 // Create meeting object
-                Outlook.AppointmentItem newAppointment = (Outlook.AppointmentItem) application.CreateItem(Outlook.OlItemType.olAppointmentItem);
+                newAppointment = (Outlook.AppointmentItem) application.CreateItem(Outlook.OlItemType.olAppointmentItem);
 
 
                 // Appointment details
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = "Join the meeting: " + (JitsiUrl.getUrlBase() + jitsiRoomId);
 
-                // Set Room ID field
-                setRoomIdText(jitsiRoomId);
-
                 // Display ribbon group, then the appointment window
                 Globals.ThisAddIn.ShowRibbonAppointment = true;
                 newAppointment.Display(false);
                 Globals.ThisAddIn.ShowRibbonAppointment = false;
+
+                // Set Room ID field
+                setRoomIdText(jitsiRoomId);
 
             }
             catch (Exception ex)
@@ -43,7 +43,8 @@ namespace JitsiMeetOutlook
 
         private void setRoomIdText(string roomIdText)
         {
-            AppointmentRibbonButton individualRibbon = Globals.Ribbons[Globals.ThisAddIn.Application.ActiveInspector()].AppointmentRibbonButton;
+            Outlook.Inspector inspector = newAppointment.GetInspector;
+            AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
             if (roomIdText != null)
             {
                 individualRibbon.RoomID.Text = roomIdText;

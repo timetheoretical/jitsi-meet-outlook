@@ -45,7 +45,7 @@ namespace JitsiMeetOutlook
             }
             catch (InvalidOperationException ex)
             {
-                // Do nothing
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -108,8 +108,7 @@ namespace JitsiMeetOutlook
                 }
                 else
                 {
-                    MessageBox.Show("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
-                    throw new InvalidOperationException("Invalid domain");
+                    throw new InvalidOperationException("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
                 }
 
 

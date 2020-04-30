@@ -40,14 +40,19 @@ The published code and installer is still at an early stage. Preliminarily, the 
 - [ ] Add persistent setting: add URL to Location field of appointment
 - [ ] Add persistent setting: preference for whether to start a call with muted mic or video
 - [ ] Add RTF body text to appointment for improved appearance
-- [ ] Add checks on the validity of the custom domain value provided
+- [x] Add checks on the validity of the custom domain value provided (v0.2.1)
 - [ ] Add checks for Outlook having been installed on the target computer and that its architecture matches that of the installer
-- [x] Widen the custom Room ID field (not yet released)
+- [x] Widen the custom Room ID field (v0.2.1)
 
 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+
+### v0.2.1
+* Bug fixes related to specification of a custom domain
+* Custom domain names provided by user now has to pass a validity check
+* Improved layout in the appointment view (widened Room ID field and reorganisation of buttons)
 
 ### v0.2
 * The installer no longer prompts trust certificate issues and delegates trust decision to user

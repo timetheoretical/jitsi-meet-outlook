@@ -34,5 +34,41 @@ namespace JitsiMeetOutlook.Properties {
                 this["Domain"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool requireDisplayName {
+            get {
+                return ((bool)(this["requireDisplayName"]));
+            }
+            set {
+                this["requireDisplayName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool startWithAudioMuted {
+            get {
+                return ((bool)(this["startWithAudioMuted"]));
+            }
+            set {
+                this["startWithAudioMuted"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool startWithVideoMuted {
+            get {
+                return ((bool)(this["startWithVideoMuted"]));
+            }
+            set {
+                this["startWithVideoMuted"] = value;
+            }
+        }
     }
 }

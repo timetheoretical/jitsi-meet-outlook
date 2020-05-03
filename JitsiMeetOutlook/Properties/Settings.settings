@@ -5,5 +5,14 @@
     <Setting Name="Domain" Type="System.String" Scope="User">
       <Value Profile="(Default)">meet.jit.si</Value>
     </Setting>
+    <Setting Name="requireDisplayName" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="startWithAudioMuted" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="startWithVideoMuted" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

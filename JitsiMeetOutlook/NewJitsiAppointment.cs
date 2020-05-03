@@ -8,6 +8,8 @@ namespace JitsiMeetOutlook
     {
 
         private Outlook.AppointmentItem newAppointment;
+        private AppointmentRibbonButton thisRibbon;
+
         public NewJitsiAppointment()
         {
             // Get the Application object
@@ -32,6 +34,10 @@ namespace JitsiMeetOutlook
                 Globals.ThisAddIn.ShowRibbonAppointment = false;
 
                 // Set Room ID field
+                findThisRibbon();
+                setRequireDisplayName();
+                setStartWithAudioMuted();
+                setStartWithVideoMuted();
                 setRoomIdText(jitsiRoomId);
 
             }
@@ -41,14 +47,46 @@ namespace JitsiMeetOutlook
             }
         }
 
+        private void findThisRibbon()
+        {
+            Outlook.Inspector inspector = newAppointment.GetInspector; // Only works after appointment is displayed to user
+            thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
+        }
         private void setRoomIdText(string roomIdText)
         {
-            Outlook.Inspector inspector = newAppointment.GetInspector;
-            AppointmentRibbonButton individualRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
             if (roomIdText != null)
             {
-                individualRibbon.RoomID.Text = roomIdText;
+                thisRibbon.RoomID.Text = roomIdText;
             }
         }
+
+
+        private void setRequireDisplayName()
+        {
+            if (Properties.Settings.Default.requireDisplayName)
+            {
+                thisRibbon.toggleRequireName();
+                thisRibbon.buttonRequireName.Checked = true;
+            }
+        }
+
+        private void setStartWithAudioMuted()
+        {
+            if (Properties.Settings.Default.startWithAudioMuted)
+            {
+                thisRibbon.toggleMuteOnStart();
+                thisRibbon.buttonMuteOnStart.Checked = true;
+            }
+        }
+
+        private void setStartWithVideoMuted()
+        {
+            if (Properties.Settings.Default.startWithVideoMuted)
+            {
+                thisRibbon.toggleVideoOnStart();
+                thisRibbon.buttonNoVideoOnStart.Checked = true;
+            }
+        }
+
     }
 }

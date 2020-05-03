@@ -18,15 +18,10 @@ namespace JitsiMeetOutlook
             defaultDomain = "meet.jit.si";
 
             // Set radio buttons
-            if (isDefaultDomain())
-            {
-                radioDefault.Checked = true;
-                radioCustom.Checked = false;
-            } else
-            {
-                radioDefault.Checked = false;
-                radioCustom.Checked = true;
-            }
+            loadDomainButtons();
+            loadStartWithAudioMutedButtons();
+            loadStartWithVideoMutedButtons();
+            loadRequireDisplayNameButtons();
 
             // Load text field
             textBoxDomain.Text = Properties.Settings.Default.Domain;
@@ -41,6 +36,7 @@ namespace JitsiMeetOutlook
             try
             {
                 setSettings();
+                Properties.Settings.Default.Save();
                 Dispose();
             }
             catch (InvalidOperationException ex)
@@ -56,7 +52,7 @@ namespace JitsiMeetOutlook
 
         private void radioDefault_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioDefault.Checked)
+            if (radioButtonDefault.Checked)
             {
                 textBoxDomain.Enabled = false;
                 textBoxDomain.Text = defaultDomain;
@@ -65,7 +61,7 @@ namespace JitsiMeetOutlook
 
         private void radioCustom_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioCustom.Checked)
+            if (radioButtonCustom.Checked)
             {
                 textBoxDomain.Text = null;
                 textBoxDomain.Enabled = true;
@@ -91,11 +87,10 @@ namespace JitsiMeetOutlook
 
         private void setSettings()
         {
-            if (radioDefault.Checked)
+            // Set domain
+            if (radioButtonDefault.Checked)
             {
                 Properties.Settings.Default.Domain = defaultDomain;
-                Properties.Settings.Default.Save();
-
             }
             else
             {
@@ -104,14 +99,39 @@ namespace JitsiMeetOutlook
                 if (validDomain(newDomain))
                 {
                     Properties.Settings.Default.Domain = newDomain;
-                    Properties.Settings.Default.Save();
                 }
                 else
                 {
                     throw new InvalidOperationException("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
                 }
+            }
 
+            // Set toggles
+            if (radioButtonRequireDisplayNameToggled.Checked)
+            {
+                Properties.Settings.Default.requireDisplayName = true;
+            } 
+            else
+            {
+                Properties.Settings.Default.requireDisplayName = false;
+            }
 
+            if (radioButtonStartWithAudioMutedToggled.Checked)
+            {
+                Properties.Settings.Default.startWithAudioMuted = true;
+            }
+            else
+            {
+                Properties.Settings.Default.startWithAudioMuted = false;
+            }
+
+            if (radioButtonStartWithVideoMutedToggled.Checked)
+            {
+                Properties.Settings.Default.startWithVideoMuted = true;
+            }
+            else
+            {
+                Properties.Settings.Default.startWithVideoMuted = false;
             }
         }
 
@@ -134,6 +154,61 @@ namespace JitsiMeetOutlook
         private bool validDomain(string domain)
         {
             return Uri.CheckHostName(domain) != UriHostNameType.Unknown;
+        }
+
+        private void loadDomainButtons()
+        {
+            if (isDefaultDomain())
+            {
+                radioButtonDefault.Checked = true;
+                radioButtonCustom.Checked = false;
+            }
+            else
+            {
+                radioButtonDefault.Checked = false;
+                radioButtonCustom.Checked = true;
+            }
+        }
+
+        private void loadRequireDisplayNameButtons()
+        {
+            if (Properties.Settings.Default.requireDisplayName)
+            {
+                radioButtonRequireDisplayNameToggled.Checked = true;
+                radioButtonRequireDisplayNameUntoggled.Checked = false;
+            } else
+            {
+                radioButtonRequireDisplayNameToggled.Checked = false;
+                radioButtonRequireDisplayNameUntoggled.Checked = true;
+            }
+        }
+
+        private void loadStartWithAudioMutedButtons()
+        {
+            if (Properties.Settings.Default.startWithAudioMuted)
+            {
+                radioButtonStartWithAudioMutedToggled.Checked = true;
+                radioButtonStartWithAudioMutedUntoggled.Checked = false;
+            }
+            else
+            {
+                radioButtonStartWithAudioMutedToggled.Checked = false;
+                radioButtonStartWithAudioMutedUntoggled.Checked = true;
+            }
+        }
+
+        private void loadStartWithVideoMutedButtons()
+        {
+            if (Properties.Settings.Default.startWithVideoMuted)
+            {
+                radioButtonStartWithVideoMutedToggled.Checked = true;
+                radioButtonStartWithVideoMutedUntoggled.Checked = false;
+            }
+            else
+            {
+                radioButtonStartWithVideoMutedToggled.Checked = false;
+                radioButtonStartWithVideoMutedUntoggled.Checked = true;
+            }
         }
     }
 }

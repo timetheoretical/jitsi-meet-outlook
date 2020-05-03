@@ -38,7 +38,7 @@ The published code and installer is still at an early stage. Preliminarily, the 
 - [x] Only show Jitsi buttons if appointment was created through "New Jitsi Meeting" (v0.2)
 - [x] Add persistent setting: change Jitsi domain (v0.2)
 - [ ] Add persistent setting: add URL to Location field of appointment
-- [ ] Add persistent setting: preference for whether to start a call with muted mic or video
+- [x] Add persistent setting: preference for whether to start a call with muted mic or video (not yet released)
 - [ ] Add RTF body text to appointment for improved appearance
 - [x] Add checks on the validity of the custom domain value provided (v0.2.1)
 - [ ] Add checks for Outlook having been installed on the target computer and that its architecture matches that of the installer

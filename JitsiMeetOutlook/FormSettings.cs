@@ -153,7 +153,9 @@ namespace JitsiMeetOutlook
 
         private bool validDomain(string domain)
         {
-            return Uri.CheckHostName(domain) != UriHostNameType.Unknown;
+            string domainWithoutPort = Regex.Replace(domain, ":\\d+", "");
+
+            return Uri.CheckHostName(domainWithoutPort) != UriHostNameType.Unknown;
         }
 
         private void loadDomainButtons()

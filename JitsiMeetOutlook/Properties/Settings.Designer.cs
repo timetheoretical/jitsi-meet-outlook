@@ -70,5 +70,17 @@ namespace JitsiMeetOutlook.Properties {
                 this["startWithVideoMuted"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string roomID {
+            get {
+                return ((string)(this["roomID"]));
+            }
+            set {
+                this["roomID"] = value;
+            }
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace JitsiMeetOutlook
 
             // Set radio buttons
             loadDomainButtons();
+            loadRoomIDButtons();
             loadStartWithAudioMutedButtons();
             loadStartWithVideoMutedButtons();
             loadRequireDisplayNameButtons();
@@ -50,22 +51,36 @@ namespace JitsiMeetOutlook
             Dispose();
         }
 
-        private void radioDefault_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonDefaultDomain_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonDefault.Checked)
+            if (radioButtonDefaultDomain.Checked)
             {
                 textBoxDomain.Enabled = false;
                 textBoxDomain.Text = defaultDomain;
             }
         }
 
-        private void radioCustom_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonCustomDomain_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonCustom.Checked)
+            if (radioButtonCustomDomain.Checked)
             {
                 textBoxDomain.Text = null;
                 textBoxDomain.Enabled = true;
             }
+        }
+
+        private void radioButtonRandomID_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRandomRoomID.Checked)
+            {
+                textBoxRoomID.Enabled = false;
+                textBoxRoomID.Text = null;
+            }
+        }
+
+        private void radioButtonCustomRoomID_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxRoomID.Enabled = true;
         }
 
         private void textBoxDomain_TextChanged(object sender, EventArgs e)
@@ -88,7 +103,7 @@ namespace JitsiMeetOutlook
         private void setSettings()
         {
             // Set domain
-            if (radioButtonDefault.Checked)
+            if (radioButtonDefaultDomain.Checked)
             {
                 Properties.Settings.Default.Domain = defaultDomain;
             }
@@ -103,6 +118,19 @@ namespace JitsiMeetOutlook
                 else
                 {
                     throw new InvalidOperationException("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
+                }
+            }
+
+            // Set room ID
+            if (radioButtonRandomRoomID.Checked)
+            {
+                Properties.Settings.Default.roomID = null;
+            }
+            else
+            {
+                if (textBoxRoomID.Text.Length > 0)
+                {
+                    Properties.Settings.Default.roomID = textBoxRoomID.Text;
                 }
             }
 
@@ -162,13 +190,28 @@ namespace JitsiMeetOutlook
         {
             if (isDefaultDomain())
             {
-                radioButtonDefault.Checked = true;
-                radioButtonCustom.Checked = false;
+                radioButtonDefaultDomain.Checked = true;
+                radioButtonCustomDomain.Checked = false;
             }
             else
             {
-                radioButtonDefault.Checked = false;
-                radioButtonCustom.Checked = true;
+                radioButtonDefaultDomain.Checked = false;
+                radioButtonCustomDomain.Checked = true;
+            }
+        }
+
+        private void loadRoomIDButtons()
+        {
+            if (Properties.Settings.Default.roomID.Length == 0)
+            {
+                radioButtonRandomRoomID.Checked = true;
+                radioButtonCustomRoomID.Checked = false;
+            }
+            else
+            {
+                radioButtonRandomRoomID.Checked = false;
+                radioButtonCustomRoomID.Checked = true;
+                textBoxRoomID.Text = Properties.Settings.Default.roomID;
             }
         }
 

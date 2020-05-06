@@ -33,8 +33,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDomain = new System.Windows.Forms.GroupBox();
             this.textBoxDomain = new System.Windows.Forms.TextBox();
-            this.radioButtonCustom = new System.Windows.Forms.RadioButton();
-            this.radioButtonDefault = new System.Windows.Forms.RadioButton();
+            this.radioButtonCustomDomain = new System.Windows.Forms.RadioButton();
+            this.radioButtonDefaultDomain = new System.Windows.Forms.RadioButton();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxToggleDefaults = new System.Windows.Forms.GroupBox();
@@ -52,12 +52,17 @@
             this.radioButtonRequireDisplayNameToggled = new System.Windows.Forms.RadioButton();
             this.radioButtonRequireDisplayNameUntoggled = new System.Windows.Forms.RadioButton();
             this.labelRequireDisplayName = new System.Windows.Forms.Label();
+            this.groupBoxDefaultRoomID = new System.Windows.Forms.GroupBox();
+            this.textBoxRoomID = new System.Windows.Forms.TextBox();
+            this.radioButtonCustomRoomID = new System.Windows.Forms.RadioButton();
+            this.radioButtonRandomRoomID = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.groupBoxDomain.SuspendLayout();
             this.groupBoxToggleDefaults.SuspendLayout();
             this.panelStartWithVideoMuted.SuspendLayout();
             this.panelStartWithAudioMuted.SuspendLayout();
             this.panelRequireDisplayName.SuspendLayout();
+            this.groupBoxDefaultRoomID.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,8 +93,8 @@
             // groupBoxDomain
             // 
             this.groupBoxDomain.Controls.Add(this.textBoxDomain);
-            this.groupBoxDomain.Controls.Add(this.radioButtonCustom);
-            this.groupBoxDomain.Controls.Add(this.radioButtonDefault);
+            this.groupBoxDomain.Controls.Add(this.radioButtonCustomDomain);
+            this.groupBoxDomain.Controls.Add(this.radioButtonDefaultDomain);
             this.groupBoxDomain.Location = new System.Drawing.Point(12, 27);
             this.groupBoxDomain.Name = "groupBoxDomain";
             this.groupBoxDomain.Size = new System.Drawing.Size(303, 70);
@@ -105,33 +110,33 @@
             this.textBoxDomain.TabIndex = 2;
             this.textBoxDomain.TextChanged += new System.EventHandler(this.textBoxDomain_TextChanged);
             // 
-            // radioButtonCustom
+            // radioButtonCustomDomain
             // 
-            this.radioButtonCustom.AutoSize = true;
-            this.radioButtonCustom.Location = new System.Drawing.Point(6, 42);
-            this.radioButtonCustom.Name = "radioButtonCustom";
-            this.radioButtonCustom.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonCustom.TabIndex = 1;
-            this.radioButtonCustom.TabStop = true;
-            this.radioButtonCustom.Text = "Custom:";
-            this.radioButtonCustom.UseVisualStyleBackColor = true;
-            this.radioButtonCustom.CheckedChanged += new System.EventHandler(this.radioCustom_CheckedChanged);
+            this.radioButtonCustomDomain.AutoSize = true;
+            this.radioButtonCustomDomain.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonCustomDomain.Name = "radioButtonCustomDomain";
+            this.radioButtonCustomDomain.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonCustomDomain.TabIndex = 1;
+            this.radioButtonCustomDomain.TabStop = true;
+            this.radioButtonCustomDomain.Text = "Custom:";
+            this.radioButtonCustomDomain.UseVisualStyleBackColor = true;
+            this.radioButtonCustomDomain.CheckedChanged += new System.EventHandler(this.radioButtonCustomDomain_CheckedChanged);
             // 
-            // radioButtonDefault
+            // radioButtonDefaultDomain
             // 
-            this.radioButtonDefault.AutoSize = true;
-            this.radioButtonDefault.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonDefault.Name = "radioButtonDefault";
-            this.radioButtonDefault.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonDefault.TabIndex = 0;
-            this.radioButtonDefault.TabStop = true;
-            this.radioButtonDefault.Text = "Default";
-            this.radioButtonDefault.UseVisualStyleBackColor = true;
-            this.radioButtonDefault.CheckedChanged += new System.EventHandler(this.radioDefault_CheckedChanged);
+            this.radioButtonDefaultDomain.AutoSize = true;
+            this.radioButtonDefaultDomain.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonDefaultDomain.Name = "radioButtonDefaultDomain";
+            this.radioButtonDefaultDomain.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonDefaultDomain.TabIndex = 0;
+            this.radioButtonDefaultDomain.TabStop = true;
+            this.radioButtonDefaultDomain.Text = "Default";
+            this.radioButtonDefaultDomain.UseVisualStyleBackColor = true;
+            this.radioButtonDefaultDomain.CheckedChanged += new System.EventHandler(this.radioButtonDefaultDomain_CheckedChanged);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(159, 219);
+            this.buttonOK.Location = new System.Drawing.Point(159, 295);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 3;
@@ -142,7 +147,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(240, 219);
+            this.buttonCancel.Location = new System.Drawing.Point(240, 295);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 4;
@@ -157,7 +162,7 @@
             this.groupBoxToggleDefaults.Controls.Add(this.label3);
             this.groupBoxToggleDefaults.Controls.Add(this.label2);
             this.groupBoxToggleDefaults.Controls.Add(this.panelRequireDisplayName);
-            this.groupBoxToggleDefaults.Location = new System.Drawing.Point(12, 103);
+            this.groupBoxToggleDefaults.Location = new System.Drawing.Point(12, 179);
             this.groupBoxToggleDefaults.Name = "groupBoxToggleDefaults";
             this.groupBoxToggleDefaults.Size = new System.Drawing.Size(303, 110);
             this.groupBoxToggleDefaults.TabIndex = 5;
@@ -315,6 +320,49 @@
             this.labelRequireDisplayName.TabIndex = 0;
             this.labelRequireDisplayName.Text = "Require Name";
             // 
+            // groupBoxDefaultRoomID
+            // 
+            this.groupBoxDefaultRoomID.Controls.Add(this.textBoxRoomID);
+            this.groupBoxDefaultRoomID.Controls.Add(this.radioButtonCustomRoomID);
+            this.groupBoxDefaultRoomID.Controls.Add(this.radioButtonRandomRoomID);
+            this.groupBoxDefaultRoomID.Location = new System.Drawing.Point(12, 103);
+            this.groupBoxDefaultRoomID.Name = "groupBoxDefaultRoomID";
+            this.groupBoxDefaultRoomID.Size = new System.Drawing.Size(303, 70);
+            this.groupBoxDefaultRoomID.TabIndex = 3;
+            this.groupBoxDefaultRoomID.TabStop = false;
+            this.groupBoxDefaultRoomID.Text = "Default room ID";
+            // 
+            // textBoxRoomID
+            // 
+            this.textBoxRoomID.Location = new System.Drawing.Point(75, 42);
+            this.textBoxRoomID.Name = "textBoxRoomID";
+            this.textBoxRoomID.Size = new System.Drawing.Size(218, 20);
+            this.textBoxRoomID.TabIndex = 2;
+            // 
+            // radioButtonCustomRoomID
+            // 
+            this.radioButtonCustomRoomID.AutoSize = true;
+            this.radioButtonCustomRoomID.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonCustomRoomID.Name = "radioButtonCustomRoomID";
+            this.radioButtonCustomRoomID.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonCustomRoomID.TabIndex = 1;
+            this.radioButtonCustomRoomID.TabStop = true;
+            this.radioButtonCustomRoomID.Text = "Custom:";
+            this.radioButtonCustomRoomID.UseVisualStyleBackColor = true;
+            this.radioButtonCustomRoomID.CheckedChanged += new System.EventHandler(this.radioButtonCustomRoomID_CheckedChanged);
+            // 
+            // radioButtonRandomRoomID
+            // 
+            this.radioButtonRandomRoomID.AutoSize = true;
+            this.radioButtonRandomRoomID.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonRandomRoomID.Name = "radioButtonRandomRoomID";
+            this.radioButtonRandomRoomID.Size = new System.Drawing.Size(65, 17);
+            this.radioButtonRandomRoomID.TabIndex = 0;
+            this.radioButtonRandomRoomID.TabStop = true;
+            this.radioButtonRandomRoomID.Text = "Random";
+            this.radioButtonRandomRoomID.UseVisualStyleBackColor = true;
+            this.radioButtonRandomRoomID.CheckedChanged += new System.EventHandler(this.radioButtonRandomID_CheckedChanged);
+            // 
             // FormSettings
             // 
             this.AcceptButton = this.buttonOK;
@@ -322,7 +370,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(327, 247);
+            this.ClientSize = new System.Drawing.Size(327, 325);
+            this.Controls.Add(this.groupBoxDefaultRoomID);
             this.Controls.Add(this.groupBoxToggleDefaults);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -349,6 +398,8 @@
             this.panelStartWithAudioMuted.PerformLayout();
             this.panelRequireDisplayName.ResumeLayout(false);
             this.panelRequireDisplayName.PerformLayout();
+            this.groupBoxDefaultRoomID.ResumeLayout(false);
+            this.groupBoxDefaultRoomID.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,8 +411,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxDomain;
-        private System.Windows.Forms.RadioButton radioButtonCustom;
-        private System.Windows.Forms.RadioButton radioButtonDefault;
+        private System.Windows.Forms.RadioButton radioButtonCustomDomain;
+        private System.Windows.Forms.RadioButton radioButtonDefaultDomain;
         private System.Windows.Forms.TextBox textBoxDomain;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
@@ -380,5 +431,9 @@
         private System.Windows.Forms.RadioButton radioButtonStartWithAudioMutedToggled;
         private System.Windows.Forms.RadioButton radioButtonStartWithAudioMutedUntoggled;
         private System.Windows.Forms.Label labelStartWithAudioMuted;
+        private System.Windows.Forms.GroupBox groupBoxDefaultRoomID;
+        private System.Windows.Forms.TextBox textBoxRoomID;
+        private System.Windows.Forms.RadioButton radioButtonCustomRoomID;
+        private System.Windows.Forms.RadioButton radioButtonRandomRoomID;
     }
 }

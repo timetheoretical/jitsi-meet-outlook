@@ -18,7 +18,7 @@ namespace JitsiMeetOutlook
             try
             {
                 // Generate meeting ID
-                string jitsiRoomId = JitsiUrl.generateRoomId();
+                string jitsiRoomId = getRoomId();
 
                 // Create meeting object
                 newAppointment = (Outlook.AppointmentItem) application.CreateItem(Outlook.OlItemType.olAppointmentItem);
@@ -33,8 +33,8 @@ namespace JitsiMeetOutlook
                 newAppointment.Display(false);
                 Globals.ThisAddIn.ShowRibbonAppointment = false;
 
-                // Set Room ID field
-                findThisRibbon();
+                // Set ribbon control defaults
+                findThisRibbon(); // This only works after message is displayed to user
                 setRequireDisplayName();
                 setStartWithAudioMuted();
                 setStartWithVideoMuted();
@@ -52,6 +52,22 @@ namespace JitsiMeetOutlook
             Outlook.Inspector inspector = newAppointment.GetInspector; // Only works after appointment is displayed to user
             thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
         }
+
+        private string getRoomId()
+        {
+            string roomId;
+            if (Properties.Settings.Default.roomID.Length == 0)
+            {
+                roomId = JitsiUrl.generateRoomId();
+            }
+            else
+            {
+                roomId = Properties.Settings.Default.roomID;
+            }
+
+            return roomId;
+        }
+
         private void setRoomIdText(string roomIdText)
         {
             if (roomIdText != null)

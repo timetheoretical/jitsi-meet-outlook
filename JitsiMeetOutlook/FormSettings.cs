@@ -124,7 +124,7 @@ namespace JitsiMeetOutlook
             // Set room ID
             if (radioButtonRandomRoomID.Checked)
             {
-                Properties.Settings.Default.roomID = null;
+                Properties.Settings.Default.roomID = "";
             }
             else
             {

@@ -82,5 +82,17 @@ namespace JitsiMeetOutlook.Properties {
                 this["roomID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string installDirectory {
+            get {
+                return ((string)(this["installDirectory"]));
+            }
+            set {
+                this["installDirectory"] = value;
+            }
+        }
     }
 }

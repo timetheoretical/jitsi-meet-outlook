@@ -66,6 +66,10 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.4.0
+Enhancements:
+* Added possibility of passing custom settings as parameters to the installer via the command line
+
 ### v0.3.0
 Enhancements:
 * New setting for whether to start a call with muted mic or video

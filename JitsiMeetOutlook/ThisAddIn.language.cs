@@ -6,17 +6,7 @@ namespace JitsiMeetOutlook
 {
     public partial class ThisAddIn
     {
-
-        // Load JSON file to memory
-        // create public function to get this file
-
         private JsonElement languageJsonRoot;
-        private void setLanguage()
-        {
-           // this.buttonRandomRoomID.Label = readJson();
-
-        }
-
 
         private void readLanguageJson()
         {
@@ -39,7 +29,7 @@ namespace JitsiMeetOutlook
         {
             if (language == "en")
             {
-                return Resources.languages.fr;
+                return Resources.languages.en;
             }
             else
             {

@@ -3,6 +3,10 @@
     "buttonNewJitsiMeeting": "New Jitsi Meeting"
   },
 
+  "appointmentItem": {
+    "textBodyMessage": "Join the meeting: "
+  },
+
   "appointmentRibbonGroup": {
     "fieldRoomID": "ID:",
     "fieldRoomIDSuperTip": "Longer names are more secure.",

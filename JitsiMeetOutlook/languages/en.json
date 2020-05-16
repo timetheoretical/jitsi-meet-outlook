@@ -13,7 +13,7 @@
   },
 
   "settings": {
-    "groupBoxDomain": "kakkbakk",
+    "groupBoxDomain": "Domain",
     "radioButtonDefaultDomain": "Default",
     "radioButtonCustomDomain": "Custom",
     "groupBoxDefaultRoomID": "Default room ID",
@@ -24,6 +24,10 @@
     "labelUntoggled": "Untoggled",
     "labelRequireDisplayName": "Require Name",
     "labelStartWithAudioMuted": "Mute on Start",
-    "labelStartWithVideoMuted" : "No Video on Start"
+    "labelStartWithVideoMuted": "No Video on Start",
+    "groupBoxLanguage": "Language",
+    "comboBoxLanguageItems": {
+      "en" : "English"
+    }
   }
 }

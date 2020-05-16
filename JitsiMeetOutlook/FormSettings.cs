@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.Forms.MessageBox;
+using System.Linq;
 
 namespace JitsiMeetOutlook
 {
@@ -31,6 +32,7 @@ namespace JitsiMeetOutlook
         private void Form1_Load(object sender, EventArgs e)
         {
             setLanguage();
+            loadComboBoxLanguage();
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
@@ -162,6 +164,10 @@ namespace JitsiMeetOutlook
             {
                 Properties.Settings.Default.startWithVideoMuted = false;
             }
+
+            // Set language
+            string languageSelection = (string) comboBoxLanguage.SelectedItem;
+            Properties.Settings.Default.language = languageDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
         }
 
         private string cleanDomain(string userInput)
@@ -255,6 +261,16 @@ namespace JitsiMeetOutlook
                 radioButtonStartWithVideoMutedToggled.Checked = false;
                 radioButtonStartWithVideoMutedUntoggled.Checked = true;
             }
+        }
+
+        private void loadComboBoxLanguage()
+        {
+            comboBoxLanguage.SelectedItem = jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty(Properties.Settings.Default.language).GetString();
+        }
+
+        private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

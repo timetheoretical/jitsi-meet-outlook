@@ -1,14 +1,19 @@
-﻿using System.Text.Json;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Text.Json;
 
 
 namespace JitsiMeetOutlook
 {
     partial class FormSettings
     {
-        JsonElement jsonUILanguage;
+        private JsonElement jsonUILanguage;
+        private Dictionary<string, string> languageDropDown = new Dictionary<string, string>();
+
         private void setLanguage()
         {
             setJsonNode();
+            setlanguageDropDown();
 
             this.groupBoxDomain.Text = getLanguageValue("groupBoxDomain");
             this.radioButtonDefaultDomain.Text = getLanguageValue("radioButtonDefaultDomain");
@@ -22,6 +27,11 @@ namespace JitsiMeetOutlook
             this.labelRequireDisplayName.Text = getLanguageValue("labelRequireDisplayName");
             this.labelStartWithAudioMuted.Text = getLanguageValue("labelStartWithAudioMuted");
             this.labelStartWithVideoMuted.Text = getLanguageValue("labelStartWithVideoMuted");
+            this.groupBoxLanguage.Text = getLanguageValue("groupBoxLanguage");
+            this.comboBoxLanguage.Items.Clear();
+            this.comboBoxLanguage.Items.AddRange(new object[] {
+                languageDropDown["en"]
+            });
 
         }
 
@@ -29,6 +39,11 @@ namespace JitsiMeetOutlook
         private void setJsonNode()
         {
             jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
+        }
+
+        private void setlanguageDropDown()
+        {
+            languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
         }
 
         private string getLanguageValue(string property)

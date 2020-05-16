@@ -56,6 +56,8 @@
             this.textBoxRoomID = new System.Windows.Forms.TextBox();
             this.radioButtonCustomRoomID = new System.Windows.Forms.RadioButton();
             this.radioButtonRandomRoomID = new System.Windows.Forms.RadioButton();
+            this.groupBoxLanguage = new System.Windows.Forms.GroupBox();
+            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxDomain.SuspendLayout();
             this.groupBoxToggleDefaults.SuspendLayout();
@@ -63,6 +65,7 @@
             this.panelStartWithAudioMuted.SuspendLayout();
             this.panelRequireDisplayName.SuspendLayout();
             this.groupBoxDefaultRoomID.SuspendLayout();
+            this.groupBoxLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -136,7 +139,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(159, 295);
+            this.buttonOK.Location = new System.Drawing.Point(159, 350);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 3;
@@ -147,7 +150,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(240, 295);
+            this.buttonCancel.Location = new System.Drawing.Point(240, 350);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 4;
@@ -363,6 +366,29 @@
             this.radioButtonRandomRoomID.UseVisualStyleBackColor = true;
             this.radioButtonRandomRoomID.CheckedChanged += new System.EventHandler(this.radioButtonRandomID_CheckedChanged);
             // 
+            // groupBoxLanguage
+            // 
+            this.groupBoxLanguage.Controls.Add(this.comboBoxLanguage);
+            this.groupBoxLanguage.Location = new System.Drawing.Point(9, 295);
+            this.groupBoxLanguage.Name = "groupBoxLanguage";
+            this.groupBoxLanguage.Size = new System.Drawing.Size(303, 49);
+            this.groupBoxLanguage.TabIndex = 3;
+            this.groupBoxLanguage.TabStop = false;
+            this.groupBoxLanguage.Text = "Language";
+            // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.Items.AddRange(new object[] {
+            "English",
+            "French"});
+            this.comboBoxLanguage.Location = new System.Drawing.Point(9, 19);
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.Size = new System.Drawing.Size(287, 21);
+            this.comboBoxLanguage.TabIndex = 0;
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
+            // 
             // FormSettings
             // 
             this.AcceptButton = this.buttonOK;
@@ -370,7 +396,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(327, 325);
+            this.ClientSize = new System.Drawing.Size(327, 382);
+            this.Controls.Add(this.groupBoxLanguage);
             this.Controls.Add(this.groupBoxDefaultRoomID);
             this.Controls.Add(this.groupBoxToggleDefaults);
             this.Controls.Add(this.buttonCancel);
@@ -400,6 +427,7 @@
             this.panelRequireDisplayName.PerformLayout();
             this.groupBoxDefaultRoomID.ResumeLayout(false);
             this.groupBoxDefaultRoomID.PerformLayout();
+            this.groupBoxLanguage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,5 +463,7 @@
         private System.Windows.Forms.TextBox textBoxRoomID;
         private System.Windows.Forms.RadioButton radioButtonCustomRoomID;
         private System.Windows.Forms.RadioButton radioButtonRandomRoomID;
+        private System.Windows.Forms.GroupBox groupBoxLanguage;
+        private System.Windows.Forms.ComboBox comboBoxLanguage;
     }
 }

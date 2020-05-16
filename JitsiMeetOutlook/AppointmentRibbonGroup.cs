@@ -2,10 +2,10 @@
 
 namespace JitsiMeetOutlook
 {
-    public partial class AppointmentRibbonButton
+    public partial class AppointmentRibbonGroup
     {
 
-        private void AppointmentRibbonButton_Load(object sender, RibbonUIEventArgs e)
+        private void AppointmentRibbonGroup_Load(object sender, RibbonUIEventArgs e)
         {
             displayRibbonGroup();
             initialise();
@@ -23,22 +23,22 @@ namespace JitsiMeetOutlook
             randomiseRoomId();
         }
 
-        private void buttonRequireName_Click(object sender, RibbonControlEventArgs e)
+        private void buttonRequireDisplayName_Click(object sender, RibbonControlEventArgs e)
         {
             toggleRequireName();
         }
 
-        private void buttonMuteOnStart_Click(object sender, RibbonControlEventArgs e)
+        private void buttonStartWithAudioMuted_Click(object sender, RibbonControlEventArgs e)
         {
             toggleMuteOnStart();
         }
 
         private void RoomID_TextChanged(object sender, RibbonControlEventArgs e)
         {
-            setRoomId(RoomID.Text);
+            setRoomId(fieldRoomID.Text);
         }
 
-        private void buttonNoVideoOnStart_Click(object sender, RibbonControlEventArgs e)
+        private void buttonStartWithVideoMuted_Click(object sender, RibbonControlEventArgs e)
         {
             toggleVideoOnStart();
         }

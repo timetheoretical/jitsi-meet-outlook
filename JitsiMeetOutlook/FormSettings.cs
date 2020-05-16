@@ -30,6 +30,7 @@ namespace JitsiMeetOutlook
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            setLanguage();
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

@@ -46,8 +46,8 @@
             this.radioButtonStartWithAudioMutedToggled = new System.Windows.Forms.RadioButton();
             this.radioButtonStartWithAudioMutedUntoggled = new System.Windows.Forms.RadioButton();
             this.labelStartWithAudioMuted = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelToggled = new System.Windows.Forms.Label();
+            this.labelUntoggled = new System.Windows.Forms.Label();
             this.panelRequireDisplayName = new System.Windows.Forms.Panel();
             this.radioButtonRequireDisplayNameToggled = new System.Windows.Forms.RadioButton();
             this.radioButtonRequireDisplayNameUntoggled = new System.Windows.Forms.RadioButton();
@@ -159,8 +159,8 @@
             // 
             this.groupBoxToggleDefaults.Controls.Add(this.panelStartWithVideoMuted);
             this.groupBoxToggleDefaults.Controls.Add(this.panelStartWithAudioMuted);
-            this.groupBoxToggleDefaults.Controls.Add(this.label3);
-            this.groupBoxToggleDefaults.Controls.Add(this.label2);
+            this.groupBoxToggleDefaults.Controls.Add(this.labelToggled);
+            this.groupBoxToggleDefaults.Controls.Add(this.labelUntoggled);
             this.groupBoxToggleDefaults.Controls.Add(this.panelRequireDisplayName);
             this.groupBoxToggleDefaults.Location = new System.Drawing.Point(12, 179);
             this.groupBoxToggleDefaults.Name = "groupBoxToggleDefaults";
@@ -255,27 +255,27 @@
             this.labelStartWithAudioMuted.TabIndex = 0;
             this.labelStartWithAudioMuted.Text = "Mute on Start";
             // 
-            // label3
+            // labelToggled
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label3.Location = new System.Drawing.Point(198, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Toggled";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelToggled.AutoSize = true;
+            this.labelToggled.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelToggled.Location = new System.Drawing.Point(198, 16);
+            this.labelToggled.Name = "labelToggled";
+            this.labelToggled.Size = new System.Drawing.Size(46, 13);
+            this.labelToggled.TabIndex = 4;
+            this.labelToggled.Text = "Toggled";
+            this.labelToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // labelUntoggled
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Location = new System.Drawing.Point(244, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Untoggled";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelUntoggled.AutoSize = true;
+            this.labelUntoggled.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelUntoggled.Location = new System.Drawing.Point(244, 16);
+            this.labelUntoggled.Name = "labelUntoggled";
+            this.labelUntoggled.Size = new System.Drawing.Size(56, 13);
+            this.labelUntoggled.TabIndex = 3;
+            this.labelUntoggled.Text = "Untoggled";
+            this.labelUntoggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelRequireDisplayName
             // 
@@ -417,8 +417,8 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBoxToggleDefaults;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelToggled;
+        private System.Windows.Forms.Label labelUntoggled;
         private System.Windows.Forms.Panel panelRequireDisplayName;
         private System.Windows.Forms.RadioButton radioButtonRequireDisplayNameToggled;
         private System.Windows.Forms.RadioButton radioButtonRequireDisplayNameUntoggled;

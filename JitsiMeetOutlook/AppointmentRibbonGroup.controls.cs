@@ -4,13 +4,16 @@ using System.Text.RegularExpressions;
 
 namespace JitsiMeetOutlook
 {
-    public partial class AppointmentRibbonButton
+    public partial class AppointmentRibbonGroup
     {
         private Outlook.AppointmentItem appointmentItem;
         private string oldDomain;
 
         private void initialise()
         {
+            // Set language
+            setLanguage();
+
             // Assign the relevant appointment item
             Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
@@ -30,7 +33,7 @@ namespace JitsiMeetOutlook
             string newBody = oldBody.Replace(findRoomId(), newRoomId);
             newBody = newBody.Replace(oldDomain, newDomain);
 
-            RoomID.Text = newRoomId;
+            fieldRoomID.Text = newRoomId;
             appointmentItem.Body = newBody;
 
             oldDomain = newDomain;

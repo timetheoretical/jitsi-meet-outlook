@@ -8,7 +8,7 @@ namespace JitsiMeetOutlook
     {
 
         private Outlook.AppointmentItem newAppointment;
-        private AppointmentRibbonButton thisRibbon;
+        private AppointmentRibbonGroup thisRibbon;
 
         public NewJitsiAppointment()
         {
@@ -50,7 +50,7 @@ namespace JitsiMeetOutlook
         private void findThisRibbon()
         {
             Outlook.Inspector inspector = newAppointment.GetInspector; // Only works after appointment is displayed to user
-            thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonButton;
+            thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonGroup;
         }
 
         private string getRoomId()
@@ -72,7 +72,7 @@ namespace JitsiMeetOutlook
         {
             if (roomIdText != null)
             {
-                thisRibbon.RoomID.Text = roomIdText;
+                thisRibbon.fieldRoomID.Text = roomIdText;
             }
         }
 
@@ -82,7 +82,7 @@ namespace JitsiMeetOutlook
             if (Properties.Settings.Default.requireDisplayName)
             {
                 thisRibbon.toggleRequireName();
-                thisRibbon.buttonRequireName.Checked = true;
+                thisRibbon.buttonRequireDisplayName.Checked = true;
             }
         }
 
@@ -91,7 +91,7 @@ namespace JitsiMeetOutlook
             if (Properties.Settings.Default.startWithAudioMuted)
             {
                 thisRibbon.toggleMuteOnStart();
-                thisRibbon.buttonMuteOnStart.Checked = true;
+                thisRibbon.buttonStartWithAudioMuted.Checked = true;
             }
         }
 
@@ -100,7 +100,7 @@ namespace JitsiMeetOutlook
             if (Properties.Settings.Default.startWithVideoMuted)
             {
                 thisRibbon.toggleVideoOnStart();
-                thisRibbon.buttonNoVideoOnStart.Checked = true;
+                thisRibbon.buttonStartWithVideoMuted.Checked = true;
             }
         }
 

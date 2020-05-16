@@ -56,6 +56,8 @@ namespace JitsiMeetOutlook
 
             navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='installDirectory']/value").SetValue(getInstallDir());
 
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='language']/value").SetValue(getLanguage());
+
             document.Save(xmlPath);
         }
 
@@ -87,6 +89,11 @@ namespace JitsiMeetOutlook
         private string getStartWithVideoMuted()
         {
             return getBooleanParameter("startWithVideoMuted");
+        }
+
+        private string getLanguage()
+        {
+            return Context.Parameters["language"];
         }
 
 

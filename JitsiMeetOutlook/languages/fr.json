@@ -1,0 +1,38 @@
+{
+  "calendarRibbonButton": {
+    "buttonNewJitsiMeeting": "Nouvelle conférence Jitsi"
+  },
+
+  "appointmentItem": {
+    "textBodyMessage": "Rejoignez de la conférence : "
+  },
+
+  "appointmentRibbonGroup": {
+    "fieldRoomID": "ID:",
+    "fieldRoomIDSuperTip": "Plus le nom est long, plus la conférence est sécurisée.",
+    "buttonRandomRoomID": "ID aléatoire",
+    "buttonRequireDisplayName": "Nom requis",
+    "buttonStartWithAudioMuted": "Audio désactivé par défaut",
+    "buttonStartWithVideoMuted": "Vidéo désactivée par défaut"
+  },
+
+  "settings": {
+    "groupBoxDomain": "Domaine",
+    "radioButtonDefaultDomain": "Défaut",
+    "radioButtonCustomDomain": "Personnalisé",
+    "groupBoxDefaultRoomID": "ID par défaut",
+    "radioButtonRandomRoomID": "Aléatoire",
+    "radioButtonCustomRoomID": "Personnalisé",
+    "groupBoxToggleDefaults": "Options par défaut de la conférence",
+    "labelToggled": "Basculer",
+    "labelUntoggled": "Débloquer",
+    "labelRequireDisplayName": "Nom requis",
+    "labelStartWithAudioMuted": "Audio désactivé par défaut",
+    "labelStartWithVideoMuted": "Vidéo désactivée par défaut",
+    "groupBoxLanguage": "Langues",
+    "comboBoxLanguageItems": {
+      "en" : "Anglais",
+      "fr" : "Français"
+    }
+  }
+}

@@ -30,7 +30,8 @@ namespace JitsiMeetOutlook
             this.groupBoxLanguage.Text = getLanguageValue("groupBoxLanguage");
             this.comboBoxLanguage.Items.Clear();
             this.comboBoxLanguage.Items.AddRange(new object[] {
-                languageDropDown["en"]
+                languageDropDown["en"],
+                languageDropDown["fr"]
             });
 
         }
@@ -44,6 +45,7 @@ namespace JitsiMeetOutlook
         private void setlanguageDropDown()
         {
             languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
+            languageDropDown.Add("fr", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("fr").GetString());
         }
 
         private string getLanguageValue(string property)

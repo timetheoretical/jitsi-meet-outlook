@@ -281,6 +281,7 @@
     <None Include="cert.pfx" />
     <None Include="JitsiMeetOutlook_TemporaryKey.pfx" />
     <None Include="languages\en.json" />
+    <None Include="languages\fr.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

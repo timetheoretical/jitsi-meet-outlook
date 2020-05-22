@@ -69,5 +69,15 @@ namespace JitsiMeetOutlook.Resources {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] fr {
+            get {
+                object obj = ResourceManager.GetObject("fr", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

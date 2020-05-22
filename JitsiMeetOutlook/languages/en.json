@@ -31,7 +31,8 @@
     "labelStartWithVideoMuted": "No Video on Start",
     "groupBoxLanguage": "Language",
     "comboBoxLanguageItems": {
-      "en" : "English"
+      "en" : "English",
+      "fr" : "French"
     }
   }
 }

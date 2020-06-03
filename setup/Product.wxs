@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<!--Specify software bitness-->
+	<?define Win64 = "no" ?>
+	
+	<!-- Set default install path based on software bitness -->
+	<?if Win64 = "yes" ?>
+		<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+	<?else ?>
+		<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+	<?endif ?>
+	
+	<!-- Set project variables -->
+	<?define JitsiMeetOutlook_TargetDir=$(var.JitsiMeetOutlook.TargetDir)?>
+	<?define JitsiMeetOutlook_ProjectName="Jitsi Meet Outlook Add-In"?>
+
+	<!-- Addon details -->
+	<Product Id="*" Name="Jitsi Meet Outlook Add-In" Language="1033" Version="0.5.0" Manufacturer="github.com/timetheoretical" UpgradeCode="146f17e9-8106-4dd3-a3c5-b8f2c92ffb25">
+		
+		<Package InstallerVersion="500" Compressed="yes" Platform="x64" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+
+		<!-- Verify that VSTO Office Runtime is installed -->
+		<Property Id="VSTORUNTIMEREDIST">
+			<RegistrySearch
+			  Id="VSTORuntimeRedist"
+			  Root="HKLM"
+			  Key="SOFTWARE\Microsoft\VSTO Runtime Setup\v4R"
+			  Name="Version"
+			  Type="raw" />
+		</Property>
+
+		<Condition
+		  Message="The Visual Studio 2010 Tools for Office Runtime is not installed. 
+  Please download and install from https://www.microsoft.com/en-us/download/details.aspx?id=48217.">
+			<![CDATA[Installed OR VSTORUNTIMEREDIST>="10.0.30319"]]>
+		</Condition>
+
+		<!-- Verify that .NET Framework is installed -->
+		<PropertyRef Id="NETFRAMEWORK40FULL"/>
+		<Condition Message="This application requires .NET Framework 4.0.">
+			<![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+		</Condition>
+		
+		<Feature Id="ProductFeature" Title="setup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="Dependencies" />
+			<ComponentRef Id="Registry_FriendlyName" />
+			<ComponentRef Id="Registry_Description" />
+			<ComponentRef Id="Registry_Manifest" />
+			<ComponentRef Id="Registry_LoadBehavior" />
+		</Feature>
+
+		<!-- Set icon -->
+		<Icon Id="ProductIcon" SourceFile="$(var.ProjectDir)favicon.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="ProductIcon"/>
+
+		<!-- Installer UI -->
+		<UIRef Id="WixUI_InstallDir" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+		<!--Specify the EULA file to use-->
+		<WixVariable Id="WixUILicenseRtf" Value="gpl-3.0.rtf" />
+		
+		<!-- Reference custom action to update settings xml -->
+		<CustomAction Id="UpdateConfigXml" BinaryKey="SettingsInstallerParameters.CA" DllEntry="UpdateConfigXml" Execute="deferred" Return="check" Impersonate="no" />
+		<CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG]" />
+		<Binary Id="SettingsInstallerParameters.CA" SourceFile="$(var.JitsiMeetOutlook.ProjectDir)..\SettingsInstallerParameters\bin\Release\SettingsInstallerParameters.CA.dll" />
+		
+		<InstallExecuteSequence>
+			<Custom Action="SetCMDParameters" Before="UpdateConfigXml" />
+			<Custom Action="UpdateConfigXml" After="InstallFiles">NOT Installed</Custom>
+		</InstallExecuteSequence>
+		
+	</Product>
+
+	<!-- Set registry keys for Outlook -->
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="$(var.PlatformProgramFilesFolder)">
+				<Directory Id="INSTALLFOLDER" Name="!(bind.property.ProductName)" />
+
+				<Component Id="Registry_FriendlyName">
+					<RegistryValue Id="RegKey_FriendlyName" Root="HKCU"
+								   Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)"
+								   Name="FriendlyName"
+								   Value="!(bind.property.ProductName)"
+								   Type="string" KeyPath="yes" />
+				</Component>
+				<Component Id="Registry_Description">
+					<RegistryValue Id="RegKey_Description" Root="HKCU"
+								   Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)"
+								   Name="Description"
+								   Value="!(bind.property.ProductName)"
+								   Type="string" KeyPath="yes" />
+				</Component>
+				<Component Id="Registry_Manifest">
+					<RegistryValue Id="RegKey_Manifest" Root="HKCU"
+								   Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)"
+								   Name="Manifest" Value="file:///[INSTALLFOLDER]!(bind.property.ProductName).vsto|vstolocal"
+								   Type="string" KeyPath="yes" />
+				</Component>
+				<Component Id="Registry_LoadBehavior">
+					<RegistryValue Id="RegKey_LoadBehavior" Root="HKCU"
+								   Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)"
+								   Name="LoadBehavior" Value="3"
+								   Type="integer" KeyPath="yes" />
+				</Component>
+
+			</Directory>
+		</Directory>
+	</Fragment>
+
+
+
+	<!-- Copy the necessary DLLs -->
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="Jitsi_Meet_Outlook_AddIn.dll">
+				<File Id="Jitsi_Meet_Outlook_AddIn.dll" Name="Jitsi Meet Outlook Add-In.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Jitsi Meet Outlook Add-In.dll" />
+			</Component>
+			<Component Id="Jitsi_Meet_Outlook_AddIn.dll.manifest">
+				<File Id="Jitsi_Meet_Outlook_AddIn.dll.manifest" Name="Jitsi Meet Outlook Add-In.dll.manifest" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Jitsi Meet Outlook Add-In.dll.manifest" />
+			</Component>
+			<Component Id="Jitsi_Meet_Outlook_AddIn.vsto">
+				<File Id="Jitsi_Meet_Outlook_AddIn.vsto" Name="Jitsi Meet Outlook Add-In.vsto" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Jitsi Meet Outlook Add-In.vsto" />
+			</Component>
+			<Component Id="Jitsi_Meet_Outlook_AddIn.dll.config">
+				<File Id="Jitsi_Meet_Outlook_AddIn.dll.config" Name="Jitsi Meet Outlook Add-In.dll.config" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Jitsi Meet Outlook Add-In.dll.config" />
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="Dependencies" Directory="INSTALLFOLDER">
+			<Component Id="Microsoft.Bcl.AsyncInterfaces.dll">
+				<File Id="Microsoft.Bcl.AsyncInterfaces.dll" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" />
+			</Component>
+			<Component Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll">
+				<File Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll" />
+			</Component>
+			<Component Id="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll">
+				<File Id="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" />
+			</Component>
+			<Component Id="System.Buffers.dll">
+				<File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Buffers.dll" />
+			</Component>
+			<Component Id="System.Memory.dll">
+				<File Id="System.Memory.dll" Name="System.Memory.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Memory.dll" />
+			</Component>
+			<Component Id="System.Threading.Tasks.Extensions.dll">
+				<File Id="System.Threading.Tasks.Extensions.dll" Name="System.Threading.Tasks.Extensions.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Threading.Tasks.Extensions.dll" />
+			</Component>
+			<Component Id="System.ValueTuple.dll">
+				<File Id="System.ValueTuple.dll" Name="System.ValueTuple.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.ValueTuple.dll" />
+			</Component>
+			<Component Id="System.Numerics.Vectors.dll">
+				<File Id="System.Numerics.Vectors.dll" Name="System.Numerics.Vectors.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Numerics.Vectors.dll" />
+			</Component>
+			<Component Id="System.Runtime.CompilerServices.Unsafe.dll">
+				<File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
+			</Component>
+			<Component Id="System.Text.Encodings.Web.dll">
+				<File Id="System.Text.Encodings.Web.dll" Name="System.Text.Encodings.Web.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Text.Encodings.Web.dll" />
+			</Component>
+			<Component Id="System.Text.Json.dll">
+				<File Id="System.Text.Json.dll" Name="System.Text.Json.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Text.Json.dll" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+
+
+</Wix>

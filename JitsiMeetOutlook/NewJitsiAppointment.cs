@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -9,9 +10,13 @@ namespace JitsiMeetOutlook
 
         private Outlook.AppointmentItem newAppointment;
         private AppointmentRibbonGroup thisRibbon;
+        JsonElement jsonUILanguage;
 
         public NewJitsiAppointment()
         {
+            // Set language
+            setJsonNode();
+
             // Get the Application object
             Outlook.Application application = Globals.ThisAddIn.Application;
 
@@ -26,7 +31,7 @@ namespace JitsiMeetOutlook
 
                 // Appointment details
                 newAppointment.Location = "Jitsi Meet";
-                newAppointment.Body = "Join the meeting: " + (JitsiUrl.getUrlBase() + jitsiRoomId);
+                newAppointment.Body = getLanguageValue("textBodyMessage") + (JitsiUrl.getUrlBase() + jitsiRoomId);
 
                 // Display ribbon group, then the appointment window
                 Globals.ThisAddIn.ShowRibbonAppointment = true;
@@ -51,6 +56,16 @@ namespace JitsiMeetOutlook
         {
             Outlook.Inspector inspector = newAppointment.GetInspector; // Only works after appointment is displayed to user
             thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonGroup;
+        }
+
+        private void setJsonNode()
+        {
+            jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("appointmentItem");
+        }
+
+        private string getLanguageValue(string property)
+        {
+            return jsonUILanguage.GetProperty(property).GetString();
         }
 
         private string getRoomId()

@@ -23,13 +23,15 @@ The screenshots below display the features of implemented in this add-in.
 
 ## Installation
 ### New
-Go to the [releases](/../../releases) page and download the MSI installer for the latest version. Make sure to download and run the JitsiMeetOutlook-v<version>-windows-<architecture>.msi file that matches the architecture of your installation of Microsoft Office. I.e. if Office was installed as 64-bit, then run JitsiMeetOutlook-v0.4.0-windows-x64.msi.
+Go to the [releases](/../../releases) page and download the MSI installer for the latest version. 
+
+For versions prior to 0.5.0: Make sure to download and run the JitsiMeetOutlook-v<version>-windows-<architecture>.msi file that matches the architecture of your installation of Microsoft Office. I.e. if Office was installed as 64-bit, then run JitsiMeetOutlook-v0.4.0-windows-x64.msi.
 
 ### Upgrade
 Please uninstall any previously installed version of this add-in via the "Add or remove programs" pane in Windows before upgrading.
 
 ### Uninstall
-The add-in can be uninstalled via the "Add or remove programs" pane in Windows, or by running the JitsiMeetOutlook-v<version>-windows-<architecture>.msi file again.
+The add-in can be uninstalled via the "Add or remove programs" pane in Windows, or by running the MSI installer again.
   
 ### Command Line
 As of v0.4.0, the add-in can be installed via command line with custom setting passed as parameters. This works by calling `msiexec` on the .msi installer file. The following parameters can be passed to the installer to preconfigure the Jitsi Meet Outlook add-in settings (all are optional):
@@ -39,8 +41,9 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 * `REQNAME`: Require name by default in new Jitsi Meet appointments. (True/False)
 * `NOAUDIO`: Mute audio by default in new Jitsi Meet appointments. (True/False)
 * `NOVIDEO`: Disable video by default in new Jitsi Meet appointments. (True/False)
+* `LANG`: Specify the display language. Currently, English and French are available. (en/fr)
 
-Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.4.0-windows-x64.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" REQNAME="True" NOAUDIO="True" NOVIDEO="True" /passive`
+Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.4.0-windows-x64.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
 
 All settings can be changed from the settings menu after installation.
 
@@ -48,10 +51,10 @@ All settings can be changed from the settings menu after installation.
 The published code and installer is still at an early stage. Preliminarily, the following amendments are in the pipeline:
 - [ ] Add RTF body text to appointment for improved appearance
 - [ ] Shift the controls in the appointment ribbon to the left
-- [ ] Add checks for Outlook having been installed on the target computer and that its architecture matches that of the installer
+- [ ] Add checks for Outlook having been installed on the target computer
 - [ ] Add persistent setting: add URL to Location field of appointment
 - [ ] Add setting allowing users to generate random strings instead of random combinations of words
-- [ ] Add possibility for preconfiguration of settings via silent installs (v0.4.0)
+- [x] Add possibility for preconfiguration of settings via silent installs (v0.4.0)
 - [x] Make the installation procedure less painful (v0.2.0)
 - [x] Add small icons to the buttons in the appointment ribbon (v0.2.0)
 - [x] Add a button for starting a conference with video muted to appointment tab (v0.2.0)
@@ -66,6 +69,14 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.5.0
+Enhancements:
+* Added support for changing display language
+* Added French as a language option (thanks to [gillesdubois](/../../../../gillesdubois) for providing the translation)
+* Installer has been migrated from Microsoft Setup Project to WiX 3.14 for improved reliability
+Other issues:
+* From this version onwards, the add-in will only be compiled for "AnyCPU", which means that the same installer will work with both x86 and x64 bit versions of Outlook. See more information at [Microsoft's pages](https://docs.microsoft.com/en-us/visualstudio/vsto/building-office-solutions?view=vs-2019#change-the-platform-target).
+
 ### v0.4.0
 Enhancements:
 * Added possibility of passing custom settings as parameters to the installer via the command line

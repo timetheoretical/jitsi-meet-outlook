@@ -41,9 +41,9 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 * `REQNAME`: Require name by default in new Jitsi Meet appointments. (True/False)
 * `NOAUDIO`: Mute audio by default in new Jitsi Meet appointments. (True/False)
 * `NOVIDEO`: Disable video by default in new Jitsi Meet appointments. (True/False)
-* `LANG`: Specify the display language. Currently, English and French are available. (en/fr)
+* `LANG`: Specify the display language. Currently, English, French, and Russian are available. (en/fr/ru)
 
-Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.4.0-windows-x64.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
+Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.5.1-windows-anycpu.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
 
 All settings can be changed from the settings menu after installation.
 
@@ -69,6 +69,11 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.5.1
+Enhancements:
+* Added Russian as a language option (thanks to [semencha](/../../../../semencha) for providing the translation)
+* Updated link to the latest VSTO runtime in warning pop-up from install check
+
 ### v0.5.0
 Enhancements:
 * Added support for changing display language

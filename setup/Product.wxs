@@ -35,7 +35,7 @@
 
 		<Condition
 		  Message="The Visual Studio 2010 Tools for Office Runtime is not installed. 
-  Please download and install from https://www.microsoft.com/en-us/download/details.aspx?id=48217.">
+  Please download and install from https://www.microsoft.com/en-us/download/details.aspx?id=56961">
 			<![CDATA[Installed OR VSTORUNTIMEREDIST>="10.0.30319"]]>
 		</Condition>
 

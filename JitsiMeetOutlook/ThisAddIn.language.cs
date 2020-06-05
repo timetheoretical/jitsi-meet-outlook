@@ -35,6 +35,10 @@ namespace JitsiMeetOutlook
             {
                 return Resources.languages.fr;
             }
+            else if (language == "ru")
+            {
+                return Resources.languages.ru;
+            }
             else
             {
                 return null;

@@ -100,7 +100,7 @@ namespace SettingsInstallerParameters
 
         private static string getLanguage(Session session)
         {
-            string[] availableLanguages = { "en", "fr" };
+            string[] availableLanguages = { "en", "fr", "ru" };
             string userLanguageInput = session.CustomActionData["language"];
 
             if (availableLanguages.Contains(userLanguageInput))

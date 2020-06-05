@@ -32,7 +32,8 @@
     "groupBoxLanguage": "Langues",
     "comboBoxLanguageItems": {
       "en": "Anglais",
-      "fr": "Français"
+      "fr": "Français",
+      "ru": "Russe"
     }
   },
 

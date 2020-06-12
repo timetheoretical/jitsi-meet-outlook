@@ -3,8 +3,8 @@
 // and on: https://github.com/jitsi/js-utils/blob/master/random/roomNameGenerator.js
 
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
+using Diacritics.Extensions;
 
 namespace JitsiMeetOutlook
 {
@@ -38,7 +38,12 @@ namespace JitsiMeetOutlook
         private static string randomListElement(JsonElement list)
         {
             int index = random.Next(list.GetArrayLength());
-            return list[index].GetString();
+            string word = list[index].GetString();
+
+            // Remove diacritics
+            string wordWithoutDiacritics = word.RemoveDiacritics();
+
+            return wordWithoutDiacritics;
         }
 
         private static Random random = new Random();

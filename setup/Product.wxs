@@ -121,6 +121,9 @@
 	<!-- Copy the necessary DLLs -->
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="Diacritics.dll">
+				<File Id="Diacritics.dll" Name="Diacritics.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Diacritics.dll" />
+			</Component>
 			<Component Id="Jitsi_Meet_Outlook_AddIn.dll">
 				<File Id="Jitsi_Meet_Outlook_AddIn.dll" Name="Jitsi Meet Outlook Add-In.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Jitsi Meet Outlook Add-In.dll" />
 			</Component>

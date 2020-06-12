@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Linq;
+using System.Text.Json;
 
 namespace JitsiMeetOutlook
 {
@@ -265,6 +266,7 @@ namespace JitsiMeetOutlook
 
         private void loadComboBoxLanguage()
         {
+            JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
             comboBoxLanguage.SelectedItem = jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty(Properties.Settings.Default.language).GetString();
         }
 

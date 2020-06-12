@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json;
 
 
@@ -7,27 +6,25 @@ namespace JitsiMeetOutlook
 {
     partial class FormSettings
     {
-        private JsonElement jsonUILanguage;
         private Dictionary<string, string> languageDropDown = new Dictionary<string, string>();
 
         private void setLanguage()
         {
-            setJsonNode();
             setlanguageDropDown();
 
-            this.groupBoxDomain.Text = getLanguageValue("groupBoxDomain");
-            this.radioButtonDefaultDomain.Text = getLanguageValue("radioButtonDefaultDomain");
-            this.radioButtonCustomDomain.Text = getLanguageValue("radioButtonCustomDomain");
-            this.groupBoxDefaultRoomID.Text = getLanguageValue("groupBoxDefaultRoomID");
-            this.radioButtonRandomRoomID.Text = getLanguageValue("radioButtonRandomRoomID");
-            this.radioButtonCustomRoomID.Text = getLanguageValue("radioButtonCustomRoomID");
-            this.groupBoxToggleDefaults.Text = getLanguageValue("groupBoxToggleDefaults");
-            this.labelToggled.Text = getLanguageValue("labelToggled");
-            this.labelUntoggled.Text = getLanguageValue("labelUntoggled");
-            this.labelRequireDisplayName.Text = getLanguageValue("labelRequireDisplayName");
-            this.labelStartWithAudioMuted.Text = getLanguageValue("labelStartWithAudioMuted");
-            this.labelStartWithVideoMuted.Text = getLanguageValue("labelStartWithVideoMuted");
-            this.groupBoxLanguage.Text = getLanguageValue("groupBoxLanguage");
+            this.groupBoxDomain.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxDomain");
+            this.radioButtonDefaultDomain.Text = Globals.ThisAddIn.getElementTranslation("settings", "radioButtonDefaultDomain");
+            this.radioButtonCustomDomain.Text = Globals.ThisAddIn.getElementTranslation("settings", "radioButtonCustomDomain");
+            this.groupBoxDefaultRoomID.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxDefaultRoomID");
+            this.radioButtonRandomRoomID.Text = Globals.ThisAddIn.getElementTranslation("settings", "radioButtonRandomRoomID");
+            this.radioButtonCustomRoomID.Text = Globals.ThisAddIn.getElementTranslation("settings", "radioButtonCustomRoomID");
+            this.groupBoxToggleDefaults.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxToggleDefaults");
+            this.labelToggled.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelToggled");
+            this.labelUntoggled.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelUntoggled");
+            this.labelRequireDisplayName.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelRequireDisplayName");
+            this.labelStartWithAudioMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithAudioMuted");
+            this.labelStartWithVideoMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithVideoMuted");
+            this.groupBoxLanguage.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxLanguage");
             this.comboBoxLanguage.Items.Clear();
             this.comboBoxLanguage.Items.AddRange(new object[] {
                 languageDropDown["en"],
@@ -38,21 +35,12 @@ namespace JitsiMeetOutlook
         }
 
 
-        private void setJsonNode()
-        {
-            jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
-        }
-
         private void setlanguageDropDown()
         {
+            JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
             languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
             languageDropDown.Add("fr", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("fr").GetString());
             languageDropDown.Add("ru", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("ru").GetString());
-        }
-
-        private string getLanguageValue(string property)
-        {
-            return jsonUILanguage.GetProperty(property).GetString();
         }
     }
 }

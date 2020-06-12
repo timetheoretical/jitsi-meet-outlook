@@ -5,31 +5,16 @@ namespace JitsiMeetOutlook
     public partial class AppointmentRibbonGroup
     {
 
-        JsonElement jsonUILanguage;
         private void setLanguage()
         {
-            setJsonNode();
-
-            this.fieldRoomID.Label = getLanguageValue("fieldRoomID");
-            this.fieldRoomID.SuperTip = getLanguageValue("fieldRoomIDSuperTip");
-            this.buttonRandomRoomID.Label = getLanguageValue("buttonRandomRoomID");
-            this.buttonRequireDisplayName.Label = getLanguageValue("buttonRequireDisplayName");
-            this.buttonStartWithAudioMuted.Label = getLanguageValue("buttonStartWithAudioMuted");
-            this.buttonStartWithVideoMuted.Label = getLanguageValue("buttonStartWithVideoMuted");
+            this.fieldRoomID.Label = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "fieldRoomID");
+            this.fieldRoomID.SuperTip = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "fieldRoomIDSuperTip");
+            this.buttonRandomRoomID.Label = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "buttonRandomRoomID");
+            this.buttonRequireDisplayName.Label = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "buttonRequireDisplayName");
+            this.buttonStartWithAudioMuted.Label = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "buttonStartWithAudioMuted");
+            this.buttonStartWithVideoMuted.Label = Globals.ThisAddIn.getElementTranslation("appointmentRibbonGroup", "buttonStartWithVideoMuted");
 
         }
-
-
-        private void setJsonNode()
-        {
-            jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("appointmentRibbonGroup");
-        }
-
-        private string getLanguageValue(string property)
-        {
-            return jsonUILanguage.GetProperty(property).GetString();
-        }
-
     }
 
 }

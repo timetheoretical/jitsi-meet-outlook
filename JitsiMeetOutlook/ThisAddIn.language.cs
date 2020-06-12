@@ -50,6 +50,11 @@ namespace JitsiMeetOutlook
             return languageJsonRoot;
         }
 
+        public string getElementTranslation(string jsonGroup, string jsonElement)
+        {
+            return languageJsonRoot.GetProperty(jsonGroup).GetProperty(jsonElement).GetString();
+        }
+
     }
 
 }

@@ -23,7 +23,8 @@
 		<MediaTemplate EmbedCab="yes"/>
 
 
-		<!-- Verify that VSTO Office Runtime is installed -->
+		<!-- Verify that VSTO Office Runtime is installed --> <!-- This check has been disabled as users have found it overly restrictive -->
+		<!--
 		<Property Id="VSTORUNTIMEREDIST">
 			<RegistrySearch
 			  Id="VSTORuntimeRedist"
@@ -38,6 +39,7 @@
   Please download and install from https://www.microsoft.com/en-us/download/details.aspx?id=56961">
 			<![CDATA[Installed OR VSTORUNTIMEREDIST>="10.0.30319"]]>
 		</Condition>
+		-->
 
 		<!-- Verify that .NET Framework is installed -->
 		<PropertyRef Id="NETFRAMEWORK40FULL"/>

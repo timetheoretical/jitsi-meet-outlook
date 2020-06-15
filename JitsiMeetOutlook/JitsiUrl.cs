@@ -16,11 +16,6 @@ namespace JitsiMeetOutlook
 
     {
 
-        public static string generateUrl()
-        {
-            return getUrlBase() + randomListElement(getAdjectiveList()) + randomListElement(getPluralNounList()) + randomListElement(getVerbList()) + randomListElement(getAdverbList());
-        }
-
         public static string generateRandomPhrase()
         {
             return randomListElement(getAdjectiveList()) + randomListElement(getPluralNounList()) + randomListElement(getVerbList()) + randomListElement(getAdverbList());

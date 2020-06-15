@@ -59,7 +59,7 @@ namespace JitsiMeetOutlook
             string roomId;
             if (Properties.Settings.Default.roomID.Length == 0)
             {
-                roomId = JitsiUrl.generateRoomId();
+                roomId = JitsiUrl.generateRandomPhrase();
             }
             else
             {

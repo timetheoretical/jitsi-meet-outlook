@@ -3,6 +3,9 @@
 // and on: https://github.com/jitsi/js-utils/blob/master/random/roomNameGenerator.js
 
 using System;
+using System.Security.Cryptography;
+using System.Text;
+
 using System.Text.Json;
 using Diacritics.Extensions;
 using System.Text.RegularExpressions;
@@ -18,7 +21,7 @@ namespace JitsiMeetOutlook
             return getUrlBase() + randomListElement(getAdjectiveList()) + randomListElement(getPluralNounList()) + randomListElement(getVerbList()) + randomListElement(getAdverbList());
         }
 
-        public static string generateRoomId()
+        public static string generateRandomPhrase()
         {
             return randomListElement(getAdjectiveList()) + randomListElement(getPluralNounList()) + randomListElement(getVerbList()) + randomListElement(getAdverbList());
         }
@@ -79,6 +82,32 @@ namespace JitsiMeetOutlook
             string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z]+", "");
 
             return wordLatin;
+        }
+
+        public static string generateRandomString(int size)
+        {
+            //char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            char[] chars = (
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "abcdefghijklmnopqrstuvwxyz" +
+                "0123456789"
+                ).ToCharArray();
+
+            byte[] data = new byte[4 * size];
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetBytes(data);
+            }
+            StringBuilder result = new StringBuilder(size);
+            for (int i = 0; i < size; i++)
+            {
+                var rnd = BitConverter.ToUInt32(data, i * 4);
+                var idx = rnd % chars.Length;
+
+                result.Append(chars[idx]);
+            }
+
+            return result.ToString();
         }
     }
 }

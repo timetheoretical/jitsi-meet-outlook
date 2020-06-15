@@ -28,12 +28,14 @@ namespace JitsiMeetOutlook
             string newDomain = JitsiUrl.getDomain();
             string oldBody = appointmentItem.Body;
 
+            // Filter room id for legal characters
+            string newRoomIdLegal = JitsiUrl.filterLegalCharacters(newRoomId);
 
             // Replace old domain for new domain
-            string newBody = oldBody.Replace(findRoomId(), newRoomId);
+            string newBody = oldBody.Replace(findRoomId(), newRoomIdLegal);
             newBody = newBody.Replace(oldDomain, newDomain);
 
-            fieldRoomID.Text = newRoomId;
+            fieldRoomID.Text = newRoomIdLegal;
             appointmentItem.Body = newBody;
 
             oldDomain = newDomain;

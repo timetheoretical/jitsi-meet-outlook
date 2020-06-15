@@ -68,7 +68,7 @@ namespace JitsiMeetOutlook
             return Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("roomNameGenerator").GetProperty("adjective");
         }
 
-        private static string filterLegalCharacters(string word)
+        public static string filterLegalCharacters(string word)
         {
             // Remove diacritics
             string wordWithoutDiacritics = word.RemoveDiacritics();
@@ -81,7 +81,6 @@ namespace JitsiMeetOutlook
 
         public static string generateRandomString(int size)
         {
-            //char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
             char[] chars = (
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
                 "abcdefghijklmnopqrstuvwxyz" +

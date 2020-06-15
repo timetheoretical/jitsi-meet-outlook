@@ -5,6 +5,7 @@
 using System;
 using System.Text.Json;
 using Diacritics.Extensions;
+using System.Text.RegularExpressions;
 
 namespace JitsiMeetOutlook
 {
@@ -40,10 +41,7 @@ namespace JitsiMeetOutlook
             int index = random.Next(list.GetArrayLength());
             string word = list[index].GetString();
 
-            // Remove diacritics
-            string wordWithoutDiacritics = word.RemoveDiacritics();
-
-            return wordWithoutDiacritics;
+            return filterLegalCharacters(word);
         }
 
         private static Random random = new Random();
@@ -70,6 +68,17 @@ namespace JitsiMeetOutlook
         private static JsonElement getAdjectiveList()
         {
             return Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("roomNameGenerator").GetProperty("adjective");
+        }
+
+        private static string filterLegalCharacters(string word)
+        {
+            // Remove diacritics
+            string wordWithoutDiacritics = word.RemoveDiacritics();
+
+            // Keep only letters of the latin alphabet
+            string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z]+", "");
+
+            return wordLatin;
         }
     }
 }

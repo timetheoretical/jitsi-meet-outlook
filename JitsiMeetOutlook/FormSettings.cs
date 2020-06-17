@@ -34,6 +34,7 @@ namespace JitsiMeetOutlook
         {
             setLanguage();
             loadComboBoxLanguage();
+            loadComboBoxRandomGeneratorMode();
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
@@ -272,6 +273,12 @@ namespace JitsiMeetOutlook
         {
             JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
             comboBoxLanguage.SelectedItem = jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty(Properties.Settings.Default.language).GetString();
+        }
+
+        private void loadComboBoxRandomGeneratorMode()
+        {
+            JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
+            comboBoxRandomGeneratorMode.SelectedItem = jsonUILanguage.GetProperty("comboBoxRandomGeneratorMode").GetProperty(Properties.Settings.Default.randomRoomIdGeneratorMode).GetString();
         }
 
         private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)

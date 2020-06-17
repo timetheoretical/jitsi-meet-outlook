@@ -64,6 +64,9 @@ namespace SettingsInstallerParameters
             session.Log($"Setting display language: {getLanguage(session)}");
             navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='language']/value").SetValue(getLanguage(session));
 
+            session.Log($"Setting random ID generator mode: {getLanguage(session)}");
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='randomRoomIdGeneratorMode']/value").SetValue(getRandomRoomIdGeneratorMode(session));
+
             session.Log($"Saving settings to: {xmlPath}");
             document.Save(xmlPath);
         }
@@ -110,6 +113,22 @@ namespace SettingsInstallerParameters
             else
             {
                 return "en";
+            }
+
+        }
+
+        private static string getRandomRoomIdGeneratorMode(Session session)
+        {
+            string[] availableModes = { "phrase", "string" };
+            string userModeInput = session.CustomActionData["randomRoomIdGeneratorMode"];
+
+            if (availableModes.Contains(userModeInput))
+            {
+                return userModeInput;
+            }
+            else
+            {
+                return "phrase";
             }
 
         }

@@ -69,7 +69,7 @@
 		
 		<!-- Reference custom action to update settings xml -->
 		<CustomAction Id="UpdateConfigXml" BinaryKey="SettingsInstallerParameters.CA" DllEntry="UpdateConfigXml" Execute="deferred" Return="check" Impersonate="no" />
-		<CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG]" />
+		<CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG];randomRoomIdGeneratorMode=[MODE]" />
 		<Binary Id="SettingsInstallerParameters.CA" SourceFile="$(var.JitsiMeetOutlook.ProjectDir)..\SettingsInstallerParameters\bin\Release\SettingsInstallerParameters.CA.dll" />
 		
 		<InstallExecuteSequence>

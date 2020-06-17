@@ -38,12 +38,13 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 * `TARGETDIR`: Path to the install directory.
 * `DOMAIN`: Custom domain.
 * `ROOMID`: A default room ID new Jitsi Meet appointments get assigned.
+* `MODE`: The mode of the random room ID generator, e.g. phrases or strings. (phrase/string)
 * `REQNAME`: Require name by default in new Jitsi Meet appointments. (True/False)
 * `NOAUDIO`: Mute audio by default in new Jitsi Meet appointments. (True/False)
 * `NOVIDEO`: Disable video by default in new Jitsi Meet appointments. (True/False)
 * `LANG`: Specify the display language. Currently, English, French, and Russian are available. (en/fr/ru)
 
-Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.5.1-windows-anycpu.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
+Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.6.0-windows-anycpu.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" MODE="string" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
 
 All settings can be changed from the settings menu after installation.
 
@@ -51,9 +52,10 @@ All settings can be changed from the settings menu after installation.
 The published code and installer is still at an early stage. Preliminarily, the following amendments are in the pipeline:
 - [ ] Add RTF body text to appointment for improved appearance
 - [ ] Shift the controls in the appointment ribbon to the left
+- [ ] Create appointment with time as specified in the calendar view
 - [ ] Add checks for Outlook having been installed on the target computer
 - [ ] Add persistent setting: add URL to Location field of appointment
-- [ ] Add setting allowing users to generate random strings instead of random combinations of words
+- [x] Add setting allowing users to generate random strings instead of random combinations of words (0.6.0)
 - [x] Add possibility for preconfiguration of settings via silent installs (v0.4.0)
 - [x] Make the installation procedure less painful (v0.2.0)
 - [x] Add small icons to the buttons in the appointment ribbon (v0.2.0)

@@ -34,6 +34,13 @@
       "en": "Английский",
       "fr": "Французский",
       "ru": "Русский"
+    },
+
+    "tabControlSettings": {
+      "tabPageDomain": "Домен",
+      "tabPageRoomId": "Название",
+      "tabPageMeetingOptions": "Опции",
+      "tabPageLanguage": "Язык"
     }
   },
 

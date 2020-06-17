@@ -10,7 +10,8 @@ namespace JitsiMeetOutlook
 
         private void setLanguage()
         {
-            setlanguageDropDown();
+            setLanguageTabs();
+            setLanguageDropDown();
 
             this.groupBoxDomain.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxDomain");
             this.radioButtonDefaultDomain.Text = Globals.ThisAddIn.getElementTranslation("settings", "radioButtonDefaultDomain");
@@ -35,12 +36,21 @@ namespace JitsiMeetOutlook
         }
 
 
-        private void setlanguageDropDown()
+        private void setLanguageDropDown()
         {
             JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
             languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
             languageDropDown.Add("fr", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("fr").GetString());
             languageDropDown.Add("ru", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("ru").GetString());
+        }
+
+        private void setLanguageTabs()
+        {
+            JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
+            this.tabPageDomain.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageDomain").GetString();
+            this.tabPageRoomId.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageRoomId").GetString();
+            this.tabPageMeetingOptions.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageMeetingOptions").GetString();
+            this.tabPageLanguage.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageLanguage").GetString();
         }
     }
 }

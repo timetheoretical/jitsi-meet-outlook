@@ -23,6 +23,13 @@
     "groupBoxDefaultRoomID": "Default room ID",
     "radioButtonRandomRoomID": "Random",
     "radioButtonCustomRoomID": "Custom",
+
+    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "comboBoxRandomGeneratorMode": {
+      "phrase": "Phrase",
+      "string": "String"
+    },
+
     "groupBoxToggleDefaults": "Default meeting options",
     "labelToggled": "Toggled",
     "labelUntoggled": "Untoggled",
@@ -40,7 +47,7 @@
       "tabPageDomain": "Domain",
       "tabPageRoomId": "Room ID",
       "tabPageMeetingOptions": "Meeting Options",
-      "tabPageLanguage" : "Language"
+      "tabPageLanguage": "Language"
     }
   },
 

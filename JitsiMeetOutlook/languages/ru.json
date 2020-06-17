@@ -23,6 +23,13 @@
     "groupBoxDefaultRoomID": "Название конференций",
     "radioButtonRandomRoomID": "Случайное",
     "radioButtonCustomRoomID": "Собственное",
+
+    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "comboBoxRandomGeneratorMode": {
+      "phrase": "Phrase",
+      "string": "String"
+    },
+
     "groupBoxToggleDefaults": "Опции конференций",
     "labelToggled": "Включить",
     "labelUntoggled": "Отключить",

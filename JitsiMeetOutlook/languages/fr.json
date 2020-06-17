@@ -23,6 +23,13 @@
     "groupBoxDefaultRoomID": "ID par défaut",
     "radioButtonRandomRoomID": "Aléatoire",
     "radioButtonCustomRoomID": "Personnalisé",
+
+    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "comboBoxRandomGeneratorMode": {
+      "phrase": "Phrase",
+      "string": "String"
+    },
+
     "groupBoxToggleDefaults": "Options par défaut de la conférence",
     "labelToggled": "Basculer",
     "labelUntoggled": "Débloquer",

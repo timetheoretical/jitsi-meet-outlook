@@ -109,10 +109,10 @@ namespace JitsiMeetOutlook.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int randomRoomIdGeneratorMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("phrase")]
+        public string randomRoomIdGeneratorMode {
             get {
-                return ((int)(this["randomRoomIdGeneratorMode"]));
+                return ((string)(this["randomRoomIdGeneratorMode"]));
             }
             set {
                 this["randomRoomIdGeneratorMode"] = value;

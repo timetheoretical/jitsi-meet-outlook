@@ -23,8 +23,8 @@
     <Setting Name="language" Type="System.String" Scope="User">
       <Value Profile="(Default)">en</Value>
     </Setting>
-    <Setting Name="randomRoomIdGeneratorMode" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="randomRoomIdGeneratorMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">phrase</Value>
     </Setting>
   </Settings>
 </SettingsFile>

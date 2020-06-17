@@ -169,6 +169,10 @@ namespace JitsiMeetOutlook
             // Set language
             string languageSelection = (string) comboBoxLanguage.SelectedItem;
             Properties.Settings.Default.language = languageDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
+
+            // Set random generator mode
+            string randomGeneratorModeSelection = (string)comboBoxRandomGeneratorMode.SelectedItem;
+            Properties.Settings.Default.randomRoomIdGeneratorMode = randomGeneratorModeDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
         }
 
         private string cleanDomain(string userInput)

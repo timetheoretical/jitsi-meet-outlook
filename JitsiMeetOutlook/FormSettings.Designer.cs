@@ -63,6 +63,8 @@
             this.tabPageRoomId = new System.Windows.Forms.TabPage();
             this.tabPageMeetingOptions = new System.Windows.Forms.TabPage();
             this.tabPageLanguage = new System.Windows.Forms.TabPage();
+            this.groupBoxRandomGeneratorMode = new System.Windows.Forms.GroupBox();
+            this.comboBoxRandomGeneratorMode = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxDomain.SuspendLayout();
             this.groupBoxToggleDefaults.SuspendLayout();
@@ -76,6 +78,7 @@
             this.tabPageRoomId.SuspendLayout();
             this.tabPageMeetingOptions.SuspendLayout();
             this.tabPageLanguage.SuspendLayout();
+            this.groupBoxRandomGeneratorMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -424,6 +427,7 @@
             // 
             // tabPageRoomId
             // 
+            this.tabPageRoomId.Controls.Add(this.groupBoxRandomGeneratorMode);
             this.tabPageRoomId.Controls.Add(this.groupBoxDefaultRoomID);
             this.tabPageRoomId.Location = new System.Drawing.Point(4, 22);
             this.tabPageRoomId.Name = "tabPageRoomId";
@@ -452,6 +456,28 @@
             this.tabPageLanguage.TabIndex = 3;
             this.tabPageLanguage.Text = "Language";
             this.tabPageLanguage.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxRandomGeneratorMode
+            // 
+            this.groupBoxRandomGeneratorMode.Controls.Add(this.comboBoxRandomGeneratorMode);
+            this.groupBoxRandomGeneratorMode.Location = new System.Drawing.Point(6, 82);
+            this.groupBoxRandomGeneratorMode.Name = "groupBoxRandomGeneratorMode";
+            this.groupBoxRandomGeneratorMode.Size = new System.Drawing.Size(303, 49);
+            this.groupBoxRandomGeneratorMode.TabIndex = 4;
+            this.groupBoxRandomGeneratorMode.TabStop = false;
+            this.groupBoxRandomGeneratorMode.Text = "Random generator mode";
+            // 
+            // comboBoxRandomGeneratorMode
+            // 
+            this.comboBoxRandomGeneratorMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRandomGeneratorMode.FormattingEnabled = true;
+            this.comboBoxRandomGeneratorMode.Items.AddRange(new object[] {
+            "Phrase",
+            "String"});
+            this.comboBoxRandomGeneratorMode.Location = new System.Drawing.Point(9, 19);
+            this.comboBoxRandomGeneratorMode.Name = "comboBoxRandomGeneratorMode";
+            this.comboBoxRandomGeneratorMode.Size = new System.Drawing.Size(287, 21);
+            this.comboBoxRandomGeneratorMode.TabIndex = 0;
             // 
             // FormSettings
             // 
@@ -494,6 +520,7 @@
             this.tabPageRoomId.ResumeLayout(false);
             this.tabPageMeetingOptions.ResumeLayout(false);
             this.tabPageLanguage.ResumeLayout(false);
+            this.groupBoxRandomGeneratorMode.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,5 +563,7 @@
         private System.Windows.Forms.TabPage tabPageRoomId;
         private System.Windows.Forms.TabPage tabPageMeetingOptions;
         private System.Windows.Forms.TabPage tabPageLanguage;
+        private System.Windows.Forms.GroupBox groupBoxRandomGeneratorMode;
+        private System.Windows.Forms.ComboBox comboBoxRandomGeneratorMode;
     }
 }

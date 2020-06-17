@@ -11,7 +11,7 @@
     "fieldRoomID": "Название:",
     "fieldRoomIDSuperTip": "Длинные названия более безопасны.",
     "buttonRandomRoomID": "Случайное название",
-    "buttonRequireDisplayName": "Указание Имени",
+    "buttonRequireDisplayName": "Указание имени",
     "buttonStartWithAudioMuted": "Начать без звука",
     "buttonStartWithVideoMuted": "Начать без видео"
   },
@@ -24,16 +24,16 @@
     "radioButtonRandomRoomID": "Случайное",
     "radioButtonCustomRoomID": "Собственное",
 
-    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "groupBoxRandomGeneratorMode": "Режим генерации названия",
     "comboBoxRandomGeneratorMode": {
-      "phrase": "Phrase",
-      "string": "String"
+      "phrase": "Фраза",
+      "string": "Строка"
     },
 
     "groupBoxToggleDefaults": "Опции конференций",
     "labelToggled": "Включить",
     "labelUntoggled": "Отключить",
-    "labelRequireDisplayName": "Указание Имени",
+    "labelRequireDisplayName": "Указание имени",
     "labelStartWithAudioMuted": "Начать без звука",
     "labelStartWithVideoMuted": "Начать без видео",
     "groupBoxLanguage": "Язык",

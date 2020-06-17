@@ -106,5 +106,17 @@ namespace JitsiMeetOutlook.Properties {
                 this["language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int randomRoomIdGeneratorMode {
+            get {
+                return ((int)(this["randomRoomIdGeneratorMode"]));
+            }
+            set {
+                this["randomRoomIdGeneratorMode"] = value;
+            }
+        }
     }
 }

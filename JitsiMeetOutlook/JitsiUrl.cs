@@ -15,7 +15,17 @@ namespace JitsiMeetOutlook
     public static class JitsiUrl
 
     {
-
+        public static string generateRandomId()
+        {
+            if (Properties.Settings.Default.randomRoomIdGeneratorMode == "phrase")
+            {
+                return generateRandomPhrase();
+            }
+            else
+            {
+                return generateRandomString(16);
+            }
+        }
         public static string generateRandomPhrase()
         {
             return randomListElement(getAdjectiveList()) + randomListElement(getPluralNounList()) + randomListElement(getVerbList()) + randomListElement(getAdverbList());
@@ -74,7 +84,7 @@ namespace JitsiMeetOutlook
             string wordWithoutDiacritics = word.RemoveDiacritics();
 
             // Keep only letters of the latin alphabet
-            string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z]+", "");
+            string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z0-9]+", "");
 
             return wordLatin;
         }

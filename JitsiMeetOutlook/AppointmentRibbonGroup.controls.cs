@@ -60,7 +60,7 @@ namespace JitsiMeetOutlook
 
         public void randomiseRoomId()
         {
-            setRoomId(JitsiUrl.generateRandomPhrase());
+            setRoomId(JitsiUrl.generateRandomId());
         }
 
         public void toggleMuteOnStart()

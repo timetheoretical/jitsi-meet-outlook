@@ -173,7 +173,7 @@ namespace JitsiMeetOutlook
 
             // Set random generator mode
             string randomGeneratorModeSelection = (string)comboBoxRandomGeneratorMode.SelectedItem;
-            Properties.Settings.Default.randomRoomIdGeneratorMode = randomGeneratorModeDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
+            Properties.Settings.Default.randomRoomIdGeneratorMode = randomGeneratorModeDropDown.FirstOrDefault(x => x.Value == randomGeneratorModeSelection).Key;
         }
 
         private string cleanDomain(string userInput)

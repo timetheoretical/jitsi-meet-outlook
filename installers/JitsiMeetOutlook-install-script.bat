@@ -9,6 +9,8 @@ set DOMAIN=domain:port
 set REQNAME=False
 set NOAUDIO=False
 set NOVIDEO=False
+::specify the display language (en/fr/ru)
+set LANG=en
 ::======================
 :: Plugin URL and paths
 ::======================
@@ -38,6 +40,6 @@ CD /D "%PowerShellDir%"
 Powershell -ExecutionPolicy Bypass -Command "& '%PSScript%'"
 ECHO Download done.
 ECHO Plugin installation...
-msiexec /i "%TEMP%\jmo.msi" TARGETDIR="%target%" DOMAIN="%DOMAIN%" ROOMID="%roomid%" REQNAME="True" NOAUDIO="False" NOVIDEO="False" /passive
+msiexec /i "%TEMP%\jmo.msi" TARGETDIR="%target%" DOMAIN="%DOMAIN%" ROOMID="%roomid%" REQNAME="%reqname%" NOAUDIO="%noaudio%" NOVIDEO="%novideo%" LANG="%lang%" /passive
 ECHO Done.
 PAUSE

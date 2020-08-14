@@ -84,7 +84,7 @@ namespace JitsiMeetOutlook
             string wordWithoutDiacritics = word.RemoveDiacritics();
 
             // Keep only letters of the latin alphabet
-            string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z0-9_]+", "");
+            string wordLatin = Regex.Replace(wordWithoutDiacritics, "[^a-zA-Z0-9_-]+", "");
 
             return wordLatin;
         }

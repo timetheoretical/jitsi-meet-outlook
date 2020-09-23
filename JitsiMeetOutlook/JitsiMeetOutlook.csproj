@@ -275,10 +275,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>languages.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="cert.pfx" />
     <None Include="JitsiMeetOutlook_TemporaryKey.pfx" />
+    <None Include="languages\de.json" />
     <None Include="languages\en.json" />
     <None Include="languages\fr.json" />
     <None Include="languages\ru.json" />

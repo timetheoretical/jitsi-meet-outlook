@@ -40,7 +40,8 @@
     "comboBoxLanguageItems": {
       "en": "Английский",
       "fr": "Французский",
-      "ru": "Русский"
+      "ru": "Русский",
+      "de": "Немецкий"
     },
 
     "tabControlSettings": {

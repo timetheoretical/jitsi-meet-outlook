@@ -27,6 +27,10 @@ namespace JitsiMeetOutlook
 
         private byte[] findJson(string language)
         {
+            if (language == "de")
+            {
+                return Resources.languages.de;
+            }
             if (language == "en")
             {
                 return Resources.languages.en;

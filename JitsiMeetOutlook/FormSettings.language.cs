@@ -35,12 +35,14 @@ namespace JitsiMeetOutlook
         private void setLanguageDropDown()
         {
             JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
+            languageDropDown.Add("de", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("de").GetString());
             languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
             languageDropDown.Add("fr", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("fr").GetString());
             languageDropDown.Add("ru", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("ru").GetString());
 
             this.comboBoxLanguage.Items.Clear();
             this.comboBoxLanguage.Items.AddRange(new object[] {
+                languageDropDown["de"],
                 languageDropDown["en"],
                 languageDropDown["fr"],
                 languageDropDown["ru"]

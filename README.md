@@ -71,6 +71,10 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.6.2
+Bugfixes:
+* #26: Plugin no longer breaks when users try to generate a random ID in an appointment where the URL has been partially or completely deleted. A new message and URL is instead added to the appointment.
+
 ### v0.6.1
 Enhancements:
 * Added German as a language option (thanks to [AdaptiveThinking](/../../../../AdaptiveThinking) for providing the translation)

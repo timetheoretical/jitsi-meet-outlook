@@ -31,9 +31,26 @@ namespace JitsiMeetOutlook
             // Filter room id for legal characters
             string newRoomIdLegal = JitsiUrl.filterLegalCharacters(newRoomId);
 
-            // Replace old domain for new domain
-            string newBody = oldBody.Replace(findRoomId(), newRoomIdLegal);
-            newBody = newBody.Replace(oldDomain, newDomain);
+            string newBody;
+            try
+            {
+                // Replace old domain for new domain
+                newBody = oldBody.Replace(findRoomId(), newRoomIdLegal);
+                newBody = newBody.Replace(oldDomain, newDomain);
+            }
+            catch
+            {
+                // If replacement failed, append new message text
+                if (string.IsNullOrWhiteSpace(oldBody))
+                {
+                    newBody = NewJitsiAppointment.generateBody(newRoomIdLegal);
+                }
+                else
+                {
+                    newBody = oldBody + "\n" + NewJitsiAppointment.generateBody(newRoomIdLegal);
+                }
+            }
+
 
             fieldRoomID.Text = newRoomIdLegal;
             appointmentItem.Body = newBody;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.Json;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -27,7 +26,7 @@ namespace JitsiMeetOutlook
 
                 // Appointment details
                 newAppointment.Location = "Jitsi Meet";
-                newAppointment.Body = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage") + (JitsiUrl.getUrlBase() + jitsiRoomId);
+                newAppointment.Body = generateBody(jitsiRoomId);
 
                 // Display ribbon group, then the appointment window
                 Globals.ThisAddIn.ShowRibbonAppointment = true;
@@ -52,6 +51,11 @@ namespace JitsiMeetOutlook
         {
             Outlook.Inspector inspector = newAppointment.GetInspector; // Only works after appointment is displayed to user
             thisRibbon = Globals.Ribbons[inspector].AppointmentRibbonGroup;
+        }
+
+        public static string generateBody(string roomId)
+        {
+            return Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage") + (JitsiUrl.getUrlBase() + roomId);
         }
 
         private string getRoomId()

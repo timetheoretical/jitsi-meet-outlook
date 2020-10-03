@@ -49,6 +49,11 @@ namespace JitsiMeetOutlook
                 {
                     newBody = oldBody + "\n" + NewJitsiAppointment.generateBody(newRoomIdLegal);
                 }
+
+                this.buttonStartWithAudioMuted.Checked = false;
+                this.buttonStartWithVideoMuted.Checked = false;
+                this.buttonRequireDisplayName.Checked = false;
+
             }
 
 

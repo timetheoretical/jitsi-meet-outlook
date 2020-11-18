@@ -71,6 +71,12 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.6.3
+Bugfixes:
+* Reset ribbon buttons if the link is re-created in an empty appointment.
+Enhancements:
+* Improved French translation (thanks to [guizmo05](/../../../../guizmo05))
+
 ### v0.6.2
 Bugfixes:
 * #26: Plugin no longer breaks when users try to generate a random ID in an appointment where the URL has been partially or completely deleted. A new message and URL is instead added to the appointment.

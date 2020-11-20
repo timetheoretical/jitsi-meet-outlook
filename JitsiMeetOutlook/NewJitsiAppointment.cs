@@ -15,6 +15,10 @@ namespace JitsiMeetOutlook
             // Get the Application object
             Outlook.Application application = Globals.ThisAddIn.Application;
 
+            DateTime dateNull = new DateTime(4501, 1, 1, 0, 0, 0);
+            Outlook.Explorer expl = application.ActiveExplorer();
+            Outlook.View view = expl.CurrentView as Outlook.View;
+
             try
             {
                 // Generate meeting ID
@@ -27,6 +31,18 @@ namespace JitsiMeetOutlook
                 // Appointment details
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = generateBody(jitsiRoomId);
+
+                if (view.ViewType == Outlook.OlViewType.olCalendarView)
+                {
+                    Outlook.CalendarView calView = view as Outlook.CalendarView;
+                    DateTime dateStart = calView.SelectedStartTime;
+                    DateTime dateEnd = calView.SelectedEndTime;
+                    if (dateStart != dateNull && dateEnd != dateNull)
+                    {
+                        newAppointment.Start = dateStart;
+                        newAppointment.End = dateEnd;
+                    }
+                }
 
                 // Display ribbon group, then the appointment window
                 Globals.ThisAddIn.ShowRibbonAppointment = true;

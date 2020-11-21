@@ -29,6 +29,7 @@ namespace JitsiMeetOutlook
 
 
                 // Appointment details
+                newAppointment.MeetingStatus = Outlook.OlMeetingStatus.olMeeting;
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = generateBody(jitsiRoomId);
 

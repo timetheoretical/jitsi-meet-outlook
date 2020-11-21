@@ -71,6 +71,11 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+### v0.6.4
+Enhancements:
+* #40: Set new appointments to Meeting mode by default
+* #19: Assign time-slot selection in calendar view to new appointment (thanks to [Extazx2](/../../../../Extazx2))
+
 ### v0.6.3
 Bugfixes:
 * Reset ribbon buttons if the link is re-created in an empty appointment.

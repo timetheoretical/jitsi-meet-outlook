@@ -32,6 +32,7 @@ namespace JitsiMeetOutlook
                 newAppointment.Location = "Jitsi Meet";
                 newAppointment.Body = generateBody(jitsiRoomId);
 
+                // Set appointment date if selected in calendar
                 if (view.ViewType == Outlook.OlViewType.olCalendarView)
                 {
                     Outlook.CalendarView calView = view as Outlook.CalendarView;

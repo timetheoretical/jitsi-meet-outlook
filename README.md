@@ -71,6 +71,11 @@ The published code and installer is still at an early stage. Preliminarily, the 
 Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
+
+### v0.6.5
+Bugfixes:
+* Upgrade dependencies to patch [security vulnerability](https://github.com/dotnet/runtime/issues/49377) in System.Text.Encodings.Web 4.7.1
+
 ### v0.6.4
 Enhancements:
 * #40: Set new appointments to Meeting mode by default

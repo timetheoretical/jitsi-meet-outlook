@@ -70,7 +70,7 @@
             this.groupJitsiMeet.Label = "Jitsi Meet";
             this.groupJitsiMeet.Name = "groupJitsiMeet";
             this.groupJitsiMeet.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupAttendees");
-            this.groupJitsiMeet.Visible = false;
+            this.groupJitsiMeet.Visible = Properties.Settings.Default.showRibbonOnEveryAppointment;
             this.groupJitsiMeet.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDialogLauncher_Click);
             // 
             // box1

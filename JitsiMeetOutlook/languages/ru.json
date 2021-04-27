@@ -36,6 +36,7 @@
     "labelRequireDisplayName": "Указание имени",
     "labelStartWithAudioMuted": "Начать без звука",
     "labelStartWithVideoMuted": "Начать без видео",
+    "labelRibbonOnEveryAppointment": "Показывайте ленту для джитси на каждой встрече",
     "groupBoxLanguage": "Язык",
     "comboBoxLanguageItems": {
       "en": "Английский",

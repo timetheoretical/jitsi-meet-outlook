@@ -36,12 +36,13 @@
     "labelRequireDisplayName": "Require Name",
     "labelStartWithAudioMuted": "Mute on Start",
     "labelStartWithVideoMuted": "No Video on Start",
+    "labelRibbonOnEveryAppointment": "Show Jitsi Ribbon in every Appointment",
     "groupBoxLanguage": "Language",
     "comboBoxLanguageItems": {
       "en": "English",
       "fr": "French",
       "ru": "Russian",
-      "de" :  "German"
+      "de": "German"
     },
 
     "tabControlSettings": {

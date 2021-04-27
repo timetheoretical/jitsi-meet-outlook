@@ -36,6 +36,7 @@
     "labelRequireDisplayName": "Nom requis",
     "labelStartWithAudioMuted": "Audio désactivé par défaut",
     "labelStartWithVideoMuted": "Vidéo désactivée par défaut",
+    "labelRibbonOnEveryAppointment": "Afficher le ruban Jitsi à chaque rendez-vous",
     "groupBoxLanguage": "Langues",
     "comboBoxLanguageItems": {
       "en": "Anglais",

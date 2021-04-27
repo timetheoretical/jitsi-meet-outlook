@@ -212,7 +212,6 @@
             this.panelStartWithVideoMuted.Name = "panelStartWithVideoMuted";
             this.panelStartWithVideoMuted.Size = new System.Drawing.Size(465, 29);
             this.panelStartWithVideoMuted.TabIndex = 3;
-            this.panelStartWithVideoMuted.Paint += new System.Windows.Forms.PaintEventHandler(this.panelStartWithVideoMuted_Paint);
             // 
             // radioButtonStartWithVideoMutedToggled
             // 
@@ -227,7 +226,6 @@
             this.radioButtonStartWithVideoMutedToggled.TabStop = true;
             this.radioButtonStartWithVideoMutedToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithVideoMutedToggled.UseVisualStyleBackColor = true;
-            this.radioButtonStartWithVideoMutedToggled.CheckedChanged += new System.EventHandler(this.radioButtonStartWithVideoMutedToggled_CheckedChanged);
             // 
             // radioButtonStartWithVideoMutedUntoggled
             // 
@@ -250,7 +248,6 @@
             this.labelStartWithVideoMuted.Size = new System.Drawing.Size(135, 20);
             this.labelStartWithVideoMuted.TabIndex = 0;
             this.labelStartWithVideoMuted.Text = "No Video on Start";
-            this.labelStartWithVideoMuted.Click += new System.EventHandler(this.labelStartWithVideoMuted_Click);
             // 
             // panelStartWithAudioMuted
             // 
@@ -442,7 +439,6 @@
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(428, 28);
             this.comboBoxLanguage.TabIndex = 0;
-            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
             // 
             // tabControlSettings
             // 
@@ -538,8 +534,7 @@
             this.panelRibbonOnEveryAppointment.Name = "panelRibbonOnEveryAppointment";
             this.panelRibbonOnEveryAppointment.Size = new System.Drawing.Size(465, 48);
             this.panelRibbonOnEveryAppointment.TabIndex = 5;
-            this.panelRibbonOnEveryAppointment.Paint += new System.Windows.Forms.PaintEventHandler(this.panelRibbonOnEveryAppointment_Paint);
-            // 
+
             // labelRibbonOnEveryAppointment
             // 
             this.labelRibbonOnEveryAppointment.Location = new System.Drawing.Point(4, 5);
@@ -549,7 +544,6 @@
             this.labelRibbonOnEveryAppointment.Size = new System.Drawing.Size(350, 40);
             this.labelRibbonOnEveryAppointment.TabIndex = 1;
             this.labelRibbonOnEveryAppointment.Text = "Show Jitsi Ribbon in every Appointment";
-            this.labelRibbonOnEveryAppointment.Click += new System.EventHandler(this.label1_Click);
             // 
             // radioButtonRibbonOnEveryAppointmentToggled
             // 
@@ -564,7 +558,6 @@
             this.radioButtonRibbonOnEveryAppointmentToggled.TabStop = true;
             this.radioButtonRibbonOnEveryAppointmentToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonRibbonOnEveryAppointmentToggled.UseVisualStyleBackColor = true;
-            this.radioButtonRibbonOnEveryAppointmentToggled.CheckedChanged += new System.EventHandler(this.radioButtonRibbonOnEveryAppointmentMutedToggled_CheckedChanged);
             // 
             // radioButtonRibbonOnEveryAppointmentUntoggled
             // 

@@ -305,40 +305,5 @@ namespace JitsiMeetOutlook
             JsonElement jsonUILanguage = Globals.ThisAddIn.getLanguageJsonRoot().GetProperty("settings");
             comboBoxRandomGeneratorMode.SelectedItem = jsonUILanguage.GetProperty("comboBoxRandomGeneratorMode").GetProperty(Properties.Settings.Default.randomRoomIdGeneratorMode).GetString();
         }
-
-        private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelStartWithVideoMuted_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labelStartWithVideoMuted_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelRibbonOnEveryAppointment_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void radioButtonStartWithVideoMutedToggled_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButtonRibbonOnEveryAppointmentMutedToggled_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

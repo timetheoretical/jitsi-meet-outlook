@@ -279,6 +279,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="cert.pfx" />
+    <None Include="JitsiMeetOutlook_1_TemporaryKey.pfx" />
     <None Include="JitsiMeetOutlook_TemporaryKey.pfx" />
     <None Include="languages\de.json" />
     <None Include="languages\en.json" />
@@ -326,10 +327,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>cert.pfx</ManifestKeyFile>
+    <ManifestKeyFile>JitsiMeetOutlook_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F4E4049A921B2B6BF8CFDC4D45C0F9F37AD041AB</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B933E49838EEB36FCF33B0DB06C7E095C96DC7E8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>

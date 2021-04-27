@@ -25,18 +25,6 @@ namespace JitsiMeetOutlook.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("meet.jit.si")]
-        public string Domain {
-            get {
-                return ((string)(this["Domain"]));
-            }
-            set {
-                this["Domain"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool requireDisplayName {
             get {
@@ -97,18 +85,6 @@ namespace JitsiMeetOutlook.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en")]
-        public string language {
-            get {
-                return ((string)(this["language"]));
-            }
-            set {
-                this["language"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("phrase")]
         public string randomRoomIdGeneratorMode {
             get {
@@ -128,6 +104,30 @@ namespace JitsiMeetOutlook.Properties {
             }
             set {
                 this["showRibbonOnEveryAppointment"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("meet.jit.si")]
+        public string Domain {
+            get {
+                return ((string)(this["Domain"]));
+            }
+            set {
+                this["Domain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string language {
+            get {
+                return ((string)(this["language"]));
+            }
+            set {
+                this["language"] = value;
             }
         }
     }

@@ -25,6 +25,7 @@ namespace JitsiMeetOutlook
             loadStartWithAudioMutedButtons();
             loadStartWithVideoMutedButtons();
             loadRequireDisplayNameButtons();
+            loadRibbonOnEveryAppointmentButtons();
 
             // Load text field
             textBoxDomain.Text = Properties.Settings.Default.Domain;
@@ -167,6 +168,15 @@ namespace JitsiMeetOutlook
                 Properties.Settings.Default.startWithVideoMuted = false;
             }
 
+            if (radioButtonRibbonOnEveryAppointmentToggled.Checked)
+            {
+                Properties.Settings.Default.showRibbonOnEveryAppointment = true;
+            }
+            else
+            {
+                Properties.Settings.Default.showRibbonOnEveryAppointment = false;
+            }
+
             // Set language
             string languageSelection = (string) comboBoxLanguage.SelectedItem;
             Properties.Settings.Default.language = languageDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
@@ -255,6 +265,21 @@ namespace JitsiMeetOutlook
             }
         }
 
+        private void loadRibbonOnEveryAppointmentButtons()
+        {
+            if (Properties.Settings.Default.showRibbonOnEveryAppointment)
+            {
+                radioButtonRibbonOnEveryAppointmentToggled.Checked = true;
+                radioButtonRibbonOnEveryAppointmentUntoggled.Checked = false;
+            }
+            else
+            {
+                radioButtonRibbonOnEveryAppointmentToggled.Checked = false;
+                radioButtonRibbonOnEveryAppointmentUntoggled.Checked = true;
+            }
+        }
+
+
         private void loadStartWithVideoMutedButtons()
         {
             if (Properties.Settings.Default.startWithVideoMuted)
@@ -282,6 +307,36 @@ namespace JitsiMeetOutlook
         }
 
         private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelStartWithVideoMuted_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelStartWithVideoMuted_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelRibbonOnEveryAppointment_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radioButtonStartWithVideoMutedToggled_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButtonRibbonOnEveryAppointmentMutedToggled_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -36,6 +36,7 @@
     "labelRequireDisplayName": "Name erforderlich",
     "labelStartWithAudioMuted": "Stumm beitreten",
     "labelStartWithVideoMuted": "Ohne Video beitreten",
+    "labelRibbonOnEveryAppointment": "Jitsi Ribbon für jede Besprechung anzeigen",
     "groupBoxLanguage": "Sprache",
     "comboBoxLanguageItems": {
       "en": "English",

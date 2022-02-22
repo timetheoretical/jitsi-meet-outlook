@@ -4,7 +4,12 @@
   },
 
   "appointmentItem": {
-    "textBodyMessage": "Join the meeting: "
+    "textBodyMessage": "\r\nJitsi-Meeting \r\n\nJoin the meeting: ",
+    "textBodyMessagePhone": "\n\rDial in number: ",
+    "textBodyPin": "\r\nConference number: ",
+    "textBodyDisclaimer": "\n\r"
+
+
   },
 
   "appointmentRibbonGroup": {
@@ -20,6 +25,9 @@
     "groupBoxDomain": "Domain",
     "radioButtonDefaultDomain": "Default",
     "radioButtonCustomDomain": "Custom",
+    "groupBoxPhone": "Phone",
+    "radioButtonDefaultPhone": "Default",
+    "radioButtonCustomPhone": "Custom",
     "groupBoxDefaultRoomID": "Default room ID",
     "radioButtonRandomRoomID": "Random",
     "radioButtonCustomRoomID": "Custom",
@@ -48,6 +56,7 @@
 
     "tabControlSettings": {
       "tabPageDomain": "Domain",
+      "tabPagePhone": "Phone",
       "tabPageRoomId": "Room ID",
       "tabPageMeetingOptions": "Meeting Options",
       "tabPageLanguage": "Language"

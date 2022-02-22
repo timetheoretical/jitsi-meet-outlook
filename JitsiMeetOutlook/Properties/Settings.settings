@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Domain" Type="System.String" Scope="User">
-      <Value Profile="(Default)">meet.jit.si</Value>
+      <Value Profile="(Default)">jitsi.domain.com</Value>
+    </Setting>
+    <Setting Name="Phone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0000000</Value>
     </Setting>
     <Setting Name="requireDisplayName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

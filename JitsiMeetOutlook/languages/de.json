@@ -4,7 +4,10 @@
   },
 
   "appointmentItem": {
-    "textBodyMessage": "Treten Sie hier dem Meeting bei: "
+    "textBodyMessage": "\r\nJitsi-Meeting \r\n\nTreten Sie hier dem Meeting bei: ",
+    "textBodyMessagePhone": "\n\rSie können sich auch über ein Telefon einwählen: ",
+    "textBodyPin": "\r\nWarten Sie den Signalton ab und geben Sie die Konferenznummer gefolgt von einem „#“ ein: ",
+    "textBodyDisclaimer": "\n\r"
   },
 
   "appointmentRibbonGroup": {
@@ -20,6 +23,9 @@
     "groupBoxDomain": "Domain",
     "radioButtonDefaultDomain": "Standard",
     "radioButtonCustomDomain": "Eigene",
+    "groupBoxPhone": "Phone",
+    "radioButtonDefaultPhone": "Standard",
+    "radioButtonCustomPhone": "Eigene",
     "groupBoxDefaultRoomID": "Standard Raumname",
     "radioButtonRandomRoomID": "Zufällig",
     "radioButtonCustomRoomID": "Eigene",
@@ -46,6 +52,7 @@
 
     "tabControlSettings": {
       "tabPageDomain": "Domain",
+      "tabPagePhone": "Phone",
       "tabPageRoomId": "Raumname",
       "tabPageMeetingOptions": "Raumoptionen",
       "tabPageLanguage": "Sprache"

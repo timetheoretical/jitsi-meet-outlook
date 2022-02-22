@@ -1,6 +1,9 @@
 ﻿using System;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using MessageBox = System.Windows.Forms.MessageBox;
+using System.Security.Cryptography;
+using System.Text;
+using System.Numerics;
 
 namespace JitsiMeetOutlook
 {
@@ -73,7 +76,7 @@ namespace JitsiMeetOutlook
 
         public static string generateBody(string roomId)
         {
-            return Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage") + (JitsiUrl.getUrlBase() + roomId);
+            return Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage") + (JitsiUrl.getUrlBase() + roomId) + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone") + JitsiUrl.getPhone()  + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin") + getPIN(roomId + "@conference." + JitsiUrl.getDomain() ).ToString("D8") + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"); 
         }
 
         private string getRoomId()
@@ -90,6 +93,29 @@ namespace JitsiMeetOutlook
 
             return roomId;
         }
+
+
+
+        public static BigInteger getPIN(string roomName)
+        {
+            // conference = conference.lower()
+            // confid =int(hashlib.sha3_256(conference.encode("utf-8")).hexdigest(), 16) % 10**digits
+            int digits = 8;
+            using (SHA256 shaAlg = SHA256.Create())
+            {
+                var hash = shaAlg.ComputeHash(Encoding.UTF8.GetBytes(roomName.ToLower()));
+                StringBuilder res = new StringBuilder();
+
+                foreach (Byte b in hash)
+                {
+                    res.Append(b.ToString("x2"));
+                }
+                BigInteger reminder = BigInteger.Parse("0" + res.ToString(), System.Globalization.NumberStyles.HexNumber) % (int)Math.Pow(10, digits);
+                return (int)reminder;
+            }
+        }
+
+
 
         private void setRoomIdText(string roomIdText)
         {

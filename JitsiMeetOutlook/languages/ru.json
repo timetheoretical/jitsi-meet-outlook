@@ -4,7 +4,10 @@
   },
 
   "appointmentItem": {
-    "textBodyMessage": "Присоединяйтесь к конференции: "
+    "textBodyMessage": "\r\nДжитси-Встреча \r\n\nПрисоединяйтесь к конференции: ",
+    "textBodyMessagePhone": "\n\rНомер телефона: ",
+    "textBodyPin": "\r\nномер конференции: ",
+    "textBodyDisclaimer": "\n\r"
   },
 
   "appointmentRibbonGroup": {
@@ -20,6 +23,9 @@
     "groupBoxDomain": "Домен",
     "radioButtonDefaultDomain": "Публичный",
     "radioButtonCustomDomain": "Собственный",
+    "groupBoxPhone": "Телефон",
+    "radioButtonDefaultPhone": "Публичный",
+    "radioButtonCustomPhone": "Собственный",
     "groupBoxDefaultRoomID": "Название конференций",
     "radioButtonRandomRoomID": "Случайное",
     "radioButtonCustomRoomID": "Собственное",
@@ -46,6 +52,7 @@
 
     "tabControlSettings": {
       "tabPageDomain": "Домен",
+      "tabPagePhone": "Телефон",
       "tabPageRoomId": "Название",
       "tabPageMeetingOptions": "Опции",
       "tabPageLanguage": "Язык"

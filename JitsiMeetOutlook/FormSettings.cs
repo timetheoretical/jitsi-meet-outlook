@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -11,16 +11,19 @@ namespace JitsiMeetOutlook
     {
 
         string defaultDomain;
+        string defaultPhone;
 
         public FormSettings()
         {
             InitializeComponent();
 
             // Set default domain
-            defaultDomain = "meet.jit.si";
+            defaultDomain = "jitsi.domain.com";
+            defaultPhone = "0000000";
 
             // Set radio buttons
             loadDomainButtons();
+            loadPhoneButtons();
             loadRoomIDButtons();
             loadStartWithAudioMutedButtons();
             loadStartWithVideoMutedButtons();
@@ -28,6 +31,7 @@ namespace JitsiMeetOutlook
 
             // Load text field
             textBoxDomain.Text = Properties.Settings.Default.Domain;
+            textBoxPhone.Text = Properties.Settings.Default.Phone;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -73,6 +77,23 @@ namespace JitsiMeetOutlook
                 textBoxDomain.Enabled = true;
             }
         }
+        private void radioButtonDefaultPhone_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonDefaultPhone.Checked)
+            {
+                textBoxPhone.Enabled = false;
+                textBoxPhone.Text = defaultPhone;
+            }
+        }
+
+        private void radioButtonCustomPhone_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonCustomPhone.Checked)
+            {
+                textBoxPhone.Text = null;
+                textBoxPhone.Enabled = true;
+            }
+        }
 
         private void radioButtonRandomID_CheckedChanged(object sender, EventArgs e)
         {
@@ -104,6 +125,22 @@ namespace JitsiMeetOutlook
                 return false;
             }
         }
+        private void textBoxPhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool isDefaultPhone()
+        {
+            if (Properties.Settings.Default.Phone == defaultPhone)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void setSettings()
         {
@@ -126,6 +163,16 @@ namespace JitsiMeetOutlook
                 }
             }
 
+            // Set phone
+            if (radioButtonDefaultPhone.Checked)
+            {
+                Properties.Settings.Default.Phone = defaultPhone;
+            }
+            else
+            {
+                Properties.Settings.Default.Phone = textBoxPhone.Text;
+            }
+
             // Set room ID
             if (radioButtonRandomRoomID.Checked)
             {
@@ -143,7 +190,7 @@ namespace JitsiMeetOutlook
             if (radioButtonRequireDisplayNameToggled.Checked)
             {
                 Properties.Settings.Default.requireDisplayName = true;
-            } 
+            }
             else
             {
                 Properties.Settings.Default.requireDisplayName = false;
@@ -210,6 +257,20 @@ namespace JitsiMeetOutlook
             {
                 radioButtonDefaultDomain.Checked = false;
                 radioButtonCustomDomain.Checked = true;
+            }
+        }
+
+        private void loadPhoneButtons()
+        {
+            if (isDefaultPhone())
+            {
+                radioButtonDefaultPhone.Checked = true;
+                radioButtonCustomPhone.Checked = false;
+            }
+            else
+            {
+                radioButtonDefaultPhone.Checked = false;
+                radioButtonCustomPhone.Checked = true;
             }
         }
 

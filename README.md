@@ -1,4 +1,12 @@
 # Jitsi Meet Outlook Add-In
+
+## Note to this fork
+This fork to version 0.6.5 adds:
+- Phone number and PIN code for the dial-in gateway included in the invitation
+- Function that calculates the PIN code based on sha-2
+- Updated configuration panel that includes the possibility to configure the phone number
+
+
 ## Introduction
 This is a small plug-in that aims to integrate Jitsi Meet with Microsoft Outlook. Specifically, it adds two main features:
 1. A button in the Outlook calendar tab that opens a new appointment and inserts a randomly generated Jitsi Meet URL.

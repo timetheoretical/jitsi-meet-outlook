@@ -41,7 +41,8 @@
       "en": "English",
       "fr": "French",
       "ru": "Russian",
-      "de" :  "German"
+      "de" :  "German",
+      "es": "Spanish"
     },
 
     "tabControlSettings": {

@@ -72,6 +72,12 @@ Since this plug-in is brand new, any feedback would be most appreciated!
 
 ## Changelog
 
+### v0.6.6
+Enhancements:
+* Add Czech language support (thanks to [eltovegasag](/../../../../eltovegasag))
+* Add Spanish language support (thanks to [nessor](/../../../../nessor))
+* Patch French language support (thanks to [reseauconcept](/../../../../reseauconcept))
+
 ### v0.6.5
 Bugfixes:
 * Upgrade dependencies to patch [security vulnerability](https://github.com/dotnet/runtime/issues/49377) in System.Text.Encodings.Web 4.7.1

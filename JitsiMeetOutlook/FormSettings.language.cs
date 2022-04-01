@@ -39,13 +39,17 @@ namespace JitsiMeetOutlook
             languageDropDown.Add("en", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("en").GetString());
             languageDropDown.Add("fr", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("fr").GetString());
             languageDropDown.Add("ru", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("ru").GetString());
+            languageDropDown.Add("es", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("es").GetString());
+            languageDropDown.Add("cz", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("cz").GetString());
 
             this.comboBoxLanguage.Items.Clear();
             this.comboBoxLanguage.Items.AddRange(new object[] {
                 languageDropDown["de"],
                 languageDropDown["en"],
                 languageDropDown["fr"],
-                languageDropDown["ru"]
+                languageDropDown["ru"],
+                languageDropDown["es"],
+                languageDropDown["cz"]
             });
         }
 

@@ -1,56 +1,55 @@
 {
   "calendarRibbonButton": {
-    "buttonNewJitsiMeeting": "New Jitsi Meeting"
+    "buttonNewJitsiMeeting": "Nová schůzka"
   },
 
   "appointmentItem": {
-    "textBodyMessage": "Join the meeting: "
+    "textBodyMessage": "Připojte se ke schůzce: "
   },
 
   "appointmentRibbonGroup": {
     "fieldRoomID": "ID:",
-    "fieldRoomIDSuperTip": "Longer names are more secure.",
-    "buttonRandomRoomID": "Random ID",
-    "buttonRequireDisplayName": "Require Name",
-    "buttonStartWithAudioMuted": "Mute on Start",
-    "buttonStartWithVideoMuted": "No Video on Start"
+    "fieldRoomIDSuperTip": "Čím delší název, tím bezpečnější.",
+    "buttonRandomRoomID": "Náhodné ID",
+    "buttonRequireDisplayName": "Vyžadovat jméno",
+    "buttonStartWithAudioMuted": "Začít se ztišeným zvukem",
+    "buttonStartWithVideoMuted": "Začít s vypnutou kamerou"
   },
 
   "settings": {
-    "groupBoxDomain": "Domain",
-    "radioButtonDefaultDomain": "Default",
-    "radioButtonCustomDomain": "Custom",
-    "groupBoxDefaultRoomID": "Default room ID",
-    "radioButtonRandomRoomID": "Random",
-    "radioButtonCustomRoomID": "Custom",
+    "groupBoxDomain": "Doména",
+    "radioButtonDefaultDomain": "Výchozí",
+    "radioButtonCustomDomain": "Vlastní",
+    "groupBoxDefaultRoomID": "Výchozí ID místnosti",
+    "radioButtonRandomRoomID": "Náhodné",
+    "radioButtonCustomRoomID": "Vlastní",
 
-    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "groupBoxRandomGeneratorMode": "Mód náhodného generátoru",
     "comboBoxRandomGeneratorMode": {
-      "phrase": "Phrase",
-      "string": "String"
+      "phrase": "Fráze",
+      "string": "Znaky"
     },
 
-    "groupBoxToggleDefaults": "Default meeting options",
-    "labelToggled": "Toggled",
-    "labelUntoggled": "Untoggled",
-    "labelRequireDisplayName": "Require Name",
-    "labelStartWithAudioMuted": "Mute on Start",
-    "labelStartWithVideoMuted": "No Video on Start",
-    "groupBoxLanguage": "Language",
+    "groupBoxToggleDefaults": "Výchozí nastavení místnosti",
+    "labelToggled": "Ano",
+    "labelUntoggled": "Ne",
+    "labelRequireDisplayName": "Vyžadovat jméno",
+    "labelStartWithAudioMuted": "Začít se ztišeným zvukem",
+    "labelStartWithVideoMuted": "Začít s vypnutou kamerou",
+    "groupBoxLanguage": "Jazyk",
     "comboBoxLanguageItems": {
       "en": "English",
       "fr": "French",
       "ru": "Russian",
-      "de" : "German",
-      "es": "Spanish",
-      "cz" : "Czech"
+      "de": "German",
+	  "cz": "Czech"
     },
 
     "tabControlSettings": {
-      "tabPageDomain": "Domain",
-      "tabPageRoomId": "Room ID",
-      "tabPageMeetingOptions": "Meeting Options",
-      "tabPageLanguage": "Language"
+      "tabPageDomain": "Doména",
+      "tabPageRoomId": "ID Místnosti",
+      "tabPageMeetingOptions": "Nastavení Schůzky",
+      "tabPageLanguage": "Jazyk"
     }
   },
 

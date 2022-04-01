@@ -42,7 +42,8 @@
       "fr": "French",
       "ru": "Russian",
       "de": "Deutsch",
-      "es": "Spanisch"
+      "es": "Spanisch",
+      "cz" : "Czech"
     },
 
     "tabControlSettings": {

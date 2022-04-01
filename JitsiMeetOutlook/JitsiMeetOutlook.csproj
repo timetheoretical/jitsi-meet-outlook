@@ -280,8 +280,10 @@
     <None Include="app.config" />
     <None Include="cert.pfx" />
     <None Include="JitsiMeetOutlook_TemporaryKey.pfx" />
+    <None Include="languages\cz.json" />
     <None Include="languages\de.json" />
     <None Include="languages\en.json" />
+    <None Include="languages\es.json" />
     <None Include="languages\fr.json" />
     <None Include="languages\ru.json" />
     <None Include="packages.config" />
@@ -303,6 +305,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="Resources\cz.json" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>

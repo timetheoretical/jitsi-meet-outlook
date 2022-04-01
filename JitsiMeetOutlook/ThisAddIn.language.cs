@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.Json;
+using System.Collections.Generic;
 
 namespace JitsiMeetOutlook
 {
@@ -27,21 +28,17 @@ namespace JitsiMeetOutlook
 
         private byte[] findJson(string language)
         {
-            if (language == "de")
+            Dictionary<string, byte[]> languages = new Dictionary<string, byte[]>();
+            languages.Add("en", Resources.languages.en);
+            languages.Add("de", Resources.languages.de);
+            languages.Add("fr", Resources.languages.fr);
+            languages.Add("ru", Resources.languages.ru);
+            languages.Add("es", Resources.languages.es);
+            languages.Add("cz", Resources.languages.cz);
+
+            if (languages.ContainsKey(language))
             {
-                return Resources.languages.de;
-            }
-            if (language == "en")
-            {
-                return Resources.languages.en;
-            }
-            else if (language == "fr")
-            {
-                return Resources.languages.fr;
-            }
-            else if (language == "ru")
-            {
-                return Resources.languages.ru;
+                return languages[language];
             }
             else
             {

@@ -42,7 +42,7 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 * `REQNAME`: Require name by default in new Jitsi Meet appointments. (True/False)
 * `NOAUDIO`: Mute audio by default in new Jitsi Meet appointments. (True/False)
 * `NOVIDEO`: Disable video by default in new Jitsi Meet appointments. (True/False)
-* `LANG`: Specify the display language. Currently, English, French, German, and Russian are available. (en/fr/de/ru)
+* `LANG`: Specify the display language. Currently, English, Czech, French, German, Russian, and Spanish are available. (en/cz/fr/de/ru/es)
 
 Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.6.0-windows-anycpu.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" MODE="string" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" /passive`
 

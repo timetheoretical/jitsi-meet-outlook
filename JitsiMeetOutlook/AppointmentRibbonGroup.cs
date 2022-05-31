@@ -7,7 +7,6 @@ namespace JitsiMeetOutlook
 
         private void AppointmentRibbonGroup_Load(object sender, RibbonUIEventArgs e)
         {
-            displayRibbonGroup();
             initialise();
         }
 
@@ -43,12 +42,9 @@ namespace JitsiMeetOutlook
             toggleVideoOnStart();
         }
 
-        private void displayRibbonGroup()
+        private void buttonNewJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
-            if(Globals.ThisAddIn.ShowRibbonAppointment)
-            {
-                groupJitsiMeet.Visible = true;
-            }
+            addJitsiMeeting();
         }
     }
 }

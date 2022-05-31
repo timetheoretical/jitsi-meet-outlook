@@ -12,7 +12,7 @@ namespace JitsiMeetOutlook.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,25 +25,13 @@ namespace JitsiMeetOutlook.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("jitsi.domain.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("meet.jit.si")]
         public string Domain {
             get {
                 return ((string)(this["Domain"]));
             }
             set {
                 this["Domain"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0000000")]
-        public string Phone {
-            get {
-                return ((string)(this["Phone"]));
-            }
-            set {
-                this["Phone"] = value;
             }
         }
         
@@ -128,6 +116,54 @@ namespace JitsiMeetOutlook.Properties {
             }
             set {
                 this["randomRoomIdGeneratorMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.jitsi.net/conferenceMapper")]
+        public string conferenceMapperEndpoint {
+            get {
+                return ((string)(this["conferenceMapperEndpoint"]));
+            }
+            set {
+                this["conferenceMapperEndpoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.jitsi.net/phoneNumberList")]
+        public string phoneNumberListEndpoint {
+            get {
+                return ((string)(this["phoneNumberListEndpoint"]));
+            }
+            set {
+                this["phoneNumberListEndpoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string conferenceSchedulerEndpoint {
+            get {
+                return ((string)(this["conferenceSchedulerEndpoint"]));
+            }
+            set {
+                this["conferenceSchedulerEndpoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string conferenceSchedulerEndpointSecret {
+            get {
+                return ((string)(this["conferenceSchedulerEndpointSecret"]));
+            }
+            set {
+                this["conferenceSchedulerEndpointSecret"] = value;
             }
         }
     }

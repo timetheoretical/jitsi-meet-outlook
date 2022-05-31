@@ -18,12 +18,11 @@ namespace JitsiMeetOutlook
             InitializeComponent();
 
             // Set default domain
-            defaultDomain = "jitsi.domain.com";
+            defaultDomain = "meet.jit.si";
             defaultPhone = "0000000";
 
             // Set radio buttons
             loadDomainButtons();
-            loadPhoneButtons();
             loadRoomIDButtons();
             loadStartWithAudioMutedButtons();
             loadStartWithVideoMutedButtons();
@@ -31,7 +30,6 @@ namespace JitsiMeetOutlook
 
             // Load text field
             textBoxDomain.Text = Properties.Settings.Default.Domain;
-            textBoxPhone.Text = Properties.Settings.Default.Phone;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -130,18 +128,6 @@ namespace JitsiMeetOutlook
 
         }
 
-        private bool isDefaultPhone()
-        {
-            if (Properties.Settings.Default.Phone == defaultPhone)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private void setSettings()
         {
             // Set domain
@@ -161,16 +147,6 @@ namespace JitsiMeetOutlook
                 {
                     throw new InvalidOperationException("The domain entered is not valid.\n\nPlease specify a domain in the format 'your.domain.tld', 'yourdomain.tld' or similar.");
                 }
-            }
-
-            // Set phone
-            if (radioButtonDefaultPhone.Checked)
-            {
-                Properties.Settings.Default.Phone = defaultPhone;
-            }
-            else
-            {
-                Properties.Settings.Default.Phone = textBoxPhone.Text;
             }
 
             // Set room ID
@@ -215,7 +191,7 @@ namespace JitsiMeetOutlook
             }
 
             // Set language
-            string languageSelection = (string) comboBoxLanguage.SelectedItem;
+            string languageSelection = (string)comboBoxLanguage.SelectedItem;
             Properties.Settings.Default.language = languageDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
 
             // Set random generator mode
@@ -260,20 +236,6 @@ namespace JitsiMeetOutlook
             }
         }
 
-        private void loadPhoneButtons()
-        {
-            if (isDefaultPhone())
-            {
-                radioButtonDefaultPhone.Checked = true;
-                radioButtonCustomPhone.Checked = false;
-            }
-            else
-            {
-                radioButtonDefaultPhone.Checked = false;
-                radioButtonCustomPhone.Checked = true;
-            }
-        }
-
         private void loadRoomIDButtons()
         {
             if (Properties.Settings.Default.roomID.Length == 0)
@@ -295,7 +257,8 @@ namespace JitsiMeetOutlook
             {
                 radioButtonRequireDisplayNameToggled.Checked = true;
                 radioButtonRequireDisplayNameUntoggled.Checked = false;
-            } else
+            }
+            else
             {
                 radioButtonRequireDisplayNameToggled.Checked = false;
                 radioButtonRequireDisplayNameUntoggled.Checked = true;

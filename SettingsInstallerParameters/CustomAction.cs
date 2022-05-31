@@ -8,7 +8,7 @@ namespace SettingsInstallerParameters
 {
     public class CustomActions
     {
-        
+
         [CustomAction]
         public static ActionResult UpdateConfigXml(Session session)
         {
@@ -19,7 +19,7 @@ namespace SettingsInstallerParameters
                 session.Log("Successfully finished UpdateConfigXml");
                 return ActionResult.Success;
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 session.Log("An issue was encountered in UpdateConfigXml:\n" + err);
                 return ActionResult.Failure;
@@ -30,6 +30,15 @@ namespace SettingsInstallerParameters
         {
             // Write install path to config file
             string xmlPath = Path.Combine(getInstallDir(session), "Jitsi Meet Outlook Add-In.dll.config");
+
+            session.Log($"Executing on file: {xmlPath}");
+            if (!File.Exists(xmlPath))
+            {
+                session.Log($"File to patch does not exist: {xmlPath}");
+                return;
+            }
+
+            // TODO: Implement new settings
 
             XmlDocument document = new XmlDocument();
             document.Load(xmlPath);
@@ -42,7 +51,6 @@ namespace SettingsInstallerParameters
                 navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='Domain']/value").SetValue(getDomain(session));
             }
 
-            
             if (getRoomID(session).Length != 0)
             {
                 session.Log($"Setting custom room ID: {getRoomID(session)}");
@@ -67,6 +75,30 @@ namespace SettingsInstallerParameters
             session.Log($"Setting random ID generator mode: {getLanguage(session)}");
             navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='randomRoomIdGeneratorMode']/value").SetValue(getRandomRoomIdGeneratorMode(session));
 
+            if (getConferenceMapperEndpoint(session).Length != 0)
+            {
+                session.Log($"Setting custom ConferenceMapperEndpoint: {getConferenceMapperEndpoint(session)}");
+                navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='conferenceMapperEndpoint']/value").SetValue(getConferenceMapperEndpoint(session));
+            }
+
+            if (getPhoneNumberListEndpoint(session).Length != 0)
+            {
+                session.Log($"Setting custom phoneNumberListEndpoint: {getPhoneNumberListEndpoint(session)}");
+                navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='phoneNumberListEndpoint']/value").SetValue(getPhoneNumberListEndpoint(session));
+            }
+
+            if (getConferenceSchedulerEndpoint(session).Length != 0)
+            {
+                session.Log($"Setting custom conferenceSchedulerEndpoint: {getConferenceSchedulerEndpoint(session)}");
+                navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='conferenceSchedulerEndpoint']/value").SetValue(getConferenceSchedulerEndpoint(session));
+            }
+
+            if (getConferenceSchedulerEndpointSecret(session).Length != 0)
+            {
+                session.Log($"Setting custom conferenceSchedulerEndpointSecret: {getConferenceSchedulerEndpointSecret(session)}");
+                navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='conferenceSchedulerEndpointSecret']/value").SetValue(getConferenceSchedulerEndpointSecret(session));
+            }
+
             session.Log($"Saving settings to: {xmlPath}");
             document.Save(xmlPath);
         }
@@ -84,6 +116,26 @@ namespace SettingsInstallerParameters
         private static string getRoomID(Session session)
         {
             return session.CustomActionData["roomID"];
+        }
+
+        private static string getConferenceMapperEndpoint(Session session)
+        {
+            return session.CustomActionData["conferenceMapperEndpoint"];
+        }
+
+        private static string getPhoneNumberListEndpoint(Session session)
+        {
+            return session.CustomActionData["phoneNumberListEndpoint"];
+        }
+
+        private static string getConferenceSchedulerEndpoint(Session session)
+        {
+            return session.CustomActionData["conferenceSchedulerEndpoint"];
+        }
+
+        private static string getConferenceSchedulerEndpointSecret(Session session)
+        {
+            return session.CustomActionData["conferenceSchedulerEndpointSecret"];
         }
 
         private static string getRequireDisplayName(Session session)

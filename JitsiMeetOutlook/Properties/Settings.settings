@@ -1,33 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JitsiMeetOutlook.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Domain" Type="System.String" Scope="User">
-      <Value Profile="(Default)">jitsi.domain.com</Value>
-    </Setting>
-    <Setting Name="Phone" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0000000</Value>
-    </Setting>
-    <Setting Name="requireDisplayName" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="startWithAudioMuted" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="startWithVideoMuted" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="roomID" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="installDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="language" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en</Value>
-    </Setting>
-    <Setting Name="randomRoomIdGeneratorMode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">phrase</Value>
-    </Setting>
-  </Settings>
+    <Profiles />
+    <Settings>
+        <Setting Name="Domain" Type="System.String" Scope="User">
+            <Value Profile="(Default)">meet.jit.si</Value>
+        </Setting>
+        <Setting Name="requireDisplayName" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="startWithAudioMuted" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="startWithVideoMuted" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="roomID" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="installDirectory" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="language" Type="System.String" Scope="User">
+            <Value Profile="(Default)">en</Value>
+        </Setting>
+        <Setting Name="randomRoomIdGeneratorMode" Type="System.String" Scope="User">
+            <Value Profile="(Default)">phrase</Value>
+        </Setting>
+        <Setting Name="conferenceMapperEndpoint" Type="System.String" Scope="User">
+            <Value Profile="(Default)">https://api.jitsi.net/conferenceMapper</Value>
+        </Setting>
+        <Setting Name="phoneNumberListEndpoint" Type="System.String" Scope="User">
+            <Value Profile="(Default)">https://api.jitsi.net/phoneNumberList</Value>
+        </Setting>
+        <Setting Name="conferenceSchedulerEndpoint" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="conferenceSchedulerEndpointSecret" Type="System.String" Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+    </Settings>
 </SettingsFile>

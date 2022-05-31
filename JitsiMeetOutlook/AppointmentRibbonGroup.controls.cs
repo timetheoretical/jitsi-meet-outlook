@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JitsiMeetOutlook
 {
@@ -14,16 +16,89 @@ namespace JitsiMeetOutlook
             // Set language
             setLanguage();
 
+            // Assign the domain prevailing at appointment item launch
+            Properties.Settings.Default.Reload();
+            oldDomain = Properties.Settings.Default.Domain;
+
             // Assign the relevant appointment item
             Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
 
-            // Assign the domain prevailing at appointment item launch
-            Properties.Settings.Default.Reload();
-            oldDomain = Properties.Settings.Default.Domain;
+            // Display Ribbon if this is a Jitsi Meeting
+            MessageBox.Show("DEBUG: " + appointmentItem.Location);
+
+            if (appointmentItem.Location == "Jitsi Meet")
+            {
+                groupJitsiMeetControls.Visible = true;
+                groupNewMeeting.Visible = false;
+                InitializeRibbonWithCurrentData();
+            }
+            else
+            {
+                groupNewMeeting.Visible = true;
+                groupJitsiMeetControls.Visible = false;
+            }
+
+
         }
 
-        public void setRoomId(string newRoomId)
+
+        private void InitializeRibbonWithCurrentData()
+        {
+            var roomId = Utils.findRoomId(appointmentItem.Body, oldDomain);
+            if (roomId != string.Empty)
+            {
+                // The Meeting already exists
+                // TODO: Not working correctly because edited body are in RTF Format
+                // Update Conrol State from the embedded text
+                setRoomIdText(roomId);
+
+                var url = Utils.GetUrl(appointmentItem.Body, oldDomain);
+                if (Utils.SettingIsActive(url, "requireDisplayName"))
+                {
+                    buttonRequireDisplayName.Checked = true;
+                }
+                if (Utils.SettingIsActive(url, "startWithAudioMuted"))
+                {
+                    buttonStartWithAudioMuted.Checked = true;
+                }
+                if (Utils.SettingIsActive(url, "startWithVideoMuted"))
+                {
+                    buttonStartWithVideoMuted.Checked = true;
+                }
+
+            }
+            else
+            {
+                // New Meeting
+                if (Properties.Settings.Default.roomID.Length == 0)
+                {
+                    randomiseRoomId();
+                }
+                else
+                {
+                    setRoomId(Properties.Settings.Default.roomID);
+                }
+                if (Properties.Settings.Default.requireDisplayName)
+                {
+                    toggleRequireName();
+                    buttonRequireDisplayName.Checked = true;
+                }
+                if (Properties.Settings.Default.startWithAudioMuted)
+                {
+                    toggleMuteOnStart();
+                    buttonStartWithAudioMuted.Checked = true;
+                }
+                if (Properties.Settings.Default.startWithVideoMuted)
+                {
+                    toggleVideoOnStart();
+                    buttonStartWithVideoMuted.Checked = true;
+                }
+            }
+
+        }
+
+        public async void setRoomId(string newRoomId)
         {
             string newDomain = JitsiUrl.getDomain();
             string oldBody = appointmentItem.Body;
@@ -35,50 +110,44 @@ namespace JitsiMeetOutlook
             try
             {
                 // Replace old domain for new domain
-                newBody = oldBody.Replace(findRoomId(), newRoomIdLegal);
+                newBody = oldBody.Replace(Utils.findRoomId(appointmentItem.Body, oldDomain), newRoomIdLegal);
                 newBody = newBody.Replace(oldDomain, newDomain);
+                newBody = await generateBody(newRoomIdLegal);
             }
             catch
             {
                 // If replacement failed, append new message text
                 if (string.IsNullOrWhiteSpace(oldBody))
                 {
-                    newBody = NewJitsiAppointment.generateBody(newRoomIdLegal);
+                    newBody = await generateBody(newRoomIdLegal);
                 }
                 else
                 {
-                    newBody = oldBody + "\n" + NewJitsiAppointment.generateBody(newRoomIdLegal);
+                    newBody = oldBody + "\n" + generateBody(newRoomIdLegal);
                 }
 
                 this.buttonStartWithAudioMuted.Checked = false;
                 this.buttonStartWithVideoMuted.Checked = false;
                 this.buttonRequireDisplayName.Checked = false;
-
             }
-
 
             fieldRoomID.Text = newRoomIdLegal;
             appointmentItem.Body = newBody;
 
             oldDomain = newDomain;
-         }
-
-
-        private string escapeDomain()
-        {
-            string escapedDomain = Regex.Escape(oldDomain);
-            if (!escapedDomain.EndsWith("/"))
-            {
-                escapedDomain += "/";
-            }
-            return escapedDomain;
         }
 
-        public string findRoomId()
+        public static async Task<string> generateBody(string roomId)
         {
-            string roomId = Regex.Match(appointmentItem.Body, "(?<=" + escapeDomain() + ")\\S+?(?=(#config|&config|\\s))").Value; // Match all non-blanks after jitsi url and before config or end
-            return roomId;
+            return Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage")
+                + (JitsiUrl.getUrlBase() + roomId)
+                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone")
+                + await Globals.ThisAddIn.JitsiApiService.getPhoneNumbers(roomId)
+                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin")
+                + await Globals.ThisAddIn.JitsiApiService.getPIN(roomId)
+                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer");
         }
+
 
         public void randomiseRoomId()
         {
@@ -99,19 +168,34 @@ namespace JitsiMeetOutlook
             toggleSetting("requireDisplayName");
         }
 
+        private void setRoomIdText(string roomIdText)
+        {
+            if (roomIdText != null)
+            {
+                fieldRoomID.Text = roomIdText;
+            }
+        }
+
+        private void addJitsiMeeting()
+        {
+            appointmentItem.Location = "Jitsi Meet";
+            initialise();
+
+        }
+
         private void toggleSetting(string setting)
         {
             // Find Jitsi URL in message
             string oldBody = appointmentItem.Body;
-            string urlMatch = Regex.Match(oldBody, escapeDomain() + "\\S+").Value;
+            string urlMatch = Utils.GetUrl(oldBody, oldDomain);
 
             // Remove setting if present
             string urlNew;
-            if (urlMatch.Contains("config." + setting + "=true"))
+            if (Utils.SettingIsActive(urlMatch, setting))
             {
                 urlNew = Regex.Replace(urlMatch, "(#|&)config\\." + setting + "=true", "");
-            } 
-            
+            }
+
             // Otherwise add
             else
             {

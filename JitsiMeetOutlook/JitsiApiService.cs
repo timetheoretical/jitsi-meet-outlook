@@ -31,15 +31,19 @@ namespace JitsiMeetOutlook
         private RequestCache<string> PINCache = new RequestCache<string>();
         private RequestCache<string> PhoneNumbersCache = new RequestCache<string>();
 
-        public JitsiApiService() { }
+        public JitsiApiService() {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        }
 
         public async Task<string> getPIN(string roomName)
         {
+            string conferenceMapperRequestUrl = $"{Properties.Settings.Default.conferenceMapperEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}";
+
             try
             {
                 return await PINCache.GetOrCreate(roomName, async () =>
                 {
-                    HttpResponseMessage response = await client.GetAsync($"{Properties.Settings.Default.conferenceMapperEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}");
+                    HttpResponseMessage response = await client.GetAsync(conferenceMapperRequestUrl);
                     response.EnsureSuccessStatusCode();
                     var responsestring = await response.Content.ReadAsStringAsync();
                     return JsonSerializer.Deserialize<ConferenceMapperResponse>(responsestring, serializerOptions).IdString;
@@ -47,18 +51,19 @@ namespace JitsiMeetOutlook
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message);
+                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message + ex.InnerException?.Message + ex.InnerException?.InnerException?.Message + " for " + conferenceMapperRequestUrl);
                 return "ERROR";
             }
         }
 
         public async Task<string> getPhoneNumbers(string roomName)
         {
+            string phoneNumberListRequestUrl = $"{Properties.Settings.Default.phoneNumberListEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}";
             try
             {
                 return await PhoneNumbersCache.GetOrCreate(roomName, async () =>
                     {
-                        HttpResponseMessage response = await client.GetAsync($"{Properties.Settings.Default.phoneNumberListEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}");
+                        HttpResponseMessage response = await client.GetAsync(phoneNumberListRequestUrl);
                         response.EnsureSuccessStatusCode();
                         var responsestring = await response.Content.ReadAsStringAsync();
                         PhoneNumberListResponse phoneNumbers = JsonSerializer.Deserialize<PhoneNumberListResponse>(responsestring, serializerOptions);
@@ -68,7 +73,7 @@ namespace JitsiMeetOutlook
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message);
+                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message + ex.InnerException?.Message + ex.InnerException?.InnerException?.Message + " for " + phoneNumberListRequestUrl);
                 return "ERROR";
             }
 
@@ -94,7 +99,7 @@ namespace JitsiMeetOutlook
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message);
+                MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message + ex.InnerException?.Message + ex.InnerException?.InnerException?.Message + " for " + Properties.Settings.Default.conferenceSchedulerEndpoint);
             }
         }
 

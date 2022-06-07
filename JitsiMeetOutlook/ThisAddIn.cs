@@ -29,8 +29,10 @@ namespace JitsiMeetOutlook
             calendarFolder =
                 this.Application.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderCalendar);
             calendarFolderItems = calendarFolder.Items;
-            calendarFolderItems.ItemAdd += AppointmentAddedOrChanged;
-            calendarFolderItems.ItemChange += AppointmentAddedOrChanged;
+            calendarFolderItems.ItemAdd += new
+    ItemsEvents_ItemAddEventHandler(AppointmentAddedOrChanged);
+            calendarFolderItems.ItemChange += new
+    ItemsEvents_ItemChangeEventHandler(AppointmentAddedOrChanged);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

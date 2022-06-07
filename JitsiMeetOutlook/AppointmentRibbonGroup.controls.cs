@@ -43,7 +43,7 @@ namespace JitsiMeetOutlook
         }
 
 
-        private void InitializeRibbonWithCurrentData()
+        private async void InitializeRibbonWithCurrentData()
         {
             var roomId = Utils.findRoomId(appointmentItem.Body, oldDomain);
             if (roomId != string.Empty)
@@ -72,7 +72,7 @@ namespace JitsiMeetOutlook
             else
             {
                 // New Meeting
-                appendNewMeetingText();
+                await appendNewMeetingText();
                 if (Properties.Settings.Default.requireDisplayName)
                 {
                     toggleRequireName();
@@ -92,7 +92,7 @@ namespace JitsiMeetOutlook
 
         }
 
-        public async void appendNewMeetingText()
+        public async System.Threading.Tasks.Task appendNewMeetingText()
         {
             string roomId;
             if (Properties.Settings.Default.roomID.Length == 0)
@@ -307,10 +307,9 @@ namespace JitsiMeetOutlook
                     {
                         urlNew = Regex.Replace(urlMatch, "(#|&)config\\." + setting + "=true", "");
                     }
-
-                    // Otherwise add
                     else
                     {
+                        // Otherwise add
                         if (urlMatch.Contains("#config"))
                         {
                             urlNew = urlMatch + "&config." + setting + "=true";

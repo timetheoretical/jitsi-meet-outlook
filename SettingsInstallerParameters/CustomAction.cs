@@ -29,7 +29,7 @@ namespace SettingsInstallerParameters
         private static void updateConfigXml(Session session)
         {
             // Write install path to config file
-            string xmlPath = Path.Combine(getInstallDir(session), "Jitsi Meet Outlook Add-In.dll.config");
+            string xmlPath = Path.Combine(getInstallDir(session), "JitsiMeetOutlookAddIn.dll.config");
 
             session.Log($"Executing on file: {xmlPath}");
             if (!File.Exists(xmlPath))
@@ -95,6 +95,10 @@ namespace SettingsInstallerParameters
 
             if (getConferenceSchedulerEndpointSecret(session).Length != 0)
             {
+                if (getConferenceSchedulerEndpointSecret(session).Length < 8)
+                {
+                    session.Log($"WARNING: The secret is to short. This will throw errors in the application.");
+                }
                 session.Log($"Setting custom conferenceSchedulerEndpointSecret: {getConferenceSchedulerEndpointSecret(session)}");
                 navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='conferenceSchedulerEndpointSecret']/value").SetValue(getConferenceSchedulerEndpointSecret(session));
             }

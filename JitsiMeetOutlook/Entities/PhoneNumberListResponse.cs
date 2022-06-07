@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JitsiMeetOutlook.Entities
 {
-    internal class PhoneNumberListResponse
+    public class PhoneNumberListResponse
     {
         [JsonPropertyName("message")]
         public string Message { get; set; }

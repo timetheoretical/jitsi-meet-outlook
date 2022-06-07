@@ -29,7 +29,7 @@ namespace JitsiMeetOutlook
         };
 
         private RequestCache<string> PINCache = new RequestCache<string>();
-        private RequestCache<string> PhoneNumbersCache = new RequestCache<string>();
+        private RequestCache<PhoneNumberListResponse> PhoneNumbersCache = new RequestCache<PhoneNumberListResponse>();
 
         public JitsiApiService() {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -56,7 +56,7 @@ namespace JitsiMeetOutlook
             }
         }
 
-        public async Task<string> getPhoneNumbers(string roomName)
+        public async Task<PhoneNumberListResponse> getPhoneNumbers(string roomName)
         {
             string phoneNumberListRequestUrl = $"{Properties.Settings.Default.phoneNumberListEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}";
             try
@@ -68,13 +68,13 @@ namespace JitsiMeetOutlook
                         var responsestring = await response.Content.ReadAsStringAsync();
                         PhoneNumberListResponse phoneNumbers = JsonSerializer.Deserialize<PhoneNumberListResponse>(responsestring, serializerOptions);
 
-                        return phoneNumbers.NumbersEnabled ? "  " + string.Join("\n  ", phoneNumbers.Numbers.AsEnumerable().Select(x => string.Format("{0}: {1}", x.Key, string.Join(",", x.Value))).ToList()) : string.Empty;
+                        return phoneNumbers;
                     });
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message + ex.InnerException?.Message + ex.InnerException?.InnerException?.Message + " for " + phoneNumberListRequestUrl);
-                return "ERROR";
+                return new PhoneNumberListResponse { Numbers = new Dictionary<string, List<string>>() };
             }
 
         }

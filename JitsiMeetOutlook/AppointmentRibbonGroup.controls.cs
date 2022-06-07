@@ -1,8 +1,11 @@
 ﻿using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
+using Word = Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Text;
+using JitsiMeetOutlook.Entities;
+using Microsoft.Office.Interop.Word;
 
 namespace JitsiMeetOutlook
 {
@@ -26,16 +29,8 @@ namespace JitsiMeetOutlook
 
             if (appointmentItem.Location == "Jitsi Meet")
             {
-                // Disabled for now because editing an existing Conference will certainly lead to formatting errors.
-                groupJitsiMeetControls.Visible = false;
-                groupNewMeeting.Visible = false;
-                //InitializeRibbonWithCurrentData();
-            }
-            else if (appointmentItem.Location == "Jitsi Meet New")
-            {
                 groupJitsiMeetControls.Visible = true;
                 groupNewMeeting.Visible = false;
-                appointmentItem.Location = "Jitsi Meet";
                 InitializeRibbonWithCurrentData();
             }
             else
@@ -54,9 +49,10 @@ namespace JitsiMeetOutlook
             if (roomId != string.Empty)
             {
                 // The Meeting already exists
-                // TODO: Not working correctly because edited body are in RTF Format
-                // Update Conrol State from the embedded text
-                setRoomIdText(roomId);
+                if (roomId != null)
+                {
+                    fieldRoomID.Text = roomId;
+                }
 
                 var url = Utils.GetUrl(appointmentItem.Body, oldDomain);
                 if (Utils.SettingIsActive(url, "requireDisplayName"))
@@ -76,14 +72,7 @@ namespace JitsiMeetOutlook
             else
             {
                 // New Meeting
-                if (Properties.Settings.Default.roomID.Length == 0)
-                {
-                    randomiseRoomId();
-                }
-                else
-                {
-                    setRoomId(Properties.Settings.Default.roomID);
-                }
+                appendNewMeetingText();
                 if (Properties.Settings.Default.requireDisplayName)
                 {
                     toggleRequireName();
@@ -103,56 +92,177 @@ namespace JitsiMeetOutlook
 
         }
 
+        public async void appendNewMeetingText()
+        {
+            string roomId;
+            if (Properties.Settings.Default.roomID.Length == 0)
+            {
+                roomId = JitsiUrl.generateRandomId();
+            }
+            else
+            {
+                roomId = Properties.Settings.Default.roomID;
+            }
+            fieldRoomID.Text = roomId;
+
+
+            Word.Document wordDocument = appointmentItem.GetInspector.WordEditor as Word.Document;
+            wordDocument.Select();
+            var endSel = wordDocument.Application.Selection;
+            endSel.Collapse(Word.WdCollapseDirection.wdCollapseEnd);
+
+            var phoneNumbers = await Globals.ThisAddIn.JitsiApiService.getPhoneNumbers(roomId);
+            var pinNumber = await Globals.ThisAddIn.JitsiApiService.getPIN(roomId);
+            object missing = System.Reflection.Missing.Value;
+
+            var link = JitsiUrl.getUrlBase() + roomId;
+
+
+
+
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+            endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage"));
+            endSel.EndKey(Word.WdUnits.wdLine);
+            wordDocument.Hyperlinks.Add(endSel.Range, link, ref missing, ref missing, link, ref missing);
+            endSel.EndKey(Word.WdUnits.wdLine);
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+
+            if (phoneNumbers.NumbersEnabled)
+            {
+                // Add Phone Number Text if they are enabled
+                endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone"));
+                endSel.EndKey(Word.WdUnits.wdLine);
+                endSel.InsertAfter("\n");
+                endSel.MoveDown(Word.WdUnits.wdLine);
+                foreach (var entry in phoneNumbers.Numbers)
+                {
+                    endSel.InsertAfter(entry.Key + ": ");
+                    endSel.EndKey(Word.WdUnits.wdLine);
+                    for (int i = 0; i < entry.Value.Count; i++)
+                    {
+                        wordDocument.Hyperlinks.Add(endSel.Range, "tel:" + entry.Value[i], ref missing, ref missing, entry.Value[i], ref missing);
+                        endSel.EndKey(Word.WdUnits.wdLine);
+                        if (i < entry.Value.Count - 1)
+                        {
+                            endSel.InsertAfter(",");
+                        }
+                    }
+                    endSel.InsertAfter("\n");
+                    endSel.MoveDown(Word.WdUnits.wdLine);
+                }
+                endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin") + pinNumber);
+                endSel.EndKey(Word.WdUnits.wdLine);
+            }
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+
+            endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"));
+            endSel.EndKey(Word.WdUnits.wdLine);
+            endSel.InsertAfter("\n");
+            endSel.MoveDown(Word.WdUnits.wdLine);
+
+            wordDocument.Select();
+            endSel.Collapse(Word.WdCollapseDirection.wdCollapseStart);
+
+
+            //var pTitle = wordDocument.Paragraphs.Add();
+            //pTitle.Range.Text = (Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage"));
+
+            ////var pTitleLink = wordDocument.Paragraphs.Add();
+            ////pTitleLink.Range.Text = "Test";
+            ////wordDocument.Hyperlinks.Add(pTitleLink.Range, link, ref missing, ref missing, link, ref missing);
+
+            //if (phoneNumbers.NumbersEnabled)
+            //{
+            //    // Add Phone Number Text if they are enabled
+            //    var pPhoneTitle = wordDocument.Paragraphs.Add();
+            //    pPhoneTitle.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone");
+            //    //foreach (var entry in phoneNumbers.Numbers)
+            //    //{
+            //    //    var pNumberKey = wordDocument.Paragraphs.Add();
+            //    //    pNumberKey.Range.Text = entry.Key + ": ";
+
+            //    //    for (int i = 0; i < entry.Value.Count; i++)
+            //    //    {
+            //    //        //var pLink = wordDocument.Paragraphs.Add();
+            //    //        //wordDocument.Hyperlinks.Add(pLink.Range, "tel:" + entry.Value[i], ref missing, ref missing, entry.Value[i], ref missing);
+            //    //        //endSel.EndKey(Word.WdUnits.wdLine);
+            //    //        //if (i < entry.Value.Count - 1)
+            //    //        //{
+            //    //        //    endSel.InsertAfter(",");
+            //    //        //}
+            //    //    }
+            //    //}
+            //    var pPIN = wordDocument.Paragraphs.Add();
+            //    pPIN.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin") + pinNumber;
+            //}
+            //var pDisclaimer = wordDocument.Paragraphs.Add();
+            //pDisclaimer.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer");
+
+        }
+
         public async void setRoomId(string newRoomId)
         {
-            string newDomain = JitsiUrl.getDomain();
-            string oldBody = appointmentItem.Body;
-
-            // Filter room id for legal characters
+            // Filter room id for illegal characters
             string newRoomIdLegal = JitsiUrl.filterLegalCharacters(newRoomId);
-
-            string newBody;
-            try
-            {
-                // Replace old domain for new domain
-                newBody = oldBody.Replace(Utils.findRoomId(appointmentItem.Body, oldDomain), newRoomIdLegal);
-                newBody = newBody.Replace(oldDomain, newDomain);
-                newBody = await generateBody(newRoomIdLegal);
-            }
-            catch
-            {
-                // If replacement failed, append new message text
-                if (string.IsNullOrWhiteSpace(oldBody))
-                {
-                    newBody = await generateBody(newRoomIdLegal);
-                }
-                else
-                {
-                    newBody = oldBody + "\n" + generateBody(newRoomIdLegal);
-                }
-
-                this.buttonStartWithAudioMuted.Checked = false;
-                this.buttonStartWithVideoMuted.Checked = false;
-                this.buttonRequireDisplayName.Checked = false;
-            }
-
             fieldRoomID.Text = newRoomIdLegal;
-            appointmentItem.Body = newBody;
 
+
+            string newDomain = JitsiUrl.getDomain();
+            Word.Document wordDocument = appointmentItem.GetInspector.WordEditor as Word.Document;
+            string oldBody = wordDocument.Range().Text;
+
+
+            // Update Domain if it was updated in the meantime
+            object missing = System.Reflection.Missing.Value;
+            Find findObject = wordDocument.Content.Find;
+            findObject.ClearFormatting();
+            findObject.Text = oldDomain;
+            findObject.Replacement.ClearFormatting();
+            findObject.Format = true;
+            findObject.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing, ref missing, newDomain,
+               WdReplace.wdReplaceAll, ref missing, ref missing, ref missing, ref missing);
             oldDomain = newDomain;
-        }
 
-        public static async Task<string> generateBody(string roomId)
-        {
-            return Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage")
-                + (JitsiUrl.getUrlBase() + roomId)
-                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone")
-                + await Globals.ThisAddIn.JitsiApiService.getPhoneNumbers(roomId)
-                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin")
-                + await Globals.ThisAddIn.JitsiApiService.getPIN(roomId)
-                + Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer");
-        }
+            var oldRoomId = Utils.findRoomId(oldBody, newDomain);
 
+            Word.Hyperlinks wLinks = wordDocument.Hyperlinks;
+            for (int i = 1; i <= wLinks.Count; i++)
+            {
+                if (wLinks[i].Address.Contains(oldDomain))
+                {
+                    var urlNew= wLinks[i].TextToDisplay.Replace(Utils.findRoomId(appointmentItem.Body, oldDomain), newRoomIdLegal);
+                    wLinks[i].Address = fixUrl(urlNew);
+                    wLinks[i].TextToDisplay = fixUrl(urlNew);
+                }
+            }
+
+
+
+            // Update PIN 
+            var newPIN = await Globals.ThisAddIn.JitsiApiService.getPIN(newRoomIdLegal);
+            var oldPIN = await Globals.ThisAddIn.JitsiApiService.getPIN(oldRoomId);
+
+            Find findPINObject = wordDocument.Content.Find;
+            findPINObject.ClearFormatting();
+            findPINObject.Text = oldPIN;
+            findPINObject.Replacement.ClearFormatting();
+            findPINObject.Format = true;
+
+            findPINObject.Execute(ref missing, ref missing, ref missing, ref missing, ref missing,
+                ref missing, ref missing, ref missing, ref missing, newPIN,
+                WdReplace.wdReplaceAll, ref missing, ref missing, ref missing, ref missing);
+
+        }
 
         public void randomiseRoomId()
         {
@@ -173,13 +283,6 @@ namespace JitsiMeetOutlook
             toggleSetting("requireDisplayName");
         }
 
-        private void setRoomIdText(string roomIdText)
-        {
-            if (roomIdText != null)
-            {
-                fieldRoomID.Text = roomIdText;
-            }
-        }
 
         private void addJitsiMeeting()
         {
@@ -191,31 +294,36 @@ namespace JitsiMeetOutlook
         private void toggleSetting(string setting)
         {
             // Find Jitsi URL in message
-            string oldBody = appointmentItem.Body;
-            string urlMatch = Utils.GetUrl(oldBody, oldDomain);
-
-            // Remove setting if present
-            string urlNew;
-            if (Utils.SettingIsActive(urlMatch, setting))
+            Word.Document wordDocument = appointmentItem.GetInspector.WordEditor as Word.Document;
+            
+            Word.Hyperlinks wLinks = wordDocument.Hyperlinks;
+            for (int i = 1; i <= wLinks.Count; i++)
             {
-                urlNew = Regex.Replace(urlMatch, "(#|&)config\\." + setting + "=true", "");
-            }
-
-            // Otherwise add
-            else
-            {
-                if (urlMatch.Contains("#config"))
+                if (wLinks[i].Address.Contains(oldDomain))
                 {
-                    urlNew = urlMatch + "&config." + setting + "=true";
-                }
-                else
-                {
-                    urlNew = urlMatch + "#config." + setting + "=true";
+                    var urlMatch = wLinks[i].TextToDisplay;
+                    string urlNew;
+                    if (Utils.SettingIsActive(urlMatch, setting))
+                    {
+                        urlNew = Regex.Replace(urlMatch, "(#|&)config\\." + setting + "=true", "");
+                    }
+
+                    // Otherwise add
+                    else
+                    {
+                        if (urlMatch.Contains("#config"))
+                        {
+                            urlNew = urlMatch + "&config." + setting + "=true";
+                        }
+                        else
+                        {
+                            urlNew = urlMatch + "#config." + setting + "=true";
+                        }
+                    }
+                    wLinks[i].Address = fixUrl(urlNew);
+                    wLinks[i].TextToDisplay = fixUrl(urlNew);
                 }
             }
-
-            string newBody = oldBody.Replace(urlMatch, fixUrl(urlNew));
-            appointmentItem.Body = newBody;
         }
 
         private string fixUrl(string url)

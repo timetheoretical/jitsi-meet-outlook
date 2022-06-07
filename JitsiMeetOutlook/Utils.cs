@@ -23,7 +23,7 @@ namespace JitsiMeetOutlook
 
         public static string GetUrl(string oldBody, string domain)
         {
-            return Regex.Match(oldBody, escapeDomain(domain) + "\\S+").Value;
+            return Regex.Match(oldBody, "http[s]*://" + escapeDomain(domain) + "[\\w\\/#%\\.=]+").Value;
         }
 
         public static bool SettingIsActive(string url, string setting)

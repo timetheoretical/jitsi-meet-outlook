@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -26,8 +26,16 @@ namespace JitsiMeetOutlook
 
             if (appointmentItem.Location == "Jitsi Meet")
             {
+                // Disabled for now because editing an existing Conference will certainly lead to formatting errors.
+                groupJitsiMeetControls.Visible = false;
+                groupNewMeeting.Visible = false;
+                //InitializeRibbonWithCurrentData();
+            }
+            else if (appointmentItem.Location == "Jitsi Meet New")
+            {
                 groupJitsiMeetControls.Visible = true;
                 groupNewMeeting.Visible = false;
+                appointmentItem.Location = "Jitsi Meet";
                 InitializeRibbonWithCurrentData();
             }
             else

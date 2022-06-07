@@ -28,7 +28,7 @@ namespace JitsiMeetOutlook
 
                 // Appointment details
                 newAppointment.MeetingStatus = Outlook.OlMeetingStatus.olMeeting;
-                newAppointment.Location = "Jitsi Meet";
+                newAppointment.Location = "Jitsi Meet New";
 
                 // Set appointment date if selected in calendar
                 if (view.ViewType == Outlook.OlViewType.olCalendarView)

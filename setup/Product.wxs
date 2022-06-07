@@ -169,6 +169,18 @@
             <Component Id="Microsoft.Extensions.Primitives.dll">
                 <File Id="Microsoft.Extensions.Primitives.dll" Name="Microsoft.Extensions.Primitives.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Primitives.dll" />
             </Component>
+			<Component Id="Microsoft.IdentityModel.Tokens.dll">
+				<File Id="Microsoft.IdentityModel.Tokens.dll" Name="Microsoft.IdentityModel.Tokens.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.Tokens.dll" />
+			</Component>
+			<Component Id="Microsoft.IdentityModel.JsonWebTokens.dll">
+				<File Id="Microsoft.IdentityModel.JsonWebTokens.dll" Name="Microsoft.IdentityModel.JsonWebTokens.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll" />
+			</Component>
+			<Component Id="System.IdentityModel.Tokens.Jwt.dll">
+				<File Id="System.IdentityModel.Tokens.Jwt.dll" Name="System.IdentityModel.Tokens.Jwt.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.IdentityModel.Tokens.Jwt.dll" />
+			</Component>
+			<Component Id="Microsoft.IdentityModel.Logging.dll">
+				<File Id="Microsoft.IdentityModel.Logging.dll" Name="Microsoft.IdentityModel.Logging.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.Logging.dll" />
+			</Component>
         </ComponentGroup>
     </Fragment>
 

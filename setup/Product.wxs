@@ -89,7 +89,7 @@
                     <RegistryValue Id="RegKey_Description" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Description" Value="!(bind.property.ProductName)" Type="string" KeyPath="yes" />
                 </Component>
                 <Component Id="Registry_Manifest">
-                    <RegistryValue Id="RegKey_Manifest" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Manifest" Value="[INSTALLFOLDER]!(bind.property.ProductName).vsto|vstolocal" Type="string" KeyPath="yes" />
+                    <RegistryValue Id="RegKey_Manifest" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Manifest" Value="file:///[INSTALLFOLDER]!(bind.property.ProductName).vsto|vstolocal" Type="string" KeyPath="yes" />
                 </Component>
                 <Component Id="Registry_LoadBehavior">
                     <RegistryValue Id="RegKey_LoadBehavior" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="LoadBehavior" Value="3" Type="integer" KeyPath="yes" />

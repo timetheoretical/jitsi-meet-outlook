@@ -108,7 +108,7 @@ namespace JitsiMeetOutlook
                         var scheduledConference = new ConferenceSchedulerMessage
                         {
 
-                            Name = item.Subject,
+                            Name = Utils.findRoomId(item.Body,Properties.Settings.Default.Domain),
                             Start = item.StartUTC,
                             End = item.EndUTC,
                             Recurrance = recurrencePattern

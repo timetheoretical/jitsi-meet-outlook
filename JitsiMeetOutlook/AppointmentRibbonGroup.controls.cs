@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,9 +23,6 @@ namespace JitsiMeetOutlook
             // Assign the relevant appointment item
             Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
-
-            // Display Ribbon if this is a Jitsi Meeting
-            MessageBox.Show("DEBUG: " + appointmentItem.Location);
 
             if (appointmentItem.Location == "Jitsi Meet")
             {

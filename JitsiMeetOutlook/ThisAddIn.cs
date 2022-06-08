@@ -26,8 +26,7 @@ namespace JitsiMeetOutlook
             // Create Hooks for all Outlook Calendar Items
             // Maybe there is a better way, but thats the best I could find.
             // It will call the change event multiple times!
-            calendarFolder =
-                this.Application.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderCalendar);
+            calendarFolder = this.Application.Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderCalendar);
             calendarFolderItems = calendarFolder.Items;
             calendarFolderItems.ItemAdd += new
     ItemsEvents_ItemAddEventHandler(AppointmentAddedOrChanged);

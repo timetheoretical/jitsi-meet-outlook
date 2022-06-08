@@ -31,7 +31,10 @@ namespace JitsiMeetOutlook
             {
                 groupJitsiMeetControls.Visible = true;
                 groupNewMeeting.Visible = false;
-                InitializeRibbonWithCurrentData();
+                Utils.RunInThread(() =>
+                {
+                    InitializeRibbonWithCurrentData();
+                });
             }
             else
             {

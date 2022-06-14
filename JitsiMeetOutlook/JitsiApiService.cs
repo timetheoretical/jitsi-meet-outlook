@@ -109,11 +109,11 @@ namespace JitsiMeetOutlook
             var now = DateTime.UtcNow;
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("sub", "customer") }),
-                Issuer = "Who issued the token",
+                //Subject = new ClaimsIdentity(new[] { new Claim("sub", "customer") }),
+                Issuer = "JitsiOutlookPlugin",
                 Claims = new Dictionary<string, object>
                 {
-                    ["room"] = "*",
+                    ["admin"] = true,
                 },
                 IssuedAt = now,
                 NotBefore = now,

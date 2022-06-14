@@ -8,7 +8,7 @@ namespace JitsiMeetOutlook.Entities
         /// <summary>
         /// The name of the conference.
         /// </summary>
-        public string Name { get; set; }
+        public string ConferenceName { get; set; }
 
         /// <summary>
         /// The start date and time of the conference.

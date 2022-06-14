@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Security.Cryptography;
@@ -105,7 +105,7 @@ namespace JitsiMeetOutlook
 
         private string GetJWT()
         {
-            var secret = Encoding.Unicode.GetBytes(Properties.Settings.Default.conferenceSchedulerEndpointSecret);
+            var secret = Encoding.ASCII.GetBytes(Properties.Settings.Default.conferenceSchedulerEndpointSecret);
             var now = DateTime.UtcNow;
             var tokenDescriptor = new SecurityTokenDescriptor
             {

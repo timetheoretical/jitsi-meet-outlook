@@ -66,6 +66,23 @@ Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.6.0-windo
 
 All settings can be changed from the settings menu after installation.
 
+### Proxy
+
+Set them via `PROXY_INFORMATION` variable, e.g.:
+
+```
+ <system.net>
+    <defaultProxy enabled="true" useDefaultCredentials="true">
+      <proxy
+        usesystemdefault="true"
+        proxyaddress="http://192.168.1.10:3128"
+        bypassonlocal="true"
+      />
+       <proxy autoDetect="true" scriptLocation="http:/wpad.dat"/>
+    </defaultProxy>
+  </system.net>
+```
+
 ## Roadmap
 
 The published code and installer is still at an early stage. Preliminarily, the following amendments are in the pipeline:

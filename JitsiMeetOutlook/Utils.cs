@@ -61,5 +61,30 @@ namespace JitsiMeetOutlook
                 MessageBox.Show("An Error occured within JitsiOutlook: " + ex.Message);
             }
         }
+
+        public static List<KeyValuePair<bool, string>> SplitToTextAndHyperlinks(string text)
+        {
+            var list = new List<KeyValuePair<bool, string>>();
+            MatchCollection matches = Regex.Matches(text, "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+");
+            if (matches.Count == 0)
+            {
+                list.Add(new KeyValuePair<bool, string>(false, text));
+            }
+            var lastindex = 0;
+            var index = 0;
+            foreach (Match match in matches)
+            {
+                list.Add(new KeyValuePair<bool, string>(false, text.Substring(lastindex, match.Index - lastindex)));
+                list.Add(new KeyValuePair<bool, string>(true, match.Value));
+                lastindex = match.Index + match.Length;
+                if (index == matches.Count - 1)
+                {
+                    list.Add(new KeyValuePair<bool, string>(false, text.Substring(lastindex, text.Length - lastindex)));
+                }
+                index++;
+            }
+
+            return list;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 
 namespace JitsiMeetOutlook.Tests
 {
@@ -57,9 +58,37 @@ namespace JitsiMeetOutlook.Tests
         }
 
         [TestMethod()]
-        public void SettingIsActiveTest()
+        public void SplitToTextAndHyperlinks()
         {
-            Assert.Fail();
+            var text = "test https://meet.jit.si/UnderlyingDescentsPledgeOverseas with links https://cool.link everywhere https://example.com interesting end";
+            List<KeyValuePair<bool, string>> split = Utils.SplitToTextAndHyperlinks(text);
+            split.Should().NotBeEmpty().And.HaveCount(7);
+
+            split.Should().Equal(new List<KeyValuePair<bool, string>>()
+            {
+                new KeyValuePair<bool, string>( false, "test " ),
+                new KeyValuePair<bool, string>( true, "https://meet.jit.si/UnderlyingDescentsPledgeOverseas" ),
+                new KeyValuePair<bool, string>( false, " with links " ),
+                new KeyValuePair<bool, string>( true, "https://cool.link" ),
+                new KeyValuePair<bool, string>( false, " everywhere " ),
+                new KeyValuePair<bool, string>( true, "https://example.com" ),
+                new KeyValuePair<bool, string>( false, " interesting end" )
+
+            });
+
+        }
+
+        [TestMethod()]
+        public void SplitToTextAndHyperlinksEmpty()
+        {
+            var text = "test with no links everywhere interesting end";
+            List<KeyValuePair<bool, string>> split = Utils.SplitToTextAndHyperlinks(text);
+            split.Should().Equal(new List<KeyValuePair<bool, string>>()
+            {
+                new KeyValuePair<bool, string>( false, "test with no links everywhere interesting end")
+
+            });
+
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text;
 using JitsiMeetOutlook.Entities;
 using Microsoft.Office.Interop.Word;
+using System.Collections.Generic;
 
 namespace JitsiMeetOutlook
 {
@@ -167,7 +168,22 @@ namespace JitsiMeetOutlook
             endSel.InsertAfter("\n");
             endSel.MoveDown(Word.WdUnits.wdLine);
 
-            endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"));
+            IEnumerable<KeyValuePair<bool, string>> disclaimer = Utils.SplitToTextAndHyperlinks(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"));
+            foreach (var textblock in disclaimer)
+            {
+                if (textblock.Key)
+                {
+                    // Textblock is a link
+                    wordDocument.Hyperlinks.Add(endSel.Range, "tel:" + textblock.Value, ref missing, ref missing, textblock.Value, ref missing);
+                    endSel.EndKey(Word.WdUnits.wdLine);
+                }
+                else
+                {
+                    // Textblock is no link
+                    endSel.InsertAfter(textblock.Value);
+                    endSel.EndKey(Word.WdUnits.wdLine);
+                }
+            }
             endSel.EndKey(Word.WdUnits.wdLine);
             endSel.InsertAfter("\n");
             endSel.MoveDown(Word.WdUnits.wdLine);

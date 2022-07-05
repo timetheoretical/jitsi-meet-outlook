@@ -11,7 +11,6 @@ namespace JitsiMeetOutlook
     {
 
         string defaultDomain;
-        string defaultPhone;
 
         public FormSettings()
         {
@@ -19,7 +18,6 @@ namespace JitsiMeetOutlook
 
             // Set default domain
             defaultDomain = "meet.jit.si";
-            defaultPhone = "0000000";
 
             // Set radio buttons
             loadDomainButtons();
@@ -75,23 +73,6 @@ namespace JitsiMeetOutlook
                 textBoxDomain.Enabled = true;
             }
         }
-        private void radioButtonDefaultPhone_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonDefaultPhone.Checked)
-            {
-                textBoxPhone.Enabled = false;
-                textBoxPhone.Text = defaultPhone;
-            }
-        }
-
-        private void radioButtonCustomPhone_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonCustomPhone.Checked)
-            {
-                textBoxPhone.Text = null;
-                textBoxPhone.Enabled = true;
-            }
-        }
 
         private void radioButtonRandomID_CheckedChanged(object sender, EventArgs e)
         {
@@ -122,10 +103,6 @@ namespace JitsiMeetOutlook
             {
                 return false;
             }
-        }
-        private void textBoxPhone_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void setSettings()

@@ -33,12 +33,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDomain = new System.Windows.Forms.GroupBox();
             this.textBoxDomain = new System.Windows.Forms.TextBox();
-            this.groupBoxPhone = new System.Windows.Forms.GroupBox();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.radioButtonCustomDomain = new System.Windows.Forms.RadioButton();
             this.radioButtonDefaultDomain = new System.Windows.Forms.RadioButton();
-            this.radioButtonCustomPhone = new System.Windows.Forms.RadioButton();
-            this.radioButtonDefaultPhone = new System.Windows.Forms.RadioButton();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxToggleDefaults = new System.Windows.Forms.GroupBox();
@@ -64,7 +60,6 @@
             this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageDomain = new System.Windows.Forms.TabPage();
-            this.tabPagePhone = new System.Windows.Forms.TabPage();
             this.tabPageRoomId = new System.Windows.Forms.TabPage();
             this.tabPageMeetingOptions = new System.Windows.Forms.TabPage();
             this.tabPageLanguage = new System.Windows.Forms.TabPage();
@@ -72,7 +67,6 @@
             this.comboBoxRandomGeneratorMode = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxDomain.SuspendLayout();
-            this.groupBoxPhone.SuspendLayout();
             this.groupBoxToggleDefaults.SuspendLayout();
             this.panelStartWithVideoMuted.SuspendLayout();
             this.panelStartWithAudioMuted.SuspendLayout();
@@ -81,15 +75,14 @@
             this.groupBoxLanguage.SuspendLayout();
             this.tabControlSettings.SuspendLayout();
             this.tabPageDomain.SuspendLayout();
-            this.tabPagePhone.SuspendLayout();
             this.tabPageRoomId.SuspendLayout();
             this.tabPageMeetingOptions.SuspendLayout();
             this.tabPageLanguage.SuspendLayout();
             this.groupBoxRandomGeneratorMode.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // menuStrip1
-            //
+            // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -97,24 +90,24 @@
             this.menuStrip1.Size = new System.Drawing.Size(354, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            //
+            // 
             // fileToolStripMenuItem
-            //
+            // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
-            //
+            // 
             // exitToolStripMenuItem
-            //
+            // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            //
+            // 
             // groupBoxDomain
-            //
+            // 
             this.groupBoxDomain.Controls.Add(this.textBoxDomain);
             this.groupBoxDomain.Controls.Add(this.radioButtonCustomDomain);
             this.groupBoxDomain.Controls.Add(this.radioButtonDefaultDomain);
@@ -124,17 +117,17 @@
             this.groupBoxDomain.TabIndex = 2;
             this.groupBoxDomain.TabStop = false;
             this.groupBoxDomain.Text = "Domain";
-            //
+            // 
             // textBoxDomain
-            //
+            // 
             this.textBoxDomain.Location = new System.Drawing.Point(113, 42);
             this.textBoxDomain.Name = "textBoxDomain";
             this.textBoxDomain.Size = new System.Drawing.Size(180, 20);
             this.textBoxDomain.TabIndex = 2;
             this.textBoxDomain.TextChanged += new System.EventHandler(this.textBoxDomain_TextChanged);
-            //
+            // 
             // radioButtonCustomDomain
-            //
+            // 
             this.radioButtonCustomDomain.AutoSize = true;
             this.radioButtonCustomDomain.Location = new System.Drawing.Point(6, 42);
             this.radioButtonCustomDomain.Name = "radioButtonCustomDomain";
@@ -144,9 +137,9 @@
             this.radioButtonCustomDomain.Text = "Custom:";
             this.radioButtonCustomDomain.UseVisualStyleBackColor = true;
             this.radioButtonCustomDomain.CheckedChanged += new System.EventHandler(this.radioButtonCustomDomain_CheckedChanged);
-            //
+            // 
             // radioButtonDefaultDomain
-            //
+            // 
             this.radioButtonDefaultDomain.AutoSize = true;
             this.radioButtonDefaultDomain.Location = new System.Drawing.Point(6, 19);
             this.radioButtonDefaultDomain.Name = "radioButtonDefaultDomain";
@@ -156,53 +149,9 @@
             this.radioButtonDefaultDomain.Text = "Default";
             this.radioButtonDefaultDomain.UseVisualStyleBackColor = true;
             this.radioButtonDefaultDomain.CheckedChanged += new System.EventHandler(this.radioButtonDefaultDomain_CheckedChanged);
-            //
-            // groupBoxPhone
-            //
-            this.groupBoxPhone.Controls.Add(this.textBoxPhone);
-            this.groupBoxPhone.Controls.Add(this.radioButtonCustomPhone);
-            this.groupBoxPhone.Controls.Add(this.radioButtonDefaultPhone);
-            this.groupBoxPhone.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxPhone.Name = "groupBoxPhone";
-            this.groupBoxPhone.Size = new System.Drawing.Size(303, 70);
-            this.groupBoxPhone.TabIndex = 2;
-            this.groupBoxPhone.TabStop = false;
-            this.groupBoxPhone.Text = "Phone";
-            //
-            // textBoxPhone
-            //
-            this.textBoxPhone.Location = new System.Drawing.Point(113, 42);
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(180, 20);
-            this.textBoxPhone.TabIndex = 2;
-            this.textBoxPhone.TextChanged += new System.EventHandler(this.textBoxPhone_TextChanged);
-            //
-            // radioButtonCustomPhone
-            //
-            this.radioButtonCustomPhone.AutoSize = true;
-            this.radioButtonCustomPhone.Location = new System.Drawing.Point(6, 42);
-            this.radioButtonCustomPhone.Name = "radioButtonCustomPhone";
-            this.radioButtonCustomPhone.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonCustomPhone.TabIndex = 1;
-            this.radioButtonCustomPhone.TabStop = true;
-            this.radioButtonCustomPhone.Text = "Custom:";
-            this.radioButtonCustomPhone.UseVisualStyleBackColor = true;
-            this.radioButtonCustomPhone.CheckedChanged += new System.EventHandler(this.radioButtonCustomPhone_CheckedChanged);
-            //
-            // radioButtonDefaultPhone
-            //
-            this.radioButtonDefaultPhone.AutoSize = true;
-            this.radioButtonDefaultPhone.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonDefaultPhone.Name = "radioButtonDefaultPhone";
-            this.radioButtonDefaultPhone.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonDefaultPhone.TabIndex = 0;
-            this.radioButtonDefaultPhone.TabStop = true;
-            this.radioButtonDefaultPhone.Text = "Default";
-            this.radioButtonDefaultPhone.UseVisualStyleBackColor = true;
-            this.radioButtonDefaultPhone.CheckedChanged += new System.EventHandler(this.radioButtonDefaultPhone_CheckedChanged);
-            //
+            // 
             // buttonOK
-            //
+            // 
             this.buttonOK.Location = new System.Drawing.Point(180, 227);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
@@ -210,9 +159,9 @@
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            //
+            // 
             // buttonCancel
-            //
+            // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Location = new System.Drawing.Point(261, 227);
             this.buttonCancel.Name = "buttonCancel";
@@ -221,9 +170,9 @@
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            //
+            // 
             // groupBoxToggleDefaults
-            //
+            // 
             this.groupBoxToggleDefaults.Controls.Add(this.panelStartWithVideoMuted);
             this.groupBoxToggleDefaults.Controls.Add(this.panelStartWithAudioMuted);
             this.groupBoxToggleDefaults.Controls.Add(this.labelToggled);
@@ -235,9 +184,9 @@
             this.groupBoxToggleDefaults.TabIndex = 5;
             this.groupBoxToggleDefaults.TabStop = false;
             this.groupBoxToggleDefaults.Text = "Default meeting options";
-            //
+            // 
             // panelStartWithVideoMuted
-            //
+            // 
             this.panelStartWithVideoMuted.Controls.Add(this.radioButtonStartWithVideoMutedToggled);
             this.panelStartWithVideoMuted.Controls.Add(this.radioButtonStartWithVideoMutedUntoggled);
             this.panelStartWithVideoMuted.Controls.Add(this.labelStartWithVideoMuted);
@@ -245,9 +194,9 @@
             this.panelStartWithVideoMuted.Name = "panelStartWithVideoMuted";
             this.panelStartWithVideoMuted.Size = new System.Drawing.Size(287, 19);
             this.panelStartWithVideoMuted.TabIndex = 3;
-            //
+            // 
             // radioButtonStartWithVideoMutedToggled
-            //
+            // 
             this.radioButtonStartWithVideoMutedToggled.AutoSize = true;
             this.radioButtonStartWithVideoMutedToggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithVideoMutedToggled.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -258,9 +207,9 @@
             this.radioButtonStartWithVideoMutedToggled.TabStop = true;
             this.radioButtonStartWithVideoMutedToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithVideoMutedToggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // radioButtonStartWithVideoMutedUntoggled
-            //
+            // 
             this.radioButtonStartWithVideoMutedUntoggled.AutoSize = true;
             this.radioButtonStartWithVideoMutedUntoggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithVideoMutedUntoggled.Location = new System.Drawing.Point(260, 3);
@@ -269,18 +218,18 @@
             this.radioButtonStartWithVideoMutedUntoggled.TabIndex = 1;
             this.radioButtonStartWithVideoMutedUntoggled.TabStop = true;
             this.radioButtonStartWithVideoMutedUntoggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // labelStartWithVideoMuted
-            //
+            // 
             this.labelStartWithVideoMuted.AutoSize = true;
             this.labelStartWithVideoMuted.Location = new System.Drawing.Point(3, 3);
             this.labelStartWithVideoMuted.Name = "labelStartWithVideoMuted";
             this.labelStartWithVideoMuted.Size = new System.Drawing.Size(91, 13);
             this.labelStartWithVideoMuted.TabIndex = 0;
             this.labelStartWithVideoMuted.Text = "No Video on Start";
-            //
+            // 
             // panelStartWithAudioMuted
-            //
+            // 
             this.panelStartWithAudioMuted.Controls.Add(this.radioButtonStartWithAudioMutedToggled);
             this.panelStartWithAudioMuted.Controls.Add(this.radioButtonStartWithAudioMutedUntoggled);
             this.panelStartWithAudioMuted.Controls.Add(this.labelStartWithAudioMuted);
@@ -288,9 +237,9 @@
             this.panelStartWithAudioMuted.Name = "panelStartWithAudioMuted";
             this.panelStartWithAudioMuted.Size = new System.Drawing.Size(287, 19);
             this.panelStartWithAudioMuted.TabIndex = 3;
-            //
+            // 
             // radioButtonStartWithAudioMutedToggled
-            //
+            // 
             this.radioButtonStartWithAudioMutedToggled.AutoSize = true;
             this.radioButtonStartWithAudioMutedToggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithAudioMutedToggled.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -301,9 +250,9 @@
             this.radioButtonStartWithAudioMutedToggled.TabStop = true;
             this.radioButtonStartWithAudioMutedToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithAudioMutedToggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // radioButtonStartWithAudioMutedUntoggled
-            //
+            // 
             this.radioButtonStartWithAudioMutedUntoggled.AutoSize = true;
             this.radioButtonStartWithAudioMutedUntoggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonStartWithAudioMutedUntoggled.Location = new System.Drawing.Point(260, 3);
@@ -312,18 +261,18 @@
             this.radioButtonStartWithAudioMutedUntoggled.TabIndex = 1;
             this.radioButtonStartWithAudioMutedUntoggled.TabStop = true;
             this.radioButtonStartWithAudioMutedUntoggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // labelStartWithAudioMuted
-            //
+            // 
             this.labelStartWithAudioMuted.AutoSize = true;
             this.labelStartWithAudioMuted.Location = new System.Drawing.Point(3, 3);
             this.labelStartWithAudioMuted.Name = "labelStartWithAudioMuted";
             this.labelStartWithAudioMuted.Size = new System.Drawing.Size(71, 13);
             this.labelStartWithAudioMuted.TabIndex = 0;
             this.labelStartWithAudioMuted.Text = "Mute on Start";
-            //
+            // 
             // labelToggled
-            //
+            // 
             this.labelToggled.AutoSize = true;
             this.labelToggled.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelToggled.Location = new System.Drawing.Point(198, 16);
@@ -332,9 +281,9 @@
             this.labelToggled.TabIndex = 4;
             this.labelToggled.Text = "Toggled";
             this.labelToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            // 
             // labelUntoggled
-            //
+            // 
             this.labelUntoggled.AutoSize = true;
             this.labelUntoggled.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelUntoggled.Location = new System.Drawing.Point(244, 16);
@@ -343,9 +292,9 @@
             this.labelUntoggled.TabIndex = 3;
             this.labelUntoggled.Text = "Untoggled";
             this.labelUntoggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            // 
             // panelRequireDisplayName
-            //
+            // 
             this.panelRequireDisplayName.Controls.Add(this.radioButtonRequireDisplayNameToggled);
             this.panelRequireDisplayName.Controls.Add(this.radioButtonRequireDisplayNameUntoggled);
             this.panelRequireDisplayName.Controls.Add(this.labelRequireDisplayName);
@@ -353,9 +302,9 @@
             this.panelRequireDisplayName.Name = "panelRequireDisplayName";
             this.panelRequireDisplayName.Size = new System.Drawing.Size(287, 19);
             this.panelRequireDisplayName.TabIndex = 0;
-            //
+            // 
             // radioButtonRequireDisplayNameToggled
-            //
+            // 
             this.radioButtonRequireDisplayNameToggled.AutoSize = true;
             this.radioButtonRequireDisplayNameToggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonRequireDisplayNameToggled.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -366,9 +315,9 @@
             this.radioButtonRequireDisplayNameToggled.TabStop = true;
             this.radioButtonRequireDisplayNameToggled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonRequireDisplayNameToggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // radioButtonRequireDisplayNameUntoggled
-            //
+            // 
             this.radioButtonRequireDisplayNameUntoggled.AutoSize = true;
             this.radioButtonRequireDisplayNameUntoggled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonRequireDisplayNameUntoggled.Location = new System.Drawing.Point(260, 3);
@@ -377,18 +326,18 @@
             this.radioButtonRequireDisplayNameUntoggled.TabIndex = 1;
             this.radioButtonRequireDisplayNameUntoggled.TabStop = true;
             this.radioButtonRequireDisplayNameUntoggled.UseVisualStyleBackColor = true;
-            //
+            // 
             // labelRequireDisplayName
-            //
+            // 
             this.labelRequireDisplayName.AutoSize = true;
             this.labelRequireDisplayName.Location = new System.Drawing.Point(3, 3);
             this.labelRequireDisplayName.Name = "labelRequireDisplayName";
             this.labelRequireDisplayName.Size = new System.Drawing.Size(75, 13);
             this.labelRequireDisplayName.TabIndex = 0;
             this.labelRequireDisplayName.Text = "Require Name";
-            //
+            // 
             // groupBoxDefaultRoomID
-            //
+            // 
             this.groupBoxDefaultRoomID.Controls.Add(this.textBoxRoomID);
             this.groupBoxDefaultRoomID.Controls.Add(this.radioButtonCustomRoomID);
             this.groupBoxDefaultRoomID.Controls.Add(this.radioButtonRandomRoomID);
@@ -398,16 +347,16 @@
             this.groupBoxDefaultRoomID.TabIndex = 3;
             this.groupBoxDefaultRoomID.TabStop = false;
             this.groupBoxDefaultRoomID.Text = "Default room ID";
-            //
+            // 
             // textBoxRoomID
-            //
+            // 
             this.textBoxRoomID.Location = new System.Drawing.Point(113, 42);
             this.textBoxRoomID.Name = "textBoxRoomID";
             this.textBoxRoomID.Size = new System.Drawing.Size(180, 20);
             this.textBoxRoomID.TabIndex = 2;
-            //
+            // 
             // radioButtonCustomRoomID
-            //
+            // 
             this.radioButtonCustomRoomID.AutoSize = true;
             this.radioButtonCustomRoomID.Location = new System.Drawing.Point(6, 42);
             this.radioButtonCustomRoomID.Name = "radioButtonCustomRoomID";
@@ -417,9 +366,9 @@
             this.radioButtonCustomRoomID.Text = "Custom:";
             this.radioButtonCustomRoomID.UseVisualStyleBackColor = true;
             this.radioButtonCustomRoomID.CheckedChanged += new System.EventHandler(this.radioButtonCustomRoomID_CheckedChanged);
-            //
+            // 
             // radioButtonRandomRoomID
-            //
+            // 
             this.radioButtonRandomRoomID.AutoSize = true;
             this.radioButtonRandomRoomID.Location = new System.Drawing.Point(6, 19);
             this.radioButtonRandomRoomID.Name = "radioButtonRandomRoomID";
@@ -429,9 +378,9 @@
             this.radioButtonRandomRoomID.Text = "Random";
             this.radioButtonRandomRoomID.UseVisualStyleBackColor = true;
             this.radioButtonRandomRoomID.CheckedChanged += new System.EventHandler(this.radioButtonRandomID_CheckedChanged);
-            //
+            // 
             // groupBoxLanguage
-            //
+            // 
             this.groupBoxLanguage.Controls.Add(this.comboBoxLanguage);
             this.groupBoxLanguage.Location = new System.Drawing.Point(5, 3);
             this.groupBoxLanguage.Name = "groupBoxLanguage";
@@ -439,9 +388,9 @@
             this.groupBoxLanguage.TabIndex = 3;
             this.groupBoxLanguage.TabStop = false;
             this.groupBoxLanguage.Text = "Language";
-            //
+            // 
             // comboBoxLanguage
-            //
+            // 
             this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLanguage.FormattingEnabled = true;
             this.comboBoxLanguage.Items.AddRange(new object[] {
@@ -452,11 +401,10 @@
             this.comboBoxLanguage.Size = new System.Drawing.Size(287, 21);
             this.comboBoxLanguage.TabIndex = 0;
             this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxLanguage_SelectedIndexChanged);
-            //
+            // 
             // tabControlSettings
-            //
+            // 
             this.tabControlSettings.Controls.Add(this.tabPageDomain);
-            this.tabControlSettings.Controls.Add(this.tabPagePhone);
             this.tabControlSettings.Controls.Add(this.tabPageRoomId);
             this.tabControlSettings.Controls.Add(this.tabPageMeetingOptions);
             this.tabControlSettings.Controls.Add(this.tabPageLanguage);
@@ -465,9 +413,9 @@
             this.tabControlSettings.SelectedIndex = 0;
             this.tabControlSettings.Size = new System.Drawing.Size(328, 194);
             this.tabControlSettings.TabIndex = 6;
-            //
+            // 
             // tabPageDomain
-            //
+            // 
             this.tabPageDomain.Controls.Add(this.groupBoxDomain);
             this.tabPageDomain.Location = new System.Drawing.Point(4, 22);
             this.tabPageDomain.Name = "tabPageDomain";
@@ -476,20 +424,9 @@
             this.tabPageDomain.TabIndex = 0;
             this.tabPageDomain.Text = "Domain";
             this.tabPageDomain.UseVisualStyleBackColor = true;
-            //
-            // tabPagePhone
-            //
-            this.tabPagePhone.Controls.Add(this.groupBoxPhone);
-            this.tabPagePhone.Location = new System.Drawing.Point(4, 22);
-            this.tabPagePhone.Name = "tabPagePhone";
-            this.tabPagePhone.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePhone.Size = new System.Drawing.Size(320, 168);
-            this.tabPagePhone.TabIndex = 0;
-            this.tabPagePhone.Text = "Phone";
-            this.tabPagePhone.UseVisualStyleBackColor = true;
-            //
+            // 
             // tabPageRoomId
-            //
+            // 
             this.tabPageRoomId.Controls.Add(this.groupBoxRandomGeneratorMode);
             this.tabPageRoomId.Controls.Add(this.groupBoxDefaultRoomID);
             this.tabPageRoomId.Location = new System.Drawing.Point(4, 22);
@@ -499,9 +436,9 @@
             this.tabPageRoomId.TabIndex = 1;
             this.tabPageRoomId.Text = "Room ID";
             this.tabPageRoomId.UseVisualStyleBackColor = true;
-            //
+            // 
             // tabPageMeetingOptions
-            //
+            // 
             this.tabPageMeetingOptions.Controls.Add(this.groupBoxToggleDefaults);
             this.tabPageMeetingOptions.Location = new System.Drawing.Point(4, 22);
             this.tabPageMeetingOptions.Name = "tabPageMeetingOptions";
@@ -509,9 +446,9 @@
             this.tabPageMeetingOptions.TabIndex = 2;
             this.tabPageMeetingOptions.Text = "Meeting Options";
             this.tabPageMeetingOptions.UseVisualStyleBackColor = true;
-            //
+            // 
             // tabPageLanguage
-            //
+            // 
             this.tabPageLanguage.Controls.Add(this.groupBoxLanguage);
             this.tabPageLanguage.Location = new System.Drawing.Point(4, 22);
             this.tabPageLanguage.Name = "tabPageLanguage";
@@ -519,9 +456,9 @@
             this.tabPageLanguage.TabIndex = 3;
             this.tabPageLanguage.Text = "Language";
             this.tabPageLanguage.UseVisualStyleBackColor = true;
-            //
+            // 
             // groupBoxRandomGeneratorMode
-            //
+            // 
             this.groupBoxRandomGeneratorMode.Controls.Add(this.comboBoxRandomGeneratorMode);
             this.groupBoxRandomGeneratorMode.Location = new System.Drawing.Point(6, 82);
             this.groupBoxRandomGeneratorMode.Name = "groupBoxRandomGeneratorMode";
@@ -529,9 +466,9 @@
             this.groupBoxRandomGeneratorMode.TabIndex = 4;
             this.groupBoxRandomGeneratorMode.TabStop = false;
             this.groupBoxRandomGeneratorMode.Text = "Random generator mode";
-            //
+            // 
             // comboBoxRandomGeneratorMode
-            //
+            // 
             this.comboBoxRandomGeneratorMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRandomGeneratorMode.FormattingEnabled = true;
             this.comboBoxRandomGeneratorMode.Items.AddRange(new object[] {
@@ -541,9 +478,9 @@
             this.comboBoxRandomGeneratorMode.Name = "comboBoxRandomGeneratorMode";
             this.comboBoxRandomGeneratorMode.Size = new System.Drawing.Size(287, 21);
             this.comboBoxRandomGeneratorMode.TabIndex = 0;
-            //
+            // 
             // FormSettings
-            //
+            // 
             this.AcceptButton = this.buttonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -567,8 +504,6 @@
             this.menuStrip1.PerformLayout();
             this.groupBoxDomain.ResumeLayout(false);
             this.groupBoxDomain.PerformLayout();
-            this.groupBoxPhone.ResumeLayout(false);
-            this.groupBoxPhone.PerformLayout();
             this.groupBoxToggleDefaults.ResumeLayout(false);
             this.groupBoxToggleDefaults.PerformLayout();
             this.panelStartWithVideoMuted.ResumeLayout(false);
@@ -582,7 +517,6 @@
             this.groupBoxLanguage.ResumeLayout(false);
             this.tabControlSettings.ResumeLayout(false);
             this.tabPageDomain.ResumeLayout(false);
-            this.tabPagePhone.ResumeLayout(false);
             this.tabPageRoomId.ResumeLayout(false);
             this.tabPageMeetingOptions.ResumeLayout(false);
             this.tabPageLanguage.ResumeLayout(false);
@@ -601,10 +535,6 @@
         private System.Windows.Forms.RadioButton radioButtonCustomDomain;
         private System.Windows.Forms.RadioButton radioButtonDefaultDomain;
         private System.Windows.Forms.TextBox textBoxDomain;
-        private System.Windows.Forms.GroupBox groupBoxPhone;
-        private System.Windows.Forms.RadioButton radioButtonCustomPhone;
-        private System.Windows.Forms.RadioButton radioButtonDefaultPhone;
-        private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBoxToggleDefaults;
@@ -630,7 +560,6 @@
         private System.Windows.Forms.ComboBox comboBoxLanguage;
         private System.Windows.Forms.TabControl tabControlSettings;
         private System.Windows.Forms.TabPage tabPageDomain;
-        private System.Windows.Forms.TabPage tabPagePhone;
         private System.Windows.Forms.TabPage tabPageRoomId;
         private System.Windows.Forms.TabPage tabPageMeetingOptions;
         private System.Windows.Forms.TabPage tabPageLanguage;

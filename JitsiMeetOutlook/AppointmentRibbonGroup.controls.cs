@@ -174,42 +174,6 @@ namespace JitsiMeetOutlook
 
             wordDocument.Select();
             endSel.Collapse(Word.WdCollapseDirection.wdCollapseStart);
-
-
-            //var pTitle = wordDocument.Paragraphs.Add();
-            //pTitle.Range.Text = (Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage"));
-
-            ////var pTitleLink = wordDocument.Paragraphs.Add();
-            ////pTitleLink.Range.Text = "Test";
-            ////wordDocument.Hyperlinks.Add(pTitleLink.Range, link, ref missing, ref missing, link, ref missing);
-
-            //if (phoneNumbers.NumbersEnabled)
-            //{
-            //    // Add Phone Number Text if they are enabled
-            //    var pPhoneTitle = wordDocument.Paragraphs.Add();
-            //    pPhoneTitle.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessagePhone");
-            //    //foreach (var entry in phoneNumbers.Numbers)
-            //    //{
-            //    //    var pNumberKey = wordDocument.Paragraphs.Add();
-            //    //    pNumberKey.Range.Text = entry.Key + ": ";
-
-            //    //    for (int i = 0; i < entry.Value.Count; i++)
-            //    //    {
-            //    //        //var pLink = wordDocument.Paragraphs.Add();
-            //    //        //wordDocument.Hyperlinks.Add(pLink.Range, "tel:" + entry.Value[i], ref missing, ref missing, entry.Value[i], ref missing);
-            //    //        //endSel.EndKey(Word.WdUnits.wdLine);
-            //    //        //if (i < entry.Value.Count - 1)
-            //    //        //{
-            //    //        //    endSel.InsertAfter(",");
-            //    //        //}
-            //    //    }
-            //    //}
-            //    var pPIN = wordDocument.Paragraphs.Add();
-            //    pPIN.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyPin") + pinNumber;
-            //}
-            //var pDisclaimer = wordDocument.Paragraphs.Add();
-            //pDisclaimer.Range.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer");
-
         }
 
         public async void setRoomId(string newRoomId)
@@ -243,7 +207,7 @@ namespace JitsiMeetOutlook
             {
                 if (wLinks[i].Address.Contains(oldDomain))
                 {
-                    var urlNew= wLinks[i].TextToDisplay.Replace(Utils.findRoomId(appointmentItem.Body, oldDomain), newRoomIdLegal);
+                    var urlNew = wLinks[i].TextToDisplay.Replace(Utils.findRoomId(appointmentItem.Body, oldDomain), newRoomIdLegal);
                     wLinks[i].Address = fixUrl(urlNew);
                     wLinks[i].TextToDisplay = fixUrl(urlNew);
                 }
@@ -298,7 +262,7 @@ namespace JitsiMeetOutlook
         {
             // Find Jitsi URL in message
             Word.Document wordDocument = appointmentItem.GetInspector.WordEditor as Word.Document;
-            
+
             Word.Hyperlinks wLinks = wordDocument.Hyperlinks;
             for (int i = 1; i <= wLinks.Count; i++)
             {

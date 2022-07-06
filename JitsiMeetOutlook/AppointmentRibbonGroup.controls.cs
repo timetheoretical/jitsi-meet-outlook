@@ -174,7 +174,7 @@ namespace JitsiMeetOutlook
                 if (textblock.Key)
                 {
                     // Textblock is a link
-                    wordDocument.Hyperlinks.Add(endSel.Range, "tel:" + textblock.Value, ref missing, ref missing, textblock.Value, ref missing);
+                    wordDocument.Hyperlinks.Add(endSel.Range, textblock.Value, ref missing, ref missing, textblock.Value, ref missing);
                     endSel.EndKey(Word.WdUnits.wdLine);
                 }
                 else

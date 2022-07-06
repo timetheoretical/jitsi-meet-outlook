@@ -65,7 +65,7 @@ namespace JitsiMeetOutlook
         public static List<KeyValuePair<bool, string>> SplitToTextAndHyperlinks(string text)
         {
             var list = new List<KeyValuePair<bool, string>>();
-            MatchCollection matches = Regex.Matches(text, "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+");
+            MatchCollection matches = Regex.Matches(text, "http[s]?:\\/\\/(?:[a-zA-Z]|[0-9]|[$-_@&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+(?<!\\.)");
             if (matches.Count == 0)
             {
                 list.Add(new KeyValuePair<bool, string>(false, text));

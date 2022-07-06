@@ -88,7 +88,19 @@ namespace JitsiMeetOutlook.Tests
                 new KeyValuePair<bool, string>( false, "test with no links everywhere interesting end")
 
             });
+        }
 
+        [TestMethod()]
+        public void SplitToTextAndHyperlinksSpecialCharacter()
+        {
+            var text = "test with no links everywhere interesting end https://cool.link.";
+            List<KeyValuePair<bool, string>> split = Utils.SplitToTextAndHyperlinks(text);
+            split.Should().Equal(new List<KeyValuePair<bool, string>>()
+            {
+                new KeyValuePair<bool, string>( false, "test with no links everywhere interesting end "),
+                new KeyValuePair<bool, string>( true, "https://cool.link"),
+                new KeyValuePair<bool, string>( false, "."),
+            });
         }
     }
 }

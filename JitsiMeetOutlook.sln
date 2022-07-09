@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JitsiMeetOutlook", "JitsiMeetOutlook\JitsiMeetOutlook.csproj", "{92DD44F5-9B8C-4D40-AE0E-9B1EDEE99449}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "setup", "setup\setup.wixproj", "{85009CC8-078D-40E6-B4A5-F097D6B04C72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsInstallerParameters", "SettingsInstallerParameters\SettingsInstallerParameters.csproj", "{1963A813-D744-49E1-B08B-9DB661C8850E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JitsiMeetOutlookTests", "JitsiMeetOutlookTests\JitsiMeetOutlookTests.csproj", "{B355F03D-DB54-426C-BD96-59E3CF66EEA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{1963A813-D744-49E1-B08B-9DB661C8850E}.Release|Any CPU.Build.0 = Release|x86
 		{1963A813-D744-49E1-B08B-9DB661C8850E}.Release|x86.ActiveCfg = Release|x86
 		{1963A813-D744-49E1-B08B-9DB661C8850E}.Release|x86.Build.0 = Release|x86
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Debug|x86.Build.0 = Debug|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Release|x86.ActiveCfg = Release|Any CPU
+		{B355F03D-DB54-426C-BD96-59E3CF66EEA1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

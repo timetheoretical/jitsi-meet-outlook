@@ -1,17 +1,37 @@
-﻿using System.IO;
+﻿using JitsiMeetOutlook.Entities;
+using Microsoft.Office.Interop.Outlook;
+using System;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace JitsiMeetOutlook
 {
     public partial class ThisAddIn
     {
+        public JitsiApiService JitsiApiService;
 
-        public bool ShowRibbonAppointment;
+        // Define these so they are not garbarge collected
+        private MAPIFolder calendarFolder;
+        private Items calendarFolderItems;
 
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddIn_Startup(object sender, EventArgs e)
         {
-            ShowRibbonAppointment = false;
             checkFirstRunSettings();
             readLanguageJson();
+
+            JitsiApiService = new JitsiApiService();
+
+            // Create Hooks for all Outlook Calendar Items
+            // Maybe there is a better way, but thats the best I could find.
+            // It will call the change event multiple times!
+            calendarFolder = this.Application.Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderCalendar);
+            calendarFolderItems = calendarFolder.Items;
+            calendarFolderItems.ItemAdd += new
+    ItemsEvents_ItemAddEventHandler(AppointmentAddedOrChanged);
+            calendarFolderItems.ItemChange += new
+    ItemsEvents_ItemChangeEventHandler(AppointmentAddedOrChanged);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -66,6 +86,38 @@ namespace JitsiMeetOutlook
             File.WriteAllText(firstRunMarkerFilePath(), firstRunText);
         }
 
+        public void AppointmentAddedOrChanged(object appointment)
+        {
+            // Make sure we only react to Appointments
+            if (appointment is AppointmentItem)
+            {
+                AppointmentItem item = appointment as AppointmentItem;
+
+                if (item.Location == "Jitsi Meet")
+                {
+                    Utils.RunInThread(() =>
+                    {
+                        string recurrencePattern = null;
+                        if (item.IsRecurring)
+                        {
+                            var recurrencebuilder = new Recurrence();
+                            recurrencePattern = recurrencebuilder.buildRrule(item.GetRecurrencePattern());
+                        }
+
+                        var scheduledConference = new ConferenceSchedulerMessage
+                        {
+
+                            ConferenceName = Utils.findRoomId(item.Body,Properties.Settings.Default.Domain),
+                            Start = item.StartUTC,
+                            End = item.EndUTC,
+                            Recurrance = recurrencePattern
+                        };
+                        JitsiApiService.ScheduleConference(scheduledConference);
+                    });
+                }
+            }
+        }
+
         #region VSTO generated code
 
         /// <summary>
@@ -77,7 +129,7 @@ namespace JitsiMeetOutlook
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
     }
 }

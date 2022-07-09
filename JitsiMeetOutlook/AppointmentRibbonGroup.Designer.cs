@@ -36,7 +36,7 @@
         {
             Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
             this.Appointment = this.Factory.CreateRibbonTab();
-            this.groupJitsiMeet = this.Factory.CreateRibbonGroup();
+            this.groupJitsiMeetControls = this.Factory.CreateRibbonGroup();
             this.box1 = this.Factory.CreateRibbonBox();
             this.fieldRoomID = this.Factory.CreateRibbonEditBox();
             this.box2 = this.Factory.CreateRibbonBox();
@@ -45,33 +45,37 @@
             this.box3 = this.Factory.CreateRibbonBox();
             this.buttonRequireDisplayName = this.Factory.CreateRibbonToggleButton();
             this.buttonStartWithVideoMuted = this.Factory.CreateRibbonToggleButton();
+            this.groupNewMeeting = this.Factory.CreateRibbonGroup();
+            this.buttonNewJitsiMeeting = this.Factory.CreateRibbonButton();
             this.Appointment.SuspendLayout();
-            this.groupJitsiMeet.SuspendLayout();
+            this.groupJitsiMeetControls.SuspendLayout();
             this.box1.SuspendLayout();
             this.box2.SuspendLayout();
             this.box3.SuspendLayout();
+            this.groupNewMeeting.SuspendLayout();
             this.SuspendLayout();
             // 
             // Appointment
             // 
             this.Appointment.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.Appointment.ControlId.OfficeId = "TabAppointment";
-            this.Appointment.Groups.Add(this.groupJitsiMeet);
+            this.Appointment.Groups.Add(this.groupJitsiMeetControls);
+            this.Appointment.Groups.Add(this.groupNewMeeting);
             this.Appointment.Label = "TabAppointment";
             this.Appointment.Name = "Appointment";
             // 
-            // groupJitsiMeet
+            // groupJitsiMeetControls
             // 
             ribbonDialogLauncherImpl1.SuperTip = "Preferences";
-            this.groupJitsiMeet.DialogLauncher = ribbonDialogLauncherImpl1;
-            this.groupJitsiMeet.Items.Add(this.box1);
-            this.groupJitsiMeet.Items.Add(this.box2);
-            this.groupJitsiMeet.Items.Add(this.box3);
-            this.groupJitsiMeet.Label = "Jitsi Meet";
-            this.groupJitsiMeet.Name = "groupJitsiMeet";
-            this.groupJitsiMeet.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupAttendees");
-            this.groupJitsiMeet.Visible = false;
-            this.groupJitsiMeet.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDialogLauncher_Click);
+            this.groupJitsiMeetControls.DialogLauncher = ribbonDialogLauncherImpl1;
+            this.groupJitsiMeetControls.Items.Add(this.box1);
+            this.groupJitsiMeetControls.Items.Add(this.box2);
+            this.groupJitsiMeetControls.Items.Add(this.box3);
+            this.groupJitsiMeetControls.Label = "Jitsi Meet";
+            this.groupJitsiMeetControls.Name = "groupJitsiMeetControls";
+            this.groupJitsiMeetControls.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupAttendees");
+            this.groupJitsiMeetControls.Visible = false;
+            this.groupJitsiMeetControls.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDialogLauncher_Click);
             // 
             // box1
             // 
@@ -133,6 +137,23 @@
             this.buttonStartWithVideoMuted.ShowImage = true;
             this.buttonStartWithVideoMuted.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonStartWithVideoMuted_Click);
             // 
+            // groupNewMeeting
+            // 
+            this.groupNewMeeting.Items.Add(this.buttonNewJitsiMeeting);
+            this.groupNewMeeting.Label = "Jitsi Meet";
+            this.groupNewMeeting.Name = "groupNewMeeting";
+            this.groupNewMeeting.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupAttendees");
+            this.groupNewMeeting.Visible = false;
+            // 
+            // buttonNewJitsiMeeting
+            // 
+            this.buttonNewJitsiMeeting.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonNewJitsiMeeting.Image = global::JitsiMeetOutlook.Properties.Resources.jitsiLogo_square;
+            this.buttonNewJitsiMeeting.Label = "New Jitsi Meeting";
+            this.buttonNewJitsiMeeting.Name = "buttonNewJitsiMeeting";
+            this.buttonNewJitsiMeeting.ShowImage = true;
+            this.buttonNewJitsiMeeting.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonNewJitsiMeeting_Click);
+            // 
             // AppointmentRibbonGroup
             // 
             this.Name = "AppointmentRibbonGroup";
@@ -141,21 +162,23 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.AppointmentRibbonGroup_Load);
             this.Appointment.ResumeLayout(false);
             this.Appointment.PerformLayout();
-            this.groupJitsiMeet.ResumeLayout(false);
-            this.groupJitsiMeet.PerformLayout();
+            this.groupJitsiMeetControls.ResumeLayout(false);
+            this.groupJitsiMeetControls.PerformLayout();
             this.box1.ResumeLayout(false);
             this.box1.PerformLayout();
             this.box2.ResumeLayout(false);
             this.box2.PerformLayout();
             this.box3.ResumeLayout(false);
             this.box3.PerformLayout();
+            this.groupNewMeeting.ResumeLayout(false);
+            this.groupNewMeeting.PerformLayout();
             this.ResumeLayout(false);
 
         }
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab Appointment;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupJitsiMeet;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupJitsiMeetControls;
         internal Microsoft.Office.Tools.Ribbon.RibbonEditBox fieldRoomID;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonStartWithAudioMuted;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton buttonStartWithVideoMuted;
@@ -164,6 +187,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box2;
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupNewMeeting;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonNewJitsiMeeting;
     }
 
     partial class ThisRibbonCollection

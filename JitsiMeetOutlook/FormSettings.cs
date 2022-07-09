@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -143,7 +143,7 @@ namespace JitsiMeetOutlook
             if (radioButtonRequireDisplayNameToggled.Checked)
             {
                 Properties.Settings.Default.requireDisplayName = true;
-            } 
+            }
             else
             {
                 Properties.Settings.Default.requireDisplayName = false;
@@ -168,7 +168,7 @@ namespace JitsiMeetOutlook
             }
 
             // Set language
-            string languageSelection = (string) comboBoxLanguage.SelectedItem;
+            string languageSelection = (string)comboBoxLanguage.SelectedItem;
             Properties.Settings.Default.language = languageDropDown.FirstOrDefault(x => x.Value == languageSelection).Key;
 
             // Set random generator mode
@@ -234,7 +234,8 @@ namespace JitsiMeetOutlook
             {
                 radioButtonRequireDisplayNameToggled.Checked = true;
                 radioButtonRequireDisplayNameUntoggled.Checked = false;
-            } else
+            }
+            else
             {
                 radioButtonRequireDisplayNameToggled.Checked = false;
                 radioButtonRequireDisplayNameUntoggled.Checked = true;

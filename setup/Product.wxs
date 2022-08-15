@@ -15,7 +15,7 @@
     <?define JitsiMeetOutlook_ProjectName="JitsiMeetOutlookAddIn"?>
 
     <!-- Addon details -->
-    <Product Id="*" Name="JitsiMeetOutlookAddIn" Language="1033" Version="0.6.6" Manufacturer="github.com/timetheoretical" UpgradeCode="146f17e9-8106-4dd3-a3c5-b8f2c92ffb25">
+    <Product Id="*" Name="JitsiMeetOutlookAddIn" Language="1033" Version="0.7.0" Manufacturer="github.com/timetheoretical" UpgradeCode="146f17e9-8106-4dd3-a3c5-b8f2c92ffb25">
         <Package InstallerVersion="500" Compressed="yes" Platform="x64" InstallScope="perMachine" />
 
         <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

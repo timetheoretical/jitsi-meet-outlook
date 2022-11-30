@@ -35,6 +35,7 @@ namespace JitsiMeetOutlook
             languages.Add("ru", Resources.languages.ru);
             languages.Add("es", Resources.languages.es);
             languages.Add("cz", Resources.languages.cz);
+            languages.Add("sv", Resources.languages.sv);
 
             if (languages.ContainsKey(language))
             {

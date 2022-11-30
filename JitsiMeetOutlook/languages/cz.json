@@ -38,12 +38,13 @@
     "labelStartWithVideoMuted": "Začít s vypnutou kamerou",
     "groupBoxLanguage": "Jazyk",
     "comboBoxLanguageItems": {
-      "en": "English",
-      "fr": "French",
-      "ru": "Russian",
-      "de": "German",
-      "cz": "Czech",
-      "es" :  "Spanish"
+      "en": "Angličtina",
+      "fr": "Francouzština",
+      "ru": "Ruština",
+      "de": "Německy",
+      "es": "španělština",
+      "cz": "česky",
+      "sv": "švédština"
     },
 
     "tabControlSettings": {

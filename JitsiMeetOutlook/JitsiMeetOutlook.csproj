@@ -367,6 +367,7 @@
     <None Include="languages\es.json" />
     <None Include="languages\fr.json" />
     <None Include="languages\ru.json" />
+    <None Include="languages\sv.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

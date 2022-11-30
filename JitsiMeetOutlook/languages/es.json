@@ -38,12 +38,13 @@
       "labelStartWithVideoMuted": "Sin video al empezar",
       "groupBoxLanguage": "Lenguaje",
       "comboBoxLanguageItems": {
-        "en": "Inglés",
-        "fr": "Francés",
-        "ru": "Ruso",
-        "de" :  "Alemán",
-        "es": "Español",
-        "cz" : "Czech"
+       "es": "Inglés",
+       "fr": "Francés",
+       "ru": "Ruso",
+       "de": "Alemán",
+       "es": "Español",
+       "cz": "Checo",
+       "sv": "Sueco"
       },
   
       "tabControlSettings": {

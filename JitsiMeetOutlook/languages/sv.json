@@ -1,64 +1,64 @@
 {
   "calendarRibbonButton": {
-    "buttonNewJitsiMeeting": "New Jitsi Meeting"
+    "buttonNewJitsiMeeting": "Nytt Jitsi Möte"
   },
 
   "appointmentItem": {
-    "textBodyMessage": "\n\n\nJitsi-Meeting\n\nJoin the meeting: ",
-    "textBodyMessagePhone": "Dial in numbers:\n",
-    "textBodyPin": "\nConference number (PIN): ",
-    "textBodyDisclaimer": "DISCLAIMER: Example\n\r"
+    "textBodyMessage": "\n\n\nJitsi-Möte\n\nAnslut till mötet: ",
+    "textBodyMessagePhone": "Anslut via telefon:\n",
+    "textBodyPin": "\nKonferens-ID: (PIN): ",
+    "textBodyDisclaimer": "\n\r"
   },
 
   "appointmentRibbonGroup": {
     "fieldRoomID": "ID:",
-    "fieldRoomIDSuperTip": "Longer names are more secure.",
-    "buttonRandomRoomID": "Random ID",
-    "buttonRequireDisplayName": "Require Name",
-    "buttonStartWithAudioMuted": "Mute on Start",
-    "buttonStartWithVideoMuted": "No Video on Start"
+    "fieldRoomIDSuperTip": "Längre namn är säkrare.",
+    "buttonRandomRoomID": "Slumpmässigt ID",
+    "buttonRequireDisplayName": "Kräv Namn",
+    "buttonStartWithAudioMuted": "Börja tystad",
+    "buttonStartWithVideoMuted": "Ingen Video vid Start"
   },
 
   "settings": {
-    "groupBoxDomain": "Domain",
-    "radioButtonDefaultDomain": "Default",
-    "radioButtonCustomDomain": "Custom",
-    "groupBoxPhone": "Phone",
-    "radioButtonDefaultPhone": "Default",
-    "radioButtonCustomPhone": "Custom",
-    "groupBoxDefaultRoomID": "Default room ID",
-    "radioButtonRandomRoomID": "Random",
-    "radioButtonCustomRoomID": "Custom",
+    "groupBoxDomain": "Domän",
+    "radioButtonDefaultDomain": "Standard",
+    "radioButtonCustomDomain": "Egen",
+    "groupBoxPhone": "Telefon",
+    "radioButtonDefaultPhone": "Standard",
+    "radioButtonCustomPhone": "Egen",
+    "groupBoxDefaultRoomID": "Standard rum ID",
+    "radioButtonRandomRoomID": "Slumpmässig",
+    "radioButtonCustomRoomID": "Egen",
 
-    "groupBoxRandomGeneratorMode": "Random generator mode",
+    "groupBoxRandomGeneratorMode": "Slumpgenerator läge",
     "comboBoxRandomGeneratorMode": {
-      "phrase": "Phrase",
-      "string": "String"
+      "phrase": "Fras",
+      "string": "Sträng"
     },
 
-    "groupBoxToggleDefaults": "Default meeting options",
+    "groupBoxToggleDefaults": "Standard mötesinställningar",
     "labelToggled": "Toggled",
     "labelUntoggled": "Untoggled",
-    "labelRequireDisplayName": "Require Name",
-    "labelStartWithAudioMuted": "Mute on Start",
-    "labelStartWithVideoMuted": "No Video on Start",
-    "groupBoxLanguage": "Language",
+    "labelRequireDisplayName": "Kräv Namn",
+    "labelStartWithAudioMuted": "Börja tystad",
+    "labelStartWithVideoMuted": "Ingen Video vid Start",
+    "groupBoxLanguage": "Språk",
     "comboBoxLanguageItems": {
-      "en": "English",
-      "fr": "French",
-      "ru": "Russian",
-      "de": "German",
-      "es": "Spanish",
-      "cz": "Czech",
-      "sv": "Swedish"
+      "en": "Engelska",
+      "fr": "Franska",
+      "ru": "Ryska",
+      "de": "Tyska",
+      "es": "Spanska",
+      "cz": "Tjeckiska",
+      "sv": "Svenska"
     },
 
     "tabControlSettings": {
-      "tabPageDomain": "Domain",
-      "tabPagePhone": "Phone",
-      "tabPageRoomId": "Room ID",
-      "tabPageMeetingOptions": "Meeting Options",
-      "tabPageLanguage": "Language"
+      "tabPageDomain": "Domän",
+      "tabPagePhone": "Telefon",
+      "tabPageRoomId": "Rum ID",
+      "tabPageMeetingOptions": "Mötes Inställningar",
+      "tabPageLanguage": "Språk"
     }
   },
 

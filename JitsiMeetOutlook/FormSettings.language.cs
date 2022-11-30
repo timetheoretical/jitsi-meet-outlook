@@ -41,7 +41,7 @@ namespace JitsiMeetOutlook
             languageDropDown.Add("ru", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("ru").GetString());
             languageDropDown.Add("es", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("es").GetString());
             languageDropDown.Add("cz", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("cz").GetString());
-
+	    languageDropDown.Add("sv", jsonUILanguage.GetProperty("comboBoxLanguageItems").GetProperty("sv").GetString());
             this.comboBoxLanguage.Items.Clear();
             this.comboBoxLanguage.Items.AddRange(new object[] {
                 languageDropDown["de"],
@@ -49,7 +49,8 @@ namespace JitsiMeetOutlook
                 languageDropDown["fr"],
                 languageDropDown["ru"],
                 languageDropDown["es"],
-                languageDropDown["cz"]
+                languageDropDown["cz"],
+		languageDropDown["sv"]
             });
         }
 

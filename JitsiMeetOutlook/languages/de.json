@@ -44,12 +44,13 @@
     "labelStartWithVideoMuted": "Ohne Video beitreten",
     "groupBoxLanguage": "Sprache",
     "comboBoxLanguageItems": {
-      "en": "English",
-      "fr": "French",
-      "ru": "Russian",
+      "de": "Englisch",
+      "fr": "Französisch",
+      "ru": "Russisch",
       "de": "Deutsch",
       "es": "Spanisch",
-      "cz" : "Czech"
+      "cz": "Tschechisch",
+      "sv": "Schwedisch"
     },
 
     "tabControlSettings": {

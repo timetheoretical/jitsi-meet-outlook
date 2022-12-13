@@ -14,7 +14,7 @@ set LANG=en
 ::======================
 :: Plugin URL and paths
 ::======================
-set origin=https://github.com/timetheoretical/jitsi-meet-outlook/releases/download/v0.6.0/JitsiMeetOutlook-v0.6.0-windows-anycpu.msi
+set origin=https://github.com/timetheoretical/jitsi-meet-outlook/releases/download/v0.7.0/JitsiMeetOutlook-v0.7.0-windows-anycpu.msi
 set target=%ProgramFiles%\Jitsi Meet Outlook
 :: if x86 version, use target=%ProgramFiles(x86)%\Jitsi Meet Outlook
 :: if x64 version, use target=%ProgramFiles%\Jitsi Meet Outlook

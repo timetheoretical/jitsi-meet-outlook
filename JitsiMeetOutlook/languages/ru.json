@@ -4,7 +4,7 @@
   },
 
   "appointmentItem": {
-    "textBodyMessage": "\r\nДжитси-Встреча \r\n\nПрисоединяйтесь к конференции: ",
+    "textBodyMessage": "\r\nJitsi-Встреча \r\n\nПрисоединяйтесь к конференции: ",
     "textBodyMessagePhone": "\n\rНомер телефона: ",
     "textBodyPin": "\r\nномер конференции: ",
     "textBodyDisclaimer": "\n\r"

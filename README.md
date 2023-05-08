@@ -57,8 +57,8 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 - `NOAUDIO`: Mute audio by default in new Jitsi Meet appointments. (True/False)
 - `NOVIDEO`: Disable video by default in new Jitsi Meet appointments. (True/False)
 - `LANG`: Specify the display language. Currently, English, French, German, and Russian are available. (en/fr/de/ru)
-- `CONFERENCEMAPPER_ENDPOINT`: Endpoint to get the Conference PIN from
-- `PHONENUMBERLIST_ENDPOINT`: Endpoint to get the Phone Number from to call in
+- `CONFERENCEMAPPER_ENDPOINT`: Endpoint to get the Conference PIN from. Set to "none" if dial-in is not supported.
+- `PHONENUMBERLIST_ENDPOINT`: Endpoint to get the Phone Number from to call in. Set to "none" if dial-in is not supported.
 - `CONFERENCESCHEDULER_ENDPOINT`: Endpoint to send the conference information to in advance, in order to make the call available for call in before the first person joins
 - `CONFERENCESCHEDULER_ENDPOINT_SECRET`: Secret for the `CONFERENCESCHEDULER_ENDPOINT`, used for JWT generation.
 

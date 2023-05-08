@@ -37,6 +37,9 @@ namespace JitsiMeetOutlook
 
         public async Task<string> getPIN(string roomName)
         {
+            if (Properties.Settings.Default.conferenceMapperEndpoint.ToLower() == "none") {
+                return "";
+            }
             string conferenceMapperRequestUrl = $"{Properties.Settings.Default.conferenceMapperEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}";
 
             try
@@ -58,6 +61,9 @@ namespace JitsiMeetOutlook
 
         public async Task<PhoneNumberListResponse> getPhoneNumbers(string roomName)
         {
+            if (Properties.Settings.Default.phoneNumberListEndpoint.ToLower() == "none") {
+                return new PhoneNumberListResponse { Numbers = new Dictionary<string, List<string>>() };
+            }
             string phoneNumberListRequestUrl = $"{Properties.Settings.Default.phoneNumberListEndpoint}?conference={roomName}@conference.{JitsiUrl.getDomain()}";
             try
             {

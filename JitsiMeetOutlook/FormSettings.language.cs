@@ -28,7 +28,7 @@ namespace JitsiMeetOutlook
             this.labelStartWithAudioMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithAudioMuted");
             this.labelStartWithVideoMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithVideoMuted");
             this.groupBoxLanguage.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxLanguage");
-
+            this.Text = Properties.Settings.Default.appName + " Settings";
         }
 
 

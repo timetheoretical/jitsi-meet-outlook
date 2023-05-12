@@ -66,7 +66,7 @@
 
         <!-- Reference custom action to update settings xml -->
         <CustomAction Id="UpdateConfigXml" BinaryKey="SettingsInstallerParameters.CA" DllEntry="UpdateConfigXml" Execute="deferred" Return="check" Impersonate="no" />
-        <CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG];randomRoomIdGeneratorMode=[MODE];conferenceMapperEndpoint=[CONFERENCEMAPPER_ENDPOINT];phoneNumberListEndpoint=[PHONENUMBERLIST_ENDPOINT];conferenceSchedulerEndpoint=[CONFERENCESCHEDULER_ENDPOINT];conferenceSchedulerEndpointSecret=[CONFERENCESCHEDULER_ENDPOINT_SECRET]" />
+        <CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG];randomRoomIdGeneratorMode=[MODE];conferenceMapperEndpoint=[CONFERENCEMAPPER_ENDPOINT];phoneNumberListEndpoint=[PHONENUMBERLIST_ENDPOINT];conferenceSchedulerEndpoint=[CONFERENCESCHEDULER_ENDPOINT];conferenceSchedulerEndpointSecret=[CONFERENCESCHEDULER_ENDPOINT_SECRET];appName=[APP_NAME];meetingButtonLabel=[MEETING_BUTTON_LABEL];meetingButtonLogo=[MEETING_BUTTON_LOGO];textBodyMessage=[TEXT_BODY_MESSAGE];textBodyDisclaimer=[TEXT_BODY_DISCLAIMER]" />
         <Binary Id="SettingsInstallerParameters.CA" SourceFile="$(var.JitsiMeetOutlook.ProjectDir)..\SettingsInstallerParameters\bin\Release\SettingsInstallerParameters.CA.dll" />
 
         <InstallExecuteSequence>

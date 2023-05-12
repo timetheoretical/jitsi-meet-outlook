@@ -28,7 +28,7 @@ namespace JitsiMeetOutlook
             Outlook.Inspector inspector = (Outlook.Inspector)this.Context;
             appointmentItem = inspector.CurrentItem as Outlook.AppointmentItem;
 
-            if (appointmentItem.Location == "Jitsi Meet")
+            if (appointmentItem.Location == Properties.Settings.Default.appName)
             {
                 groupJitsiMeetControls.Visible = true;
                 groupNewMeeting.Visible = false;
@@ -130,7 +130,14 @@ namespace JitsiMeetOutlook
             endSel.MoveDown(Word.WdUnits.wdLine);
             endSel.InsertAfter("\n");
             endSel.MoveDown(Word.WdUnits.wdLine);
-            endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage"));
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.textBodyMessage))
+            {
+                endSel.InsertAfter(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage"));
+            }
+            else
+            {
+                endSel.InsertAfter(Properties.Settings.Default.textBodyMessage.Replace(@"\n", "\r\n"));
+            }
             endSel.EndKey(Word.WdUnits.wdLine);
             wordDocument.Hyperlinks.Add(endSel.Range, link, ref missing, ref missing, link, ref missing);
             endSel.EndKey(Word.WdUnits.wdLine);
@@ -168,7 +175,15 @@ namespace JitsiMeetOutlook
             endSel.InsertAfter("\n");
             endSel.MoveDown(Word.WdUnits.wdLine);
 
-            IEnumerable<KeyValuePair<bool, string>> disclaimer = Utils.SplitToTextAndHyperlinks(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"));
+            IEnumerable<KeyValuePair<bool, string>> disclaimer;
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.textBodyDisclaimer))
+            {
+                disclaimer = Utils.SplitToTextAndHyperlinks(Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer"));
+            }
+            else
+            {
+                disclaimer = Utils.SplitToTextAndHyperlinks(Properties.Settings.Default.textBodyDisclaimer.Replace(@"\n", "\r\n"));
+            }
             foreach (var textblock in disclaimer)
             {
                 if (textblock.Key)
@@ -269,9 +284,8 @@ namespace JitsiMeetOutlook
 
         private void addJitsiMeeting()
         {
-            appointmentItem.Location = "Jitsi Meet";
+            appointmentItem.Location = Properties.Settings.Default.appName;
             initialise();
-
         }
 
         private void toggleSetting(string setting)

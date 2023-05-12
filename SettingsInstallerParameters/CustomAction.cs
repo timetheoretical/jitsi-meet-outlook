@@ -72,7 +72,7 @@ namespace SettingsInstallerParameters
             session.Log($"Setting display language: {getLanguage(session)}");
             navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='language']/value").SetValue(getLanguage(session));
 
-            session.Log($"Setting random ID generator mode: {getLanguage(session)}");
+            session.Log($"Setting random ID generator mode: {getRandomRoomIdGeneratorMode(session)}");
             navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='randomRoomIdGeneratorMode']/value").SetValue(getRandomRoomIdGeneratorMode(session));
 
             if (getConferenceMapperEndpoint(session).Length != 0)
@@ -102,6 +102,24 @@ namespace SettingsInstallerParameters
                 session.Log($"Setting custom conferenceSchedulerEndpointSecret: {getConferenceSchedulerEndpointSecret(session)}");
                 navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='conferenceSchedulerEndpointSecret']/value").SetValue(getConferenceSchedulerEndpointSecret(session));
             }
+
+            if (getAppName(session).Length != 0)
+            {
+                session.Log($"Setting application name: {getAppName(session)}");
+                navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='appName']/value").SetValue(getAppName(session));
+            }
+
+            session.Log($"Setting button label: {getMeetingButtonLabel(session)}");
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='meetingButtonLabel']/value").SetValue(getMeetingButtonLabel(session));
+
+            session.Log($"Setting button logo: {getMeetingButtonLogo(session)}");
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='meetingButtonLogo']/value").SetValue(getMeetingButtonLogo(session));
+
+            session.Log($"Setting text of body message: {getTextBodyMessage(session)}");
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='textBodyMessage']/value").SetValue(getTextBodyMessage(session));
+
+            session.Log($"Setting text of body disclaimer: {getTextBodyDisclaimer(session)}");
+            navigator.SelectSingleNode(@"/configuration/userSettings/JitsiMeetOutlook.Properties.Settings/setting[@name='textBodyDisclaimer']/value").SetValue(getTextBodyDisclaimer(session));
 
             session.Log($"Saving settings to: {xmlPath}");
             document.Save(xmlPath);
@@ -187,6 +205,31 @@ namespace SettingsInstallerParameters
                 return "phrase";
             }
 
+        }
+
+        private static string getAppName(Session session)
+        {
+            return session.CustomActionData["appName"];
+        }
+
+        private static string getMeetingButtonLabel(Session session)
+        {
+            return session.CustomActionData["meetingButtonLabel"];
+        }
+
+        private static string getMeetingButtonLogo(Session session)
+        {
+            return session.CustomActionData["meetingButtonLogo"];
+        }
+
+        private static string getTextBodyMessage(Session session)
+        {
+            return session.CustomActionData["textBodyMessage"];
+        }
+
+        private static string getTextBodyDisclaimer(Session session)
+        {
+            return session.CustomActionData["textBodyDisclaimer"];
         }
 
 

@@ -12,6 +12,13 @@ namespace JitsiMeetOutlook
             setLanguage();
         }
 
+        private void buttonDialogLauncher_Click(object sender, RibbonControlEventArgs e)
+        {
+
+            FormSettings settingsWindow = new FormSettings();
+            settingsWindow.Show();
+        }
+
         private async void buttonNewJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
             // Get the Application object

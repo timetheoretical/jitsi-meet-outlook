@@ -61,10 +61,16 @@
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageDomain = new System.Windows.Forms.TabPage();
             this.tabPageRoomId = new System.Windows.Forms.TabPage();
-            this.tabPageMeetingOptions = new System.Windows.Forms.TabPage();
-            this.tabPageLanguage = new System.Windows.Forms.TabPage();
             this.groupBoxRandomGeneratorMode = new System.Windows.Forms.GroupBox();
             this.comboBoxRandomGeneratorMode = new System.Windows.Forms.ComboBox();
+            this.tabPageMeetingOptions = new System.Windows.Forms.TabPage();
+            this.tabPageLanguage = new System.Windows.Forms.TabPage();
+            this.tabPageTexts = new System.Windows.Forms.TabPage();
+            this.groupBoxDisclaimer = new System.Windows.Forms.GroupBox();
+            this.textBoxDisclaimer = new System.Windows.Forms.TextBox();
+            this.groupBoxMessage = new System.Windows.Forms.GroupBox();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBoxDomain.SuspendLayout();
             this.groupBoxToggleDefaults.SuspendLayout();
@@ -76,9 +82,12 @@
             this.tabControlSettings.SuspendLayout();
             this.tabPageDomain.SuspendLayout();
             this.tabPageRoomId.SuspendLayout();
+            this.groupBoxRandomGeneratorMode.SuspendLayout();
             this.tabPageMeetingOptions.SuspendLayout();
             this.tabPageLanguage.SuspendLayout();
-            this.groupBoxRandomGeneratorMode.SuspendLayout();
+            this.tabPageTexts.SuspendLayout();
+            this.groupBoxDisclaimer.SuspendLayout();
+            this.groupBoxMessage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -152,7 +161,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(180, 227);
+            this.buttonOK.Location = new System.Drawing.Point(99, 227);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 3;
@@ -163,7 +172,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(261, 227);
+            this.buttonCancel.Location = new System.Drawing.Point(180, 227);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 4;
@@ -408,6 +417,7 @@
             this.tabControlSettings.Controls.Add(this.tabPageRoomId);
             this.tabControlSettings.Controls.Add(this.tabPageMeetingOptions);
             this.tabControlSettings.Controls.Add(this.tabPageLanguage);
+            this.tabControlSettings.Controls.Add(this.tabPageTexts);
             this.tabControlSettings.Location = new System.Drawing.Point(12, 27);
             this.tabControlSettings.Name = "tabControlSettings";
             this.tabControlSettings.SelectedIndex = 0;
@@ -437,26 +447,6 @@
             this.tabPageRoomId.Text = "Room ID";
             this.tabPageRoomId.UseVisualStyleBackColor = true;
             // 
-            // tabPageMeetingOptions
-            // 
-            this.tabPageMeetingOptions.Controls.Add(this.groupBoxToggleDefaults);
-            this.tabPageMeetingOptions.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMeetingOptions.Name = "tabPageMeetingOptions";
-            this.tabPageMeetingOptions.Size = new System.Drawing.Size(320, 168);
-            this.tabPageMeetingOptions.TabIndex = 2;
-            this.tabPageMeetingOptions.Text = "Meeting Options";
-            this.tabPageMeetingOptions.UseVisualStyleBackColor = true;
-            // 
-            // tabPageLanguage
-            // 
-            this.tabPageLanguage.Controls.Add(this.groupBoxLanguage);
-            this.tabPageLanguage.Location = new System.Drawing.Point(4, 22);
-            this.tabPageLanguage.Name = "tabPageLanguage";
-            this.tabPageLanguage.Size = new System.Drawing.Size(320, 168);
-            this.tabPageLanguage.TabIndex = 3;
-            this.tabPageLanguage.Text = "Language";
-            this.tabPageLanguage.UseVisualStyleBackColor = true;
-            // 
             // groupBoxRandomGeneratorMode
             // 
             this.groupBoxRandomGeneratorMode.Controls.Add(this.comboBoxRandomGeneratorMode);
@@ -479,6 +469,88 @@
             this.comboBoxRandomGeneratorMode.Size = new System.Drawing.Size(287, 21);
             this.comboBoxRandomGeneratorMode.TabIndex = 0;
             // 
+            // tabPageMeetingOptions
+            // 
+            this.tabPageMeetingOptions.Controls.Add(this.groupBoxToggleDefaults);
+            this.tabPageMeetingOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMeetingOptions.Name = "tabPageMeetingOptions";
+            this.tabPageMeetingOptions.Size = new System.Drawing.Size(320, 168);
+            this.tabPageMeetingOptions.TabIndex = 2;
+            this.tabPageMeetingOptions.Text = "Meeting Options";
+            this.tabPageMeetingOptions.UseVisualStyleBackColor = true;
+            // 
+            // tabPageLanguage
+            // 
+            this.tabPageLanguage.Controls.Add(this.groupBoxLanguage);
+            this.tabPageLanguage.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLanguage.Name = "tabPageLanguage";
+            this.tabPageLanguage.Size = new System.Drawing.Size(320, 168);
+            this.tabPageLanguage.TabIndex = 3;
+            this.tabPageLanguage.Text = "Language";
+            this.tabPageLanguage.UseVisualStyleBackColor = true;
+            // 
+            // tabPageTexts
+            // 
+            this.tabPageTexts.Controls.Add(this.groupBoxDisclaimer);
+            this.tabPageTexts.Controls.Add(this.groupBoxMessage);
+            this.tabPageTexts.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTexts.Name = "tabPageTexts";
+            this.tabPageTexts.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTexts.Size = new System.Drawing.Size(320, 168);
+            this.tabPageTexts.TabIndex = 4;
+            this.tabPageTexts.Text = "Texts";
+            this.tabPageTexts.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxDisclaimer
+            // 
+            this.groupBoxDisclaimer.Controls.Add(this.textBoxDisclaimer);
+            this.groupBoxDisclaimer.Location = new System.Drawing.Point(6, 103);
+            this.groupBoxDisclaimer.Name = "groupBoxDisclaimer";
+            this.groupBoxDisclaimer.Size = new System.Drawing.Size(308, 59);
+            this.groupBoxDisclaimer.TabIndex = 1;
+            this.groupBoxDisclaimer.TabStop = false;
+            this.groupBoxDisclaimer.Text = "Disclaimer";
+            // 
+            // textBoxDisclaimer
+            // 
+            this.textBoxDisclaimer.Location = new System.Drawing.Point(6, 19);
+            this.textBoxDisclaimer.Multiline = true;
+            this.textBoxDisclaimer.Name = "textBoxDisclaimer";
+            this.textBoxDisclaimer.Size = new System.Drawing.Size(296, 34);
+            this.textBoxDisclaimer.TabIndex = 0;
+            this.textBoxDisclaimer.Enter += new System.EventHandler(this.textBox_Enter);
+            this.textBoxDisclaimer.Leave += new System.EventHandler(this.textBox_Leave);
+            // 
+            // groupBoxMessage
+            // 
+            this.groupBoxMessage.Controls.Add(this.textBoxMessage);
+            this.groupBoxMessage.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxMessage.Name = "groupBoxMessage";
+            this.groupBoxMessage.Size = new System.Drawing.Size(308, 91);
+            this.groupBoxMessage.TabIndex = 0;
+            this.groupBoxMessage.TabStop = false;
+            this.groupBoxMessage.Text = "Message";
+            // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Location = new System.Drawing.Point(6, 19);
+            this.textBoxMessage.Multiline = true;
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.Size = new System.Drawing.Size(296, 66);
+            this.textBoxMessage.TabIndex = 0;
+            this.textBoxMessage.Enter += new System.EventHandler(this.textBox_Enter);
+            this.textBoxMessage.Leave += new System.EventHandler(this.textBox_Leave);
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(261, 227);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
+            this.buttonReset.TabIndex = 7;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
             // FormSettings
             // 
             this.AcceptButton = this.buttonOK;
@@ -487,6 +559,7 @@
             this.AutoSize = true;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(354, 257);
+            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.tabControlSettings);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -518,9 +591,14 @@
             this.tabControlSettings.ResumeLayout(false);
             this.tabPageDomain.ResumeLayout(false);
             this.tabPageRoomId.ResumeLayout(false);
+            this.groupBoxRandomGeneratorMode.ResumeLayout(false);
             this.tabPageMeetingOptions.ResumeLayout(false);
             this.tabPageLanguage.ResumeLayout(false);
-            this.groupBoxRandomGeneratorMode.ResumeLayout(false);
+            this.tabPageTexts.ResumeLayout(false);
+            this.groupBoxDisclaimer.ResumeLayout(false);
+            this.groupBoxDisclaimer.PerformLayout();
+            this.groupBoxMessage.ResumeLayout(false);
+            this.groupBoxMessage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -565,5 +643,11 @@
         private System.Windows.Forms.TabPage tabPageLanguage;
         private System.Windows.Forms.GroupBox groupBoxRandomGeneratorMode;
         private System.Windows.Forms.ComboBox comboBoxRandomGeneratorMode;
+        private System.Windows.Forms.TabPage tabPageTexts;
+        private System.Windows.Forms.GroupBox groupBoxDisclaimer;
+        private System.Windows.Forms.TextBox textBoxDisclaimer;
+        private System.Windows.Forms.GroupBox groupBoxMessage;
+        private System.Windows.Forms.TextBox textBoxMessage;
+        private System.Windows.Forms.Button buttonReset;
     }
 }

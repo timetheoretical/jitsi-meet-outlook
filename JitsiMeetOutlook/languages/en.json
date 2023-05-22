@@ -52,12 +52,16 @@
       "cz": "Czech"
     },
 
+    "groupBoxMessage": "Invitation Message",
+    "groupBoxDisclaimer": "Disclaimer",
+
     "tabControlSettings": {
       "tabPageDomain": "Domain",
       "tabPagePhone": "Phone",
       "tabPageRoomId": "Room ID",
       "tabPageMeetingOptions": "Meeting Options",
-      "tabPageLanguage": "Language"
+      "tabPageLanguage": "Language",
+      "tabPageTexts": "Texts"
     }
   },
 

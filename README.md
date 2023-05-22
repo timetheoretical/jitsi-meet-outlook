@@ -61,6 +61,11 @@ As of v0.4.0, the add-in can be installed via command line with custom setting p
 - `PHONENUMBERLIST_ENDPOINT`: Endpoint to get the Phone Number from to call in
 - `CONFERENCESCHEDULER_ENDPOINT`: Endpoint to send the conference information to in advance, in order to make the call available for call in before the first person joins
 - `CONFERENCESCHEDULER_ENDPOINT_SECRET`: Secret for the `CONFERENCESCHEDULER_ENDPOINT`, used for JWT generation.
+- `APP_NAME`: Defaults to "Jitsi Meet". Modify if your local deployment uses a different name. Will be used as name for the ribbon groups and the meeting location.
+- `MEETING_BUTTON_LABEL`: Defaults to "New Jitsi Meeting". Modify if your local deployment uses a different name.
+- `MEETING_BUTTON_LOGO`: Defaults to the Jitsi logo. Provide custom logo as base64-encoded PNG image, 64x64 pixel, with a transparent background.
+- `TEXT_BODY_MESSAGE`: Customize introductory text to meeting URL. `"\n"` is replaced with a line break. Defaults to `"\n\n\nJitsi-Meeting\n\nJoin the meeting: "``
+- `TEXT_BODY_DISCLAIMER`: Add a disclaimer after the meeting URL. `"\n"` is replaced with a line break.
 
 Example install command: `msiexec /i "C:\Downloads\JitsiMeetOutlook-v0.6.0-windows-anycpu.msi" TARGETDIR="C:\Program Files (x86)\Jitsi Meet Outlook" DOMAIN="my.domain.com" ROOMID="PermanentRoomName" MODE="string" REQNAME="True" NOAUDIO="True" NOVIDEO="True" LANG="en" CONFERENCEMAPPER_ENDPOINT="https://my.domain.com/conferenceMapper" PHONENUMBERLIST_ENDPOINT="https://my.domain.com/phoneNumberList" /passive`
 

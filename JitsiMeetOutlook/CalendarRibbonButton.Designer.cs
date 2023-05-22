@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Microsoft.Office.Tools.Ribbon.RibbonDialogLauncher ribbonDialogLauncherImpl1 = this.Factory.CreateRibbonDialogLauncher();
             this.Calendar = this.Factory.CreateRibbonTab();
             this.JitsiMeet = this.Factory.CreateRibbonGroup();
             this.buttonNewJitsiMeeting = this.Factory.CreateRibbonButton();
@@ -51,10 +52,13 @@
             // 
             // JitsiMeet
             // 
+            ribbonDialogLauncherImpl1.SuperTip = "Preferences";
+            this.JitsiMeet.DialogLauncher = ribbonDialogLauncherImpl1;
             this.JitsiMeet.Items.Add(this.buttonNewJitsiMeeting);
             this.JitsiMeet.Label = "Jitsi Meet";
             this.JitsiMeet.Name = "JitsiMeet";
-            this.JitsiMeet.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupGoto");
+            this.JitsiMeet.Position = this.Factory.RibbonPosition.AfterOfficeId("GroupCalendarNew");
+            this.JitsiMeet.DialogLauncherClick += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonDialogLauncher_Click);
             // 
             // buttonNewJitsiMeeting
             // 

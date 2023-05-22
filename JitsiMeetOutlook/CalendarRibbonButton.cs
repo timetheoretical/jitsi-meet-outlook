@@ -12,6 +12,13 @@ namespace JitsiMeetOutlook
             setLanguage();
         }
 
+        private void buttonDialogLauncher_Click(object sender, RibbonControlEventArgs e)
+        {
+
+            FormSettings settingsWindow = new FormSettings();
+            settingsWindow.Show();
+        }
+
         private async void buttonNewJitsiMeeting_Click(object sender, RibbonControlEventArgs e)
         {
             // Get the Application object
@@ -28,7 +35,7 @@ namespace JitsiMeetOutlook
 
                 // Appointment details
                 newAppointment.MeetingStatus = Outlook.OlMeetingStatus.olMeeting;
-                newAppointment.Location = "Jitsi Meet";
+                newAppointment.Location = Properties.Settings.Default.appName;
 
                 // Set appointment date if selected in calendar
                 if (view.ViewType == Outlook.OlViewType.olCalendarView)

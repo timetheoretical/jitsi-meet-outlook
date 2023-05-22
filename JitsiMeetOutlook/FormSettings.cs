@@ -15,7 +15,11 @@ namespace JitsiMeetOutlook
         public FormSettings()
         {
             InitializeComponent();
+            loadSettings();
+        }
 
+        private void loadSettings()
+        {
             // Set default domain
             defaultDomain = "meet.jit.si";
 
@@ -28,6 +32,26 @@ namespace JitsiMeetOutlook
 
             // Load text field
             textBoxDomain.Text = Properties.Settings.Default.Domain;
+
+            // Load body texts
+            // The translations contain wierd newline definitions. Fix them by only using the "\n" newline character.
+            // In the properties, we allow "\r\n" encoded as literal @"\n" so we can easily pass it to msiexec.
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.textBodyMessage))
+            {
+                textBoxMessage.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyMessage").Replace("\r", "").Replace("\n", "\r\n");
+            }
+            else
+            {
+                textBoxMessage.Text = Properties.Settings.Default.textBodyMessage.Replace(@"\n", "\r\n");
+            }
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.textBodyDisclaimer))
+            {
+                textBoxDisclaimer.Text = Globals.ThisAddIn.getElementTranslation("appointmentItem", "textBodyDisclaimer").Replace("\r", "").Replace("\n", "\r\n");
+            }
+            else
+            {
+                textBoxDisclaimer.Text = Properties.Settings.Default.textBodyDisclaimer.Replace(@"\n", "\r\n");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -174,6 +198,10 @@ namespace JitsiMeetOutlook
             // Set random generator mode
             string randomGeneratorModeSelection = (string)comboBoxRandomGeneratorMode.SelectedItem;
             Properties.Settings.Default.randomRoomIdGeneratorMode = randomGeneratorModeDropDown.FirstOrDefault(x => x.Value == randomGeneratorModeSelection).Key;
+
+            // Set body texts
+            Properties.Settings.Default.textBodyMessage = textBoxMessage.Text;
+            Properties.Settings.Default.textBodyDisclaimer = textBoxDisclaimer.Text;
         }
 
         private string cleanDomain(string userInput)
@@ -285,6 +313,24 @@ namespace JitsiMeetOutlook
         private void comboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // When editing a multi-line text, we want the Enter key to insert a line break
+        // instead of accepting and closing the dialog
+        private void textBox_Enter(object sender, EventArgs e)
+        {
+            AcceptButton = null;
+        }
+
+        private void textBox_Leave(object sender, EventArgs e)
+        {
+            AcceptButton = buttonOK;
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            loadSettings();
         }
     }
 }

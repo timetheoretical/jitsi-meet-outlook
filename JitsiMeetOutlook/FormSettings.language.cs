@@ -28,7 +28,9 @@ namespace JitsiMeetOutlook
             this.labelStartWithAudioMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithAudioMuted");
             this.labelStartWithVideoMuted.Text = Globals.ThisAddIn.getElementTranslation("settings", "labelStartWithVideoMuted");
             this.groupBoxLanguage.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxLanguage");
-
+            this.Text = Properties.Settings.Default.appName + " Settings";
+            this.groupBoxMessage.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxMessage");
+            this.groupBoxDisclaimer.Text = Globals.ThisAddIn.getElementTranslation("settings", "groupBoxDisclaimer");
         }
 
 
@@ -60,6 +62,7 @@ namespace JitsiMeetOutlook
             this.tabPageRoomId.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageRoomId").GetString();
             this.tabPageMeetingOptions.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageMeetingOptions").GetString();
             this.tabPageLanguage.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageLanguage").GetString();
+            this.tabPageTexts.Text = jsonUILanguage.GetProperty("tabControlSettings").GetProperty("tabPageTexts").GetString();
         }
 
         private void setRandomGeneratorMode()

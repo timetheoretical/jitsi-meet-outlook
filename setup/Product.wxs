@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <!--Specify software bitness-->
-    <?define Win64 = "no" ?>
-
-    <!-- Set default install path based on software bitness -->
-    <?if Win64 = "yes" ?>
-    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
-    <?else ?>
-    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
-    <?endif ?>
-
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
     <!-- Set project variables -->
     <?define JitsiMeetOutlook_TargetDir=$(var.JitsiMeetOutlook.TargetDir)?>
     <?define JitsiMeetOutlook_ProjectName="JitsiMeetOutlookAddIn"?>
 
     <!-- Addon details -->
-    <Product Id="*" Name="JitsiMeetOutlookAddIn" Language="1033" Version="0.7.0" Manufacturer="github.com/timetheoretical" UpgradeCode="146f17e9-8106-4dd3-a3c5-b8f2c92ffb25">
-        <Package InstallerVersion="500" Compressed="yes" Platform="x64" InstallScope="perMachine" />
+    <Product Id="*" Name="JitsiMeetOutlookAddIn" Language="1036" Version="0.8.0" Manufacturer="github.com/timetheoretical" UpgradeCode="146f17e9-8106-4dd3-a3c5-b8f2c92ffb25">
+        <Package InstallerVersion="500" Compressed="yes" Platform="x64" InstallScope="perUser" InstallPrivileges="limited" />
 
         <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
         <MediaTemplate EmbedCab="yes"/>
@@ -51,6 +41,7 @@
             <ComponentRef Id="Registry_Description" />
             <ComponentRef Id="Registry_Manifest" />
             <ComponentRef Id="Registry_LoadBehavior" />
+            <ComponentRef Id="CleanupInstallFolder" />
         </Feature>
 
         <!-- Set icon -->
@@ -64,36 +55,39 @@
         <!--Specify the EULA file to use-->
         <WixVariable Id="WixUILicenseRtf" Value="gpl-3.0.rtf" />
 
-        <!-- Reference custom action to update settings xml -->
-        <CustomAction Id="UpdateConfigXml" BinaryKey="SettingsInstallerParameters.CA" DllEntry="UpdateConfigXml" Execute="deferred" Return="check" Impersonate="no" />
-        <CustomAction Id="SetCMDParameters" Property="UpdateConfigXml" Value="InstallDir=[INSTALLFOLDER];Domain=[DOMAIN];roomID=[ROOMID];requireDisplayName=[REQNAME];startWithAudioMuted=[NOAUDIO];startWithVideoMuted=[NOVIDEO];language=[LANG];randomRoomIdGeneratorMode=[MODE];conferenceMapperEndpoint=[CONFERENCEMAPPER_ENDPOINT];phoneNumberListEndpoint=[PHONENUMBERLIST_ENDPOINT];conferenceSchedulerEndpoint=[CONFERENCESCHEDULER_ENDPOINT];conferenceSchedulerEndpointSecret=[CONFERENCESCHEDULER_ENDPOINT_SECRET]" />
-        <Binary Id="SettingsInstallerParameters.CA" SourceFile="$(var.JitsiMeetOutlook.ProjectDir)..\SettingsInstallerParameters\bin\Release\SettingsInstallerParameters.CA.dll" />
-
-        <InstallExecuteSequence>
-            <Custom Action="SetCMDParameters" Before="UpdateConfigXml" />
-            <Custom Action="UpdateConfigXml" After="InstallFiles">NOT Installed</Custom>
-        </InstallExecuteSequence>
-
     </Product>
 
     <!-- Set registry keys for Outlook -->
     <Fragment>
         <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="$(var.PlatformProgramFilesFolder)">
-                <Directory Id="INSTALLFOLDER" Name="!(bind.property.ProductName)" />
+            <Directory Id="LocalAppDataFolder">
+                <Directory Id="COMPANYFOLDER" Name="TimeTheOretical">
+                    <Directory Id="INSTALLFOLDER" Name="!(bind.property.ProductName)" />
 
-                <Component Id="Registry_FriendlyName">
-                    <RegistryValue Id="RegKey_FriendlyName" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="FriendlyName" Value="!(bind.property.ProductName)" Type="string" KeyPath="yes" />
-                </Component>
-                <Component Id="Registry_Description">
-                    <RegistryValue Id="RegKey_Description" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Description" Value="!(bind.property.ProductName)" Type="string" KeyPath="yes" />
-                </Component>
-                <Component Id="Registry_Manifest">
-                    <RegistryValue Id="RegKey_Manifest" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Manifest" Value="file:///[INSTALLFOLDER]!(bind.property.ProductName).vsto|vstolocal" Type="string" KeyPath="yes" />
-                </Component>
-                <Component Id="Registry_LoadBehavior">
-                    <RegistryValue Id="RegKey_LoadBehavior" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="LoadBehavior" Value="3" Type="integer" KeyPath="yes" />
-                </Component>
+                    <Component Id="Registry_FriendlyName" Guid="{F3C6C6E5-9E67-4E5B-8C7B-2F3F0E6E3D01}">
+                        <RegistryValue Id="RegKey_FriendlyName" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="FriendlyName" Value="!(bind.property.ProductName)" Type="string" KeyPath="yes" />
+                    </Component>
+                    <Component Id="Registry_Description" Guid="{6C8F1C66-0B8C-4C7B-9F62-6C7C8B7F0B2D}">
+                        <RegistryValue Id="RegKey_Description" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Description" Value="!(bind.property.ProductName)" Type="string" KeyPath="yes" />
+                    </Component>
+                    <Component Id="Registry_Manifest" Guid="{9D8E4E9A-2C1B-4D8E-9C23-7E4D6D1B5A33}">
+                        <RegistryValue Id="RegKey_Manifest" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="Manifest" Value="file:///[INSTALLFOLDER]!(bind.property.ProductName).vsto|vstolocal" Type="string" KeyPath="yes" />
+                    </Component>
+                    <Component Id="Registry_LoadBehavior" Guid="{0A0B5C1D-6A52-4B5B-9C2F-8AF2B1D6F9A1}">
+                        <RegistryValue Id="RegKey_LoadBehavior" Root="HKCU" Key="Software\Microsoft\Office\Outlook\AddIns\!(bind.property.ProductName)" Name="LoadBehavior" Value="3" Type="integer" KeyPath="yes" />
+                    </Component>
+                    <Component Id="CleanupInstallFolder" Guid="{7C2E6F1B-3B0E-4D0F-8C7E-5E2C6E8B1A9D}">
+                        <CreateFolder/>
+
+                        <RemoveFile Id="RemoveInstallDir" On="uninstall" Directory="INSTALLFOLDER" Name="*"/>
+                        <RemoveFolder Id="RemoveInstallFolder" On="uninstall" Directory="INSTALLFOLDER"/>
+
+                        <RemoveFile Id="RemoveCompanyDir" On="uninstall" Directory="COMPANYFOLDER" Name="*"/>
+                        <RemoveFolder Id="RemoveCompanyFolder" On="uninstall" Directory="COMPANYFOLDER"/>
+
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Maintenance" Name="Cleanup" Type="integer" Value="1" KeyPath="yes"/>
+                    </Component>
+                </Directory>
 
             </Directory>
         </Directory>
@@ -104,82 +98,141 @@
     <!-- Copy the necessary DLLs -->
     <Fragment>
         <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-            <Component Id="Diacritics.dll">
+            <Component Id="Diacritics.dll" Guid="{F9E7C2B1-1D3A-4C8A-9B6E-2F5B3D7C9E11}">
                 <File Id="Diacritics.dll" Name="Diacritics.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Diacritics.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Diacritics.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Jitsi_Meet_Outlook_AddIn.dll">
+            <Component Id="Jitsi_Meet_Outlook_AddIn.dll" Guid="{B4C2F6E3-8D1A-4C2B-9F7E-1A3B5D7C8E92}">
                 <File Id="Jitsi_Meet_Outlook_AddIn.dll" Name="JitsiMeetOutlookAddIn.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\JitsiMeetOutlookAddIn.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Jitsi_Meet_Outlook_AddIn.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Jitsi_Meet_Outlook_AddIn.dll.manifest">
+            <Component Id="Jitsi_Meet_Outlook_AddIn.dll.manifest" Guid="{2E6B9F1C-3D4A-4B8E-9A1C-6D5E4B3A2C19}">
                 <File Id="Jitsi_Meet_Outlook_AddIn.dll.manifest" Name="JitsiMeetOutlookAddIn.dll.manifest" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\JitsiMeetOutlookAddIn.dll.manifest" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Jitsi_Meet_Outlook_AddIn.dll.manifest" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Jitsi_Meet_Outlook_AddIn.vsto">
+            <Component Id="Jitsi_Meet_Outlook_AddIn.vsto" Guid="{A7B1C3D4-E5F6-4789-A1B2-C3D4E5F6A789}">
                 <File Id="Jitsi_Meet_Outlook_AddIn.vsto" Name="JitsiMeetOutlookAddIn.vsto" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\JitsiMeetOutlookAddIn.vsto" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Jitsi_Meet_Outlook_AddIn.vsto" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Jitsi_Meet_Outlook_AddIn.dll.config">
+            <Component Id="Jitsi_Meet_Outlook_AddIn.dll.config" Guid="{6A5B4C3D-2E1F-4A8B-9C7D-8E6F5A4B3C2D}">
                 <File Id="Jitsi_Meet_Outlook_AddIn.dll.config" Name="JitsiMeetOutlookAddIn.dll.config" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\JitsiMeetOutlookAddIn.dll.config" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Jitsi_Meet_Outlook_AddIn.dll.config" Type="integer" Value="1" KeyPath="yes" />
+
+                <!-- ensure each key exists with the right value -->
+                <util:XmlConfig Id="Cfg_Domain_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='Domain'[\]]" Sequence="10"/>
+                <util:XmlConfig Id="Cfg_Domain_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=Domain; value=[DOMAIN]" Sequence="11"/>
+
+                <util:XmlConfig Id="Cfg_RoomId_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='roomID'[\]]" Sequence="20"/>
+                <util:XmlConfig Id="Cfg_RoomId_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=roomID; value=[ROOMID]" Sequence="21"/>
+
+                <util:XmlConfig Id="Cfg_RequireDisplayName_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='requireDisplayName'[\]]" Sequence="30"/>
+                <util:XmlConfig Id="Cfg_RequireDisplayName_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=requireDisplayName; value=[REQNAME]" Sequence="31"/>
+
+                <util:XmlConfig Id="Cfg_StartWithAudioMuted_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='startWithAudioMuted'[\]]" Sequence="40"/>
+                <util:XmlConfig Id="Cfg_StartWithAudioMuted_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=startWithAudioMuted; value=[NOAUDIO]" Sequence="41"/>
+
+                <util:XmlConfig Id="Cfg_StartWithVideoMuted_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='startWithVideoMuted'[\]]" Sequence="50"/>
+                <util:XmlConfig Id="Cfg_StartWithVideoMuted_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=startWithVideoMuted; value=[NOVIDEO]" Sequence="51"/>
+
+                <util:XmlConfig Id="Cfg_Language_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='language'[\]]" Sequence="60"/>
+                <util:XmlConfig Id="Cfg_Language_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=language; value=[LANG]" Sequence="61"/>
+
+                <util:XmlConfig Id="Cfg_Mode_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='randomRoomIdGeneratorMode'[\]]" Sequence="70"/>
+                <util:XmlConfig Id="Cfg_Mode_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=randomRoomIdGeneratorMode; value=[MODE]" Sequence="71"/>
+
+                <util:XmlConfig Id="Cfg_ConferenceMapper_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='conferenceMapperEndpoint'[\]]" Sequence="80"/>
+                <util:XmlConfig Id="Cfg_ConferenceMapper_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=conferenceMapperEndpoint; value=[CONFERENCEMAPPER_ENDPOINT]" Sequence="81"/>
+
+                <util:XmlConfig Id="Cfg_PhoneNumberList_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='phoneNumberListEndpoint'[\]]" Sequence="90"/>
+                <util:XmlConfig Id="Cfg_PhoneNumberList_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=phoneNumberListEndpoint; value=[PHONENUMBERLIST_ENDPOINT]" Sequence="91"/>
+
+                <util:XmlConfig Id="Cfg_ConferenceScheduler_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='conferenceSchedulerEndpoint'[\]]" Sequence="100"/>
+                <util:XmlConfig Id="Cfg_ConferenceScheduler_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=conferenceSchedulerEndpoint; value=[CONFERENCESCHEDULER_ENDPOINT]" Sequence="101"/>
+
+                <util:XmlConfig Id="Cfg_ConferenceSchedulerSecret_Delete" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="delete" ElementPath="/configuration/appSettings/add[\[]@key='conferenceSchedulerEndpointSecret'[\]]" Sequence="110"/>
+                <util:XmlConfig Id="Cfg_ConferenceSchedulerSecret_Create" File="[INSTALLFOLDER]JitsiMeetOutlookAddIn.dll.config" Action="create" ElementPath="/configuration/appSettings" Name="add" Value="key=conferenceSchedulerEndpointSecret; value=[CONFERENCESCHEDULER_ENDPOINT_SECRET]" Sequence="111"/>
             </Component>
         </ComponentGroup>
         <ComponentGroup Id="Dependencies" Directory="INSTALLFOLDER">
-            <Component Id="Microsoft.Bcl.AsyncInterfaces.dll">
+            <Component Id="Microsoft.Bcl.AsyncInterfaces.dll" Guid="{1F2E3D4C-5B6A-4789-8C7D-6E5F4A3B2C1D}">
                 <File Id="Microsoft.Bcl.AsyncInterfaces.dll" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Bcl.AsyncInterfaces.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll">
+            <Component Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Guid="{3A4B5C6D-7E8F-4A9B-8C7D-6E5F4A3B2C1E}">
                 <File Id="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll">
+            <Component Id="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Guid="{4B5C6D7E-8F9A-4B1C-8D7E-6F5E4D3C2B1A}">
                 <File Id="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Buffers.dll">
+            <Component Id="System.Buffers.dll" Guid="{5C6D7E8F-9A1B-4C2D-8E7F-6A5B4C3D2E1F}">
                 <File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Buffers.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Buffers.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Memory.dll">
+            <Component Id="System.Memory.dll" Guid="{6D7E8F9A-1B2C-4D3E-8F7A-6B5C4D3E2F1A}">
                 <File Id="System.Memory.dll" Name="System.Memory.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Memory.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Memory.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Threading.Tasks.Extensions.dll">
+            <Component Id="System.Threading.Tasks.Extensions.dll" Guid="{7E8F9A1B-2C3D-4E5F-8A7B-6C5D4E3F2A1B}">
                 <File Id="System.Threading.Tasks.Extensions.dll" Name="System.Threading.Tasks.Extensions.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Threading.Tasks.Extensions.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Threading.Tasks.Extensions.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.ValueTuple.dll">
+            <Component Id="System.ValueTuple.dll" Guid="{8F9A1B2C-3D4E-5F6A-8B7C-6D5E4F3A2B1C}">
                 <File Id="System.ValueTuple.dll" Name="System.ValueTuple.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.ValueTuple.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.ValueTuple.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Numerics.Vectors.dll">
+            <Component Id="System.Numerics.Vectors.dll" Guid="{9A1B2C3D-4E5F-6A7B-8C7D-6E5F4A3B2C1D}">
                 <File Id="System.Numerics.Vectors.dll" Name="System.Numerics.Vectors.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Numerics.Vectors.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Numerics.Vectors.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Runtime.CompilerServices.Unsafe.dll">
+            <Component Id="System.Runtime.CompilerServices.Unsafe.dll" Guid="{1A2B3C4D-5E6F-4789-8A7B-6C5D4E3F2A1C}">
                 <File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Runtime.CompilerServices.Unsafe.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Text.Encodings.Web.dll">
+            <Component Id="System.Text.Encodings.Web.dll" Guid="{2B3C4D5E-6F78-49A1-8B7C-6D5E4F3A2B1D}">
                 <File Id="System.Text.Encodings.Web.dll" Name="System.Text.Encodings.Web.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Text.Encodings.Web.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Text.Encodings.Web.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="System.Text.Json.dll">
+            <Component Id="System.Text.Json.dll" Guid="{3C4D5E6F-789A-41B2-8C7D-6E5F4A3B2C1E}">
                 <File Id="System.Text.Json.dll" Name="System.Text.Json.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.Text.Json.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.Text.Json.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Extensions.Caching.Memory.dll">
+            <Component Id="Microsoft.Extensions.Caching.Memory.dll" Guid="{4D5E6F78-9A1B-42C3-8D7E-6F5E4D3C2B1E}">
                 <File Id="Microsoft.Extensions.Caching.Memory.dll" Name="Microsoft.Extensions.Caching.Memory.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Caching.Memory.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Extensions.Caching.Memory.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Extensions.Options.dll">
+            <Component Id="Microsoft.Extensions.Options.dll" Guid="{5E6F789A-1B2C-43D4-8E7F-6A5B4C3D2E1F}">
                 <File Id="Microsoft.Extensions.Options.dll" Name="Microsoft.Extensions.Options.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Options.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Extensions.Options.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Extensions.Logging.Abstractions.dll">
+            <Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="{6F789A1B-2C3D-44E5-8F7A-6B5C4D3E2F1A}">
                 <File Id="Microsoft.Extensions.Logging.Abstractions.dll" Name="Microsoft.Extensions.Logging.Abstractions.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Logging.Abstractions.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Extensions.Logging.Abstractions.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Extensions.Caching.Abstractions.dll">
+            <Component Id="Microsoft.Extensions.Caching.Abstractions.dll" Guid="{789A1B2C-3D4E-45F6-8A7B-6C5D4E3F2A1B}">
                 <File Id="Microsoft.Extensions.Caching.Abstractions.dll" Name="Microsoft.Extensions.Caching.Abstractions.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Caching.Abstractions.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Extensions.Caching.Abstractions.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-            <Component Id="Microsoft.Extensions.Primitives.dll">
+            <Component Id="Microsoft.Extensions.Primitives.dll" Guid="{89A1B2C3-4D5E-46F7-8B7C-6D5E4F3A2B1C}">
                 <File Id="Microsoft.Extensions.Primitives.dll" Name="Microsoft.Extensions.Primitives.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.Extensions.Primitives.dll" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.Extensions.Primitives.dll" Type="integer" Value="1" KeyPath="yes" />
             </Component>
-			<Component Id="Microsoft.IdentityModel.Tokens.dll">
+			<Component Id="Microsoft.IdentityModel.Tokens.dll" Guid="{9B1C2D3E-4F56-47A8-8C7D-6E5F4A3B2C1D}">
 				<File Id="Microsoft.IdentityModel.Tokens.dll" Name="Microsoft.IdentityModel.Tokens.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.Tokens.dll" />
+				<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.IdentityModel.Tokens.dll" Type="integer" Value="1" KeyPath="yes" />
 			</Component>
-			<Component Id="Microsoft.IdentityModel.JsonWebTokens.dll">
+			<Component Id="Microsoft.IdentityModel.JsonWebTokens.dll" Guid="{A1B2C3D4-5E67-48A9-8D7E-6F5E4D3C2B1A}">
 				<File Id="Microsoft.IdentityModel.JsonWebTokens.dll" Name="Microsoft.IdentityModel.JsonWebTokens.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll" />
+				<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.IdentityModel.JsonWebTokens.dll" Type="integer" Value="1" KeyPath="yes" />
 			</Component>
-			<Component Id="System.IdentityModel.Tokens.Jwt.dll">
+			<Component Id="System.IdentityModel.Tokens.Jwt.dll" Guid="{B2C3D4E5-6F78-49A1-8E7F-6A5B4C3D2E1F}">
 				<File Id="System.IdentityModel.Tokens.Jwt.dll" Name="System.IdentityModel.Tokens.Jwt.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\System.IdentityModel.Tokens.Jwt.dll" />
+				<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="System.IdentityModel.Tokens.Jwt.dll" Type="integer" Value="1" KeyPath="yes" />
 			</Component>
-			<Component Id="Microsoft.IdentityModel.Logging.dll">
+			<Component Id="Microsoft.IdentityModel.Logging.dll" Guid="{C3D4E5F6-789A-41B2-8F7A-6B5C4D3E2F1A}">
 				<File Id="Microsoft.IdentityModel.Logging.dll" Name="Microsoft.IdentityModel.Logging.dll" Source="$(var.JitsiMeetOutlook.ProjectDir)bin\Release\Microsoft.IdentityModel.Logging.dll" />
+				<RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\Components" Name="Microsoft.IdentityModel.Logging.dll" Type="integer" Value="1" KeyPath="yes" />
 			</Component>
         </ComponentGroup>
     </Fragment>
